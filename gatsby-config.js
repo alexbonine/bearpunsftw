@@ -1,6 +1,9 @@
 module.exports = {
   siteMetadata: {
     title: "Bear Puns FTW",
+    description: "Wedding Website of Shawna Carney and Alex Bonine",
+    author: "Alex Bonine (lemurdev@gmail.com)",
+    siteUrl: "https://bearpunsftw.com"
   },
   plugins: [
     "gatsby-plugin-emotion",
