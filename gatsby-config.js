@@ -3,7 +3,7 @@ module.exports = {
     title: "Bear Puns FTW",
     description: "Wedding Website of Shawna Carney and Alex Bonine",
     author: "Alex Bonine (lemurdev@gmail.com)",
-    siteUrl: "https://bearpunsftw.com"
+    siteUrl: "https://bearpunsftw.com",
   },
   plugins: [
     "gatsby-plugin-emotion",
@@ -11,6 +11,16 @@ module.exports = {
       resolve: "gatsby-plugin-google-analytics",
       options: {
         trackingId: "258471519",
+      },
+    },
+    {
+      resolve: `gatsby-alias-imports`,
+      options: {
+        aliases: {
+          styles: `src/styles`,
+          config: `config/`,
+          "@utils": "src/utils/",
+        },
       },
     },
     "gatsby-plugin-sharp",
