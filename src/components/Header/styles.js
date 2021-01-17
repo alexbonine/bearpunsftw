@@ -20,6 +20,7 @@ export const Container = styled.nav`
   align-items: center;
   background-color: ${(props) =>
     props.isNotDesktop && props.isMenuOpen ? "#7d7979" : "rgba(0, 0, 0, 0.5)"};
+  transition: 0.4s;
 `;
 
 export const Home = styled.div`
