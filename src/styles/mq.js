@@ -1,8 +1,11 @@
 import facepaint from "facepaint";
 
-const mq = facepaint(
-  ["@media(min-width: 768px)", "@media(min-width: 1024px)"],
-  { overlap: true }
-);
+export const tablet = 768;
+export const desktop = 1024;
+
+const mq = facepaint([
+  `@media(min-width: ${tablet}px)`,
+  `@media(min-width: ${desktop}px)`,
+]);
 
 export default mq;

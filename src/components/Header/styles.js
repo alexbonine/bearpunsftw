@@ -1,32 +1,64 @@
 import styled from "@emotion/styled";
 import pseudo from "styles/pseudo";
+import mq from "styles/mq";
 import Bear from "images/bear.svg";
 import Lemur from "images/lemur.svg";
 
 const HOME_ICON_SIZE = "24px";
 const ITEM_COLOR = "white";
 
-console.log(
-  pseudo({
-    "&": [{ opacity: 0.75 }, { opacity: 1 }],
-  })
-);
-
 export const Container = styled.nav`
-  position: ${(props) => (props.isFixedHeader ? "fixed" : "absolute")};
+  position: ${(props) =>
+    props.isFixedHeader || props.isNotDesktop ? "fixed" : "absolute"};
   top: 0;
   left: 0;
-  height: 50px;
+  height: ${(props) =>
+    props.isNotDesktop && props.isMenuOpen ? "100%" : "50px"};
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: ${(props) =>
+    props.isNotDesktop && props.isMenuOpen ? "#7d7979" : "rgba(0, 0, 0, 0.5)"};
 `;
 
 export const Home = styled.div`
   position: absolute;
-  left: 50px;
+  left: ${(props) => (props.isNotDesktop ? "20px" : "50px")};
+  top: ${(props) => (props.isNotDesktop ? "2px" : "")};
+`;
+
+export const MenuButton = styled.div`
+  display: inline-block;
+  cursor: pointer;
+
+  ${pseudo({
+    "&": {
+      opacity: [0.75, 1, 1, 1],
+    },
+  })};
+`;
+
+const MenuBar = styled.div`
+  width: 35px;
+  height: 5px;
+  background-color: white;
+  margin: 6px 0;
+  transition: 0.4s;
+`;
+
+export const MenuBar1 = styled(MenuBar)`
+  transform: ${(props) =>
+    props.isMenuOpen ? "rotate(-45deg) translate(-9px, 6px)" : "none"};
+`;
+
+export const MenuBar2 = styled(MenuBar)`
+  opacity: ${(props) => (props.isMenuOpen ? 0 : 1)};
+`;
+
+export const MenuBar3 = styled(MenuBar)`
+  transform: ${(props) =>
+    props.isMenuOpen ? "rotate(45deg) translate(-8px, -8px)" : "none"};
 `;
 
 export const BearIcon = styled(Bear)`
@@ -52,13 +84,31 @@ export const IconCopyright = styled.div`
   display: none;
 `;
 
+export const NavList = styled.ul`
+  ${(props) =>
+    props.isNotDesktop && props.isMenuOpen
+      ? {
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+        }
+      : {}}
+`;
+
 export const NavItem = styled.li`
-  display: inline-block;
-  margin-right: 20px;
+  display: ${(props) =>
+    !props.isNotDesktop || props.isMenuOpen ? "inline-block" : "none"};
   text-transform: uppercase;
+
+  ${mq({
+    marginRight: ["0px", "0px", "20px"],
+    marginBottom: ["10px", "10px", "0px"],
+  })}
 
   &:last-child {
     margin-right: 0;
+    margin-bottom: 0;
   }
 `;
 
