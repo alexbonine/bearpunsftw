@@ -10,17 +10,17 @@ body {
 @font-face {
   font-family: Merriweather;
   font-weight: bold;
-  src: url("../../fonts/Merriweather-Bold.ttf");
+  src: url("../fonts/Merriweather-Bold.ttf");
 }
 
 @font-face {
   font-family: Montserrat;
-  src: url("../../fonts/Montserrat-Regular.ttf");
+  src: url("../fonts/Montserrat-Regular.ttf");
 }
 
 @font-face {
   font-family: Montserrat;
-  src: url("../../fonts/Montserrat-Bold.ttf");
+  src: url("../fonts/Montserrat-Bold.ttf");
   font-weight: bold;
 }
 
@@ -64,6 +64,7 @@ a {
   background-color: transparent;
   -webkit-text-decoration-skip: objects;
   color: black;
+  text-decoration: none;
 }
 a:active,
 a:hover {
@@ -356,15 +357,16 @@ hgroup {
   margin-bottom: 1.45rem;
 }
 ul {
-  margin-left: 1.45rem;
+  margin-left: 0;
   margin-right: 0;
   margin-top: 0;
   padding-bottom: 0;
   padding-left: 0;
   padding-right: 0;
   padding-top: 0;
-  margin-bottom: 1.45rem;
+  margin-bottom: 0;
   list-style-position: outside;
+  list-style: none;
   list-style-image: none;
 }
 ol {
@@ -536,7 +538,7 @@ th {
   font-weight: bold;
 }
 li {
-  margin-bottom: calc(1.45rem / 2);
+  margin-bottom: 0;
 }
 ol li {
   padding-left: 0;

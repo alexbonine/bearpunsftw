@@ -1,13 +1,13 @@
 import React from "react";
-import { Container } from "./styles";
+import { Container, Window } from "./styles";
 
 const Welcome = () => {
   return (
     <Container>
-      <div>
+      <Window>
         <h1>Header Text</h1>
         <p>Body Text</p>
-      </div>
+      </Window>
     </Container>
   );
 };
