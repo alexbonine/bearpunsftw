@@ -73,7 +73,7 @@ const Header = () => {
           <ATag href="#ourstory">Our Story</ATag>
         </NavItem>
         <NavItem isNotDesktop={isNotDesktop} isMenuOpen={isMenuOpen}>
-          <ATag href="#schedule">Schedule</ATag>
+          <ATag href="#schedule">The Weekend</ATag>
         </NavItem>
         <NavItem isNotDesktop={isNotDesktop} isMenuOpen={isMenuOpen}>
           <ATag href="#accomodations">Accomodations</ATag>
