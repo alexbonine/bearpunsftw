@@ -9,7 +9,8 @@ import {
   EventTime,
   EventTitle,
   Image,
-  ImageContainer,
+  ImageContainerLarge,
+  ImageContainerSmall,
   TextContainer,
   Title,
 } from "./styles";
@@ -91,9 +92,10 @@ const Schedule = () => {
         </div>
         {mapEvents()}
       </TextContainer>
-      <ImageContainer>
+      <ImageContainerSmall />
+      <ImageContainerLarge>
         <Image src={TurksInn} alt="Turks Inn" />
-      </ImageContainer>
+      </ImageContainerLarge>
     </Container>
   );
 };

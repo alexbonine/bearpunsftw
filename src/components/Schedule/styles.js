@@ -1,17 +1,13 @@
 import styled from "@emotion/styled";
 import mq from "styles/mq";
+import TurksInn from "images/turks-inn.jpg";
 
 export const Container = styled.div`
   max-height: 1000px;
   width: 100%;
   display: flex;
   ${mq({
-    flexDirection: [
-      "column-reverse",
-      "column-reverse",
-      "column-reverse",
-      "row",
-    ],
+    flexDirection: ["column-reverse", "column-reverse", "row", "row"],
     minHeight: ["", "", "100vh", "100vh"],
   })}
 `;
@@ -92,10 +88,22 @@ export const EventTime = styled.p`
   })}
 `;
 
-export const ImageContainer = styled.div`
+export const ImageContainerSmall = styled.div`
+  background-image: url(${TurksInn});
+  background-size: cover;
+  height: 30rem;
+  background-position: 50% 50%;
+  ${mq({ display: ["block", "block", "none", "none"] })}
+`;
+
+export const ImageContainerLarge = styled.div`
   max-width: 1168px;
+  ${mq({ display: ["none", "none", "block", "block"] })}
 `;
 
 export const Image = styled.img`
   display: block;
+  height: 100vh;
+  background-size: cover;
+  background-position: 50% 50%;
 `;
