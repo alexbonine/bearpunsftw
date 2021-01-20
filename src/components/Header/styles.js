@@ -81,10 +81,6 @@ export const Plus = styled.div`
   font-size: 20px;
 `;
 
-export const IconCopyright = styled.div`
-  display: none;
-`;
-
 export const NavList = styled.ul`
   ${(props) =>
     props.isNotDesktop && props.isMenuOpen

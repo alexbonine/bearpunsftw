@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import useMq from "hooks/useMq";
+import IconCopyright from "components/IconCopyright";
 import {
   ATag,
   ATagIconContainer,
   BearIcon,
   Container,
   Home,
-  IconCopyright,
   LemurIcon,
   MenuBar1,
   MenuBar2,
@@ -55,16 +55,7 @@ const Header = () => {
               <Plus>&#43;</Plus>
               <LemurIcon />
             </ATagIconContainer>
-            <IconCopyright>
-              Icons made by&#32;
-              <a href="http://www.freepik.com/" title="Freepik">
-                Freepik
-              </a>
-              &#32;from&#32;
-              <a href="https://www.flaticon.com/" title="Flaticon">
-                www.flaticon.com
-              </a>
-            </IconCopyright>
+            <IconCopyright />
           </>
         )}
       </Home>
