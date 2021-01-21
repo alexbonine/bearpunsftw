@@ -17,6 +17,7 @@ import {
 const ThingsToDo = () => {
   const stuffRef = useRef(null);
   const [iframeHeight, setIframeHeight] = useState(640);
+  const [iframeWidth, setIframeWidth] = useState(480);
   const size = useComponentSize(stuffRef);
   const { isNotDesktop } = useMq();
 
@@ -26,6 +27,12 @@ const ThingsToDo = () => {
       setIframeHeight(400);
     } else {
       setIframeHeight(Math.max(size.height, 640));
+    }
+
+    if (size.width <= 500) {
+      setIframeWidth(size.width - 20);
+    } else {
+      setIframeWidth(480);
     }
   }, [size.width, isNotDesktop]);
 
@@ -39,7 +46,7 @@ const ThingsToDo = () => {
         <MapContainer>
           <iframe
             src="https://www.google.com/maps/d/u/0/embed?mid=1cRUpLiSyc0-nIyghXZ_Pu6fcTwupOdsC"
-            width={480}
+            width={iframeWidth}
             height={iframeHeight}
             title="NYC Map of Things To Do"
           ></iframe>
