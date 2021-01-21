@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import mq from "styles/mq";
 import TurksInn from "images/turks-inn.jpg";
+import colors from "styles/colors";
 
 export const Container = styled.div`
   max-height: 1000px;
@@ -19,7 +20,7 @@ export const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: #c00d1e;
+  background-color: ${colors.red};
   ${mq({
     padding: [
       "40px 40px 40px 40px",
@@ -31,7 +32,7 @@ export const TextContainer = styled.div`
 `;
 
 export const Title = styled.h1`
-  color: white;
+  color: ${colors.white};
   padding-bottom: 20px;
   border-bottom: 2px solid white;
   margin-bottom: 20px;
@@ -49,7 +50,7 @@ export const EventContainer = styled.div`
 
 export const EventDate = styled.h4`
   margin-bottom: 4px;
-  color: #b5e3f5;
+  color: ${colors.blueLight};
   text-transform: uppercase;
   ${mq({
     textAlign: ["center", "left"],
@@ -57,7 +58,7 @@ export const EventDate = styled.h4`
 `;
 
 export const EventTitle = styled.h5`
-  color: white;
+  color: ${colors.white};
   margin-bottom: 0px;
   ${mq({
     textAlign: ["center", "left"],
@@ -65,14 +66,14 @@ export const EventTitle = styled.h5`
 `;
 
 export const EventLocation = styled.p`
-  color: white;
+  color: ${colors.white};
   ${mq({
     textAlign: ["center", "left"],
   })}
 `;
 
 export const EventLocationTag = styled.a`
-  color: white;
+  color: ${colors.white};
   text-decoration: underline;
   cursor: pointer;
   ${mq({
@@ -81,7 +82,7 @@ export const EventLocationTag = styled.a`
 `;
 
 export const EventTime = styled.p`
-  color: white;
+  color: ${colors.white};
   text-transform: uppercase;
   ${mq({
     textAlign: ["center", "left"],

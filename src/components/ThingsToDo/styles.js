@@ -1,10 +1,11 @@
 import styled from "@emotion/styled";
 import mq from "styles/mq";
+import colors from "styles/colors";
 
 export const Container = styled.div`
   min-height: 100vh;
   width: 100%;
-  background-color: #b5e3f5;
+  background-color: ${colors.blueLight};
 `;
 
 export const FlexContainer = styled.div`
@@ -80,7 +81,7 @@ export const TitleSmall = styled.h1`
 
 export const Divider = styled.div`
   height: 2px;
-  background-color: black;
+  background-color: ${colors.black};
   padding-top: 4px;
   ${mq({
     width: ["80%", "80%", "60%", "240px"],

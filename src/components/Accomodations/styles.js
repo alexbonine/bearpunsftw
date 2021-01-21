@@ -1,15 +1,16 @@
 import styled from "@emotion/styled";
 import mq from "styles/mq";
 import pseudo from "styles/pseudo";
+import colors from "styles/colors";
 
 export const Container = styled.div`
   min-height: 100vh;
   width: 100%;
-  background-color: white;
+  background-color: ${colors.white};
 `;
 
 export const Title = styled.h1`
-  color: black;
+  color: ${colors.black};
   padding-top: 80px;
   text-align: center;
 `;
@@ -66,7 +67,7 @@ export const GridItemDivider = styled.div``;
 export const VerticalDivider = styled.div`
   width: 2px;
   height: 100%;
-  background-color: black;
+  background-color: ${colors.black};
   ${mq({
     display: ["none", "none", "block", "block"],
   })}
@@ -75,7 +76,7 @@ export const VerticalDivider = styled.div`
 export const HorizontalDivider = styled.div`
   height: 2px;
   width: 60%;
-  background-color: black;
+  background-color: ${colors.black};
   ${mq({
     marginTop: ["60px", "60px", "0", "0"],
     display: ["block", "block", "none", "none"],
@@ -123,8 +124,8 @@ export const PlaceLink = styled.a`
   margin-top: 8px;
 
   ${pseudo({
-    backgroundColor: ["white", "black", "black", "black"],
-    color: ["black", "white", "white", "white"],
+    backgroundColor: [colors.white, colors.black, colors.black, colors.black],
+    color: [colors.black, colors.white, colors.white, colors.white],
   })}
 `;
 

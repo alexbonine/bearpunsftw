@@ -3,11 +3,13 @@ import pseudo from "styles/pseudo";
 import mq from "styles/mq";
 import Bear from "images/bear.svg";
 import Lemur from "images/lemur.svg";
+import colors from "styles/colors";
 
 const HOME_ICON_SIZE = "24px";
-const ITEM_COLOR = "white";
+const ITEM_COLOR = colors.white;
 
 export const Container = styled.nav`
+  z-index: 1;
   position: ${(props) =>
     props.isFixedHeader || props.isNotDesktop ? "fixed" : "absolute"};
   top: 0;
@@ -19,7 +21,9 @@ export const Container = styled.nav`
   justify-content: center;
   align-items: center;
   background-color: ${(props) =>
-    props.isNotDesktop && props.isMenuOpen ? "#7d7979" : "rgba(0, 0, 0, 0.5)"};
+    props.isNotDesktop && props.isMenuOpen
+      ? colors.gray
+      : "rgba(0, 0, 0, 0.5)"};
   transition: 0.4s;
 `;
 
@@ -43,7 +47,7 @@ export const MenuButton = styled.div`
 const MenuBar = styled.div`
   width: 35px;
   height: 5px;
-  background-color: white;
+  background-color: ${colors.white};
   margin: 6px 0;
   transition: 0.4s;
 `;
