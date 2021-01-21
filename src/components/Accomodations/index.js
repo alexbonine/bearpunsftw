@@ -73,7 +73,7 @@ const Accomodations = () => {
             <PlaceTextSpacing>
               16.9 miles to JFK (~35-55 min car)
             </PlaceTextSpacing>
-            <PlaceLink href="https://www.marriott.com/hotels/travel/nycot-moxy-nyc-east-village/?scid=bb1a189a-fec3-4d19-a255-54ba596febe2&y_source=1_MTI5MTI4OTMtNzE1LWxvY2F0aW9uLmdvb2dsZV93ZWJzaXRlX292ZXJyaWRl">
+            <PlaceLink href="https://www.marriott.com/events/start.mi?id=1611155360643&key=GRP">
               View
             </PlaceLink>
           </Place>

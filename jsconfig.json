@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es2018",
+    "allowSyntheticDefaultImports": true,
+    "jsx": "react",
+    "baseUrl": ".",
+    "paths": {
+      "components/*": ["./src/components/*"],
+      "fonts/*": ["./src/fonts/*"],
+      "hooks/*": ["./src/hooks/*"],
+      "images/*": ["./src/images/*"],
+      "pages/*": ["./src/pages/*"],
+      "styles/*": ["./client/styles/*"],
+    }
+  },
+  "exclude": ["node_modules"],
+  "include": ["src/**/*"]
+}
