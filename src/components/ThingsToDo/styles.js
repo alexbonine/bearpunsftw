@@ -68,14 +68,14 @@ export const TitleSmallContainer = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+  ${mq({
+    display: ["block", "block", "none", "none"],
+  })}
 `;
 
 export const TitleSmall = styled.h1`
   padding-top: 80px;
   text-align: center;
-  ${mq({
-    display: ["block", "block", "none", "none"],
-  })}
 `;
 
 export const Divider = styled.div`

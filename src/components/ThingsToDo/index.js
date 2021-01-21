@@ -54,12 +54,42 @@ const ThingsToDo = () => {
           <GridItem>
             <h2>Eat</h2>
             <ul>
-              <li>🥯 Brooklyn Bagel</li>
-              <li>🥪 Katz's Delicatessen</li>
-              <li>🍜 Hanoi House</li>
-              <li>🍽️ Hearth</li>
-              <li>🫕 Raclette</li>
-              <li>🍨 Mikey Likes It Ice Cream</li>
+              <li>
+                <span role="img" aria-label="bagel emoji">
+                  🥯
+                </span>{" "}
+                Brooklyn Bagel
+              </li>
+              <li>
+                <span role="img" aria-label="sandwich emoji">
+                  🥪
+                </span>{" "}
+                Katz's Delicatessen
+              </li>
+              <li>
+                <span role="img" aria-label="noodle emoji">
+                  🍜
+                </span>{" "}
+                Hanoi House
+              </li>
+              <li>
+                <span role="img" aria-label="plate cutlery emoji">
+                  🍽️
+                </span>{" "}
+                Hearth
+              </li>
+              <li>
+                <span role="img" aria-label="fondue emoji">
+                  🫕
+                </span>{" "}
+                Raclette
+              </li>
+              <li>
+                <span role="img" aria-label="ice cream emoji">
+                  🍨
+                </span>{" "}
+                Mikey Likes It Ice Cream
+              </li>
             </ul>
           </GridItem>
           <GridItemSpacer />
@@ -68,11 +98,36 @@ const ThingsToDo = () => {
           <GridItem>
             <h2>See</h2>
             <ul>
-              <li>🖼️ The Metropolitan Museum of Art</li>
-              <li>🏞️ Central Park</li>
-              <li>🏙️ The High Line</li>
-              <li>🌉 Brooklyn Bridge</li>
-              <li>🗽 Staten Island Ferry & Statue of Liberty</li>
+              <li>
+                <span role="img" aria-label="art emoji">
+                  🖼️
+                </span>{" "}
+                The Metropolitan Museum of Art
+              </li>
+              <li>
+                <span role="img" aria-label="park emoji">
+                  🏞️
+                </span>{" "}
+                Central Park
+              </li>
+              <li>
+                <span role="img" aria-label="cityscape emoji">
+                  🏙️
+                </span>{" "}
+                The High Line
+              </li>
+              <li>
+                <span role="img" aria-label="bridge emoji">
+                  🌉
+                </span>{" "}
+                Brooklyn Bridge
+              </li>
+              <li>
+                <span role="img" aria-label="statue of liberty emoji">
+                  🗽
+                </span>{" "}
+                Staten Island Ferry & Statue of Liberty
+              </li>
             </ul>
           </GridItem>
           <GridItemSpacer />
@@ -81,11 +136,36 @@ const ThingsToDo = () => {
           <GridItem>
             <h2>Drink</h2>
             <ul>
-              <li>🎷 Rue B Jazz Bar</li>
-              <li>🍶 Decibel Sake Bar</li>
-              <li>🌮 Pinks</li>
-              <li>🍹 Tio Pepe</li>
-              <li>🍸 PDT</li>
+              <li>
+                <span role="img" aria-label="saxaphone emoji">
+                  🎷
+                </span>{" "}
+                Rue B Jazz Bar
+              </li>
+              <li>
+                <span role="img" aria-label="sake emoji">
+                  🍶
+                </span>{" "}
+                Decibel Sake Bar
+              </li>
+              <li>
+                <span role="img" aria-label="taco emoji">
+                  🌮
+                </span>{" "}
+                Pinks
+              </li>
+              <li>
+                <span role="img" aria-label="margarita emoji">
+                  🍹
+                </span>{" "}
+                Tio Pepe
+              </li>
+              <li>
+                <span role="img" aria-label="cocktail emoji">
+                  🍸
+                </span>{" "}
+                PDT
+              </li>
             </ul>
           </GridItem>
           <GridItemSpacer />
