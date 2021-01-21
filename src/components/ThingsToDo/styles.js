@@ -67,8 +67,8 @@ export const GridItemTitle = styled(GridItem)`
 
 export const TitleSmallContainer = styled.div`
   display: flex;
-  align-items: center;
   flex-direction: column;
+  padding: 0 20px;
   ${mq({
     display: ["block", "block", "none", "none"],
   })}
@@ -80,10 +80,10 @@ export const TitleSmall = styled.h1`
 `;
 
 export const Divider = styled.div`
-  height: 2px;
+  height: 4px;
   background-color: ${colors.black};
-  padding-top: 4px;
   ${mq({
-    width: ["80%", "80%", "60%", "240px"],
+    margin: ["4px auto 0", "4px auto 0", "4px 0 0 0", "4px 0 0 0"],
+    width: ["90%", "90%", "60%", "240px"],
   })}
 `;
