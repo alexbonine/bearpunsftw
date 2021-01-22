@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import Layout from "components/Layout";
 import Article from "components/Article";
 import Header from "components/Header";
@@ -15,6 +16,17 @@ import "styles/styles.css";
 const IndexPage = () => {
   return (
     <Layout header={<Header />} hero={<Welcome />}>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Bear Puns FTW</title>
+        <meta
+          name="description"
+          content="Wedding Website of Shawna Carney and Alex Bonine"
+        />
+        <meta name="author" content="Alex Bonine (lemurdev@gmail.com)" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://bearpunsftw.com/" />
+      </Helmet>
       <Article id="ourstory">
         <Story />
       </Article>

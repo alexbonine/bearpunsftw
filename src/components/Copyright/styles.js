@@ -5,7 +5,7 @@ export const Container = styled.p`
   position: absolute;
   bottom: 10px;
   left: 50%;
-  transfrom: translateX(-50%);
+  transform: translateX(-50%);
   color: ${colors.gray};
   font-size: 10px;
 `;
