@@ -22,6 +22,7 @@ const Header = () => {
   const [scrollTop, setScrollTop] = useState(0);
   const [isFixedHeader, setFixedHeader] = useState(false);
   const [isMenuOpen, setMenuOpen] = useState(false);
+  const closeMenu = () => setMenuOpen(false);
   const { isNotDesktop } = useMq();
   const screenHeight = useWindowHeight();
 
@@ -65,32 +66,43 @@ const Header = () => {
       </Home>
       <NavList isNotDesktop={isNotDesktop} isMenuOpen={isMenuOpen}>
         <NavItem isNotDesktop={isNotDesktop} isMenuOpen={isMenuOpen}>
-          <ATag href="#ourstory">Our Story</ATag>
+          <ATag href="#ourstory" onClick={closeMenu}>
+            Our Story
+          </ATag>
         </NavItem>
         <NavItem isNotDesktop={isNotDesktop} isMenuOpen={isMenuOpen}>
-          <ATag href="#schedule">The Weekend</ATag>
+          <ATag href="#schedule" onClick={closeMenu}>
+            The Weekend
+          </ATag>
         </NavItem>
         <NavItem isNotDesktop={isNotDesktop} isMenuOpen={isMenuOpen}>
-          <ATag href="#accomodations">Accomodations</ATag>
+          <ATag href="#accomodations" onClick={closeMenu}>
+            Accomodations
+          </ATag>
         </NavItem>
         <NavItem isNotDesktop={isNotDesktop} isMenuOpen={isMenuOpen}>
-          <ATag href="#thingstodo">Things To Do</ATag>
+          <ATag href="#thingstodo" onClick={closeMenu}>
+            Things To Do
+          </ATag>
         </NavItem>
         <NavItem isNotDesktop={isNotDesktop} isMenuOpen={isMenuOpen}>
-          <ATag href="#rsvp">RSVP</ATag>
+          <ATag href="#rsvp" onClick={closeMenu}>
+            RSVP
+          </ATag>
         </NavItem>
         <NavItem isNotDesktop={isNotDesktop} isMenuOpen={isMenuOpen}>
           <ATag
             target="_blank"
             rel="noreferrer"
             href="https://www.zola.com/registry/shawna_alex"
+            onClick={closeMenu}
           >
             Registry
           </ATag>
         </NavItem>
-        <NavItem isNotDesktop={isNotDesktop} isMenuOpen={isMenuOpen}>
-          <ATag href="/gallery">Gallery</ATag>
-        </NavItem>
+        {/* <NavItem isNotDesktop={isNotDesktop} isMenuOpen={isMenuOpen}>
+          <ATag href="/gallery" onClick={closeMenu}>Gallery</ATag>
+        </NavItem> */}
       </NavList>
     </Container>
   );
