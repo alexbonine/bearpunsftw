@@ -34,15 +34,14 @@ export const WordsContainer = styled.div`
   justify-content: space-around;
   max-width: 350px;
   text-align: center;
+  min-height: 80vh;
   ${mq({
     padding: ["60px", "60px", "0 0 0 80px", "0 0 0 80px"],
     maxWidth: ["none", "none", "350px", "350px"],
   })}
 `;
 
-export const Text = styled.p`
-  margin-bottom: 30px;
-`;
+export const Text = styled.p``;
 
 export const ATag = styled.a`
   color: ${colors.red};
