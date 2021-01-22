@@ -88,12 +88,12 @@ const Story = () => {
                 <TimelineRowItemTextText>
                   Alex and Shawna have a typical Silicon Valley meet cute. After
                   both swiping right on Tinder, Shawna captured Alex's attention
-                  with a meme (shown to the right), asking if it was Friday yet?
-                  He fired back with, tell me about it, I'm bearly surviving;
-                  perfect response. On their first date, they had easy
-                  conversation and laughs over charcuterie and while Shawna left
-                  the date to apply for a job in Ireland, she was cautiously
-                  optimistic about this one.
+                  with a bear meme asking "is it was Friday yet?" He fired back
+                  with "tell me about it; I'm bearly surviving" - perfect
+                  response. On their first date, they had easy conversation and
+                  laughs over charcuterie and even though Shawna left the date
+                  to apply for a job in Ireland, she was cautiously optimistic
+                  about this one.
                 </TimelineRowItemTextText>
               </TimelineRowItemTextContainer>
             </TimelineRowItemContainer>
@@ -140,14 +140,14 @@ const Story = () => {
                 </TimelineRowItemTextSubTitle>
                 <TimelineRowItemTextText>
                   They share a love of exploration and have traveled to over 10
-                  countries so far. Their first big trip was to Japan over
-                  Christmas in 2016. This was the first time Shawna was
-                  introduced to Alex's LOVE of walking; after 13 miles on day 1,
+                  countries together so far. Their first big trip was to Japan
+                  over Christmas in 2016. This was the first time Shawna was
+                  introduced to Alex's LOVE of walking. Sfter 13 miles on day 1,
                   her boots were relegated to evening use only. Whether road
-                  tripping through New Zealand, giving belly rubs to kangaroos
-                  or finding themselves on an accidental dive bar crawl through
-                  the Castro (and now the Lower East Side), there is always fun
-                  to be had and memories to be made.
+                  tripping through New Zealand and Western Europe, giving belly
+                  rubs to kangaroos or finding themselves on an accidental dive
+                  bar crawl through the Castro (and now the Lower East Side),
+                  there is always fun to be had and memories to be made.
                 </TimelineRowItemTextText>
               </TimelineRowItemTextContainer>
             </TimelineRowItemContainer>
@@ -183,12 +183,12 @@ const Story = () => {
                   herself with a manicure and massage ahead of their going away
                   party the next night. Little did she know that in 24 hours
                   they would be celebrating more than their departure from the
-                  west coast. Alex spent the big day pacing and waiting for the
-                  sun to come out. In true SF fashion, Karl (the fog), did not
-                  cooperate but none of that mattered to Shawna when she turned
-                  around to find him down on one knee. We are forever thankful
-                  we were able to celebrate this moment with our families and
-                  friends.
+                  West Coast. Alex spent the big day pacing, waiting for the sun
+                  to come out and paint to dry on the water tower. In true SF
+                  fashion, Karl (the fog), did not cooperate but none of that
+                  mattered to Shawna when she turned around to find him down on
+                  one knee. We are forever thankful we were able to celebrate
+                  this moment with our families and friends.
                 </TimelineRowItemTextText>
               </TimelineRowItemTextContainer>
             </TimelineRowItemContainer>
@@ -235,7 +235,7 @@ const Story = () => {
                   about the adventures they would embark on. They landed the
                   perfect place in the East Village, ensuring that Alex got the
                   full size oven he'd need to fully realize his dream of being a
-                  pizza chef. Even as everything shut down around them, they
+                  pizzaiolo. Even as everything shut down around them, they
                   found a sense of community on their block that has continued
                   to thrive through to today. Summer and fall nights usually
                   ended on the stoop, where they have lovingly earned he
