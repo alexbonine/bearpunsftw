@@ -1,4 +1,8 @@
 import styled from "@emotion/styled";
+import TinderIconBase from "images/tinder.svg";
+import TravelIconBase from "images/travel.svg";
+import EngagementIconBase from "images/wedding-rings.svg";
+import StoopIconBase from "images/stairs.svg";
 import mq from "styles/mq";
 import colors from "styles/colors";
 
@@ -60,7 +64,7 @@ export const LineInnerEndpoint = styled.div`
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: ${colors.grayLight};
+  background-color: ${colors.red};
 `;
 
 export const Timeline = styled.div`
@@ -86,12 +90,17 @@ export const TimelineRow = styled.div`
   })}
 `;
 
+export const TimelineRowRev = styled(TimelineRow)`
+  ${mq({
+    flexDirection: ["column", "column", "row-reverse", "row-reverse"],
+  })}
+`;
+
 export const TimelineRowItemContainer = styled.div`
   flex: 1;
-  height: 300px;
-  background-color: purple;
-  color: ${colors.white};
+  color: ${colors.black};
   position: relative;
+  display: flex;
   ${mq({
     flex: ["none", "none", "1", "1"],
     marginBottom: ["20px", "20px", "0", "0"],
@@ -100,20 +109,110 @@ export const TimelineRowItemContainer = styled.div`
     },
   })}
 `;
-// ${mq({
-//   width: ["100%", "100%", "400px", "400px"],
-// })}
-export const TimelineRowItem = styled.div`
-  height: 100%;
+
+export const TimelineRowItemTextContainer = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+`;
+
+export const TimelineRowItemTextTitle = styled.h2`
+  text-align: center;
+  text-transform: uppercase;
+`;
+
+export const TimelineRowItemTextSubTitle = styled.h4`
+  text-align: center;
+  text-transform: uppercase;
+`;
+
+export const TimelineRowItemTextText = styled.p`
+  text-align: center;
+  padding-top: 10px;
+`;
+
+export const TimelineRowImage = styled.img`
+  height: 100%;
+  width: 100%;
+  // height: auto;
+  object-fit: contain;
+  justify-self: flex-end;
+`;
+
+export const TimelineRowImageTravel = styled.div`
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 5px;
+`;
+
+export const TimelineRowImageTravelHalf = styled.div`
+  grid-column: span 3;
+  display: flex;
+  max-height: 100px;
+`;
+
+export const TimelineRowImage2 = styled.img`
+  object-fit: cover;
+`;
+
+export const TimelineRowImageTravelThird = styled.div`
+  grid-column: span 2;
+  display: flex;
+  max-height: 140px;
+`;
+
+export const TimelineRowImageEngagement = styled.div`
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-gap: 5px;
+`;
+
+export const TimelineRowImageEngagementPic = styled.div`
+  display: flex;
+  max-height: 180px;
+`;
+
+export const TimelineRowImageEngagementPic1 = styled(
+  TimelineRowImageEngagementPic
+)`
+  grid-column: 1;
+  grid-row: 1 / 3;
+`;
+
+export const TimelineRowImageEngagementPic2 = styled(
+  TimelineRowImageEngagementPic
+)`
+  grid-column: 2;
+  grid-row: 2 / 4;
+`;
+
+export const TimelineRowImageEngagementPic3 = styled(
+  TimelineRowImageEngagementPic
+)`
+  grid-column: 3;
+  grid-row: 1 / 3;
+`;
+
+export const TimelineRowImageNyc = styled.div`
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 5px;
+`;
+
+export const TimelineRowImageNycItem = styled.div`
+  grid-column: span 1;
+  display: flex;
+  max-height: 180px;
 `;
 
 export const TimelineRowNotch = styled.div`
   border-radius: 50%;
   background-color: ${colors.blueLight};
-  color: ${colors.grayLight};
+  color: ${colors.red};
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
@@ -124,12 +223,34 @@ export const TimelineRowNotch = styled.div`
     display: ["none", "none", "flex", "flex"],
   })}
 `;
-// ${mq({
-//   height: ["50px", "50px", "70px", "70px"],
-//   width: ["50px", "50px", "70px", "70px"],
-//   margin: ["0 60px 0 0", "0 60px 0 0", "0 60px", "0 60px"],
-//   position: ["absolute", "absolute", "relative", "relative"],
-// })}
+
+export const TinderIcon = styled(TinderIconBase)`
+  fill: ${colors.red};
+  ${mq({
+    maxWidth: ["24px", "24px", "40px", "40px"],
+  })}
+`;
+
+export const TravelIcon = styled(TravelIconBase)`
+  fill: ${colors.red};
+  ${mq({
+    width: ["24px", "24px", "40px", "40px"],
+  })}
+`;
+
+export const EngagementIcon = styled(EngagementIconBase)`
+  fill: ${colors.red};
+  ${mq({
+    maxWidth: ["24px", "24px", "40px", "40px"],
+  })}
+`;
+
+export const StoopIcon = styled(StoopIconBase)`
+  fill: ${colors.red};
+  ${mq({
+    maxWidth: ["24px", "24px", "40px", "40px"],
+  })}
+`;
 
 export const TimelineRowNotchSmall = styled(TimelineRowNotch)`
   height: 48px;
@@ -138,7 +259,7 @@ export const TimelineRowNotchSmall = styled(TimelineRowNotch)`
   margin: 0;
   align-items: center;
   justify-content: center;
-  color: ${colors.grayLight};
+  color: ${colors.red};
   position: absolute;
   top: 50%;
   transform: translate(-80px, -50%);

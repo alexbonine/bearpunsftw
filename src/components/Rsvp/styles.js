@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import colors from "styles/colors";
 import mq from "styles/mq";
+import AppleIconBase from "images/nyc-icon.svg";
 
 export const Container = styled.div`
   padding-bottom: 80px;
@@ -21,7 +22,7 @@ export const InnerContainer = styled.div`
 
 export const Image = styled.img`
   ${mq({
-    height: ["auto", "auto", "400px", "400px"],
+    height: ["auto", "auto", "500px", "500px"],
   })}
 `;
 
@@ -45,4 +46,10 @@ export const Text = styled.p`
 
 export const ATag = styled.a`
   color: ${colors.red};
+`;
+
+export const AppleIcon = styled(AppleIconBase)`
+  fill: ${colors.red};
+  width: 64px;
+  height: 64px;
 `;

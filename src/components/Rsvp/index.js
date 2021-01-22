@@ -1,6 +1,8 @@
 import React from "react";
 import NycStoop from "images/nyc-stoop.jpg";
+import IconCopyright from "components/IconCopyright";
 import {
+  AppleIcon,
   ATag,
   Container,
   Image,
@@ -28,9 +30,11 @@ const Rsvp = () => {
             </ATag>
             !
           </Text>
+          <AppleIcon />
           <Text>Official RSVP details will be provided in the invitation.</Text>
         </WordsContainer>
       </InnerContainer>
+      <IconCopyright />
     </Container>
   );
 };
