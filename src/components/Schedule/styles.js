@@ -13,15 +13,21 @@ export const Container = styled.div`
   })}
 `;
 
-export const TextContainer = styled.div`
-  min-width: 370px;
-  padding: 0 80px 0 40px;
+export const Grid = styled.div`
   flex: 1;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+`;
+
+export const TextContainer = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   background-color: ${colors.red};
   ${mq({
+    gridColumn: ["span 7", "span 7", "span 2", "span 2"],
+    minHeight: ["400px", "400px", "100vh", "100vh"],
     padding: [
       "40px 40px 40px 40px",
       "40px 40px 40px 40px",
@@ -89,22 +95,19 @@ export const EventTime = styled.p`
   })}
 `;
 
-export const ImageContainerSmall = styled.div`
+export const Image = styled.div`
+  position: relative;
   background-image: url(${TurksInn});
   background-size: cover;
-  height: 30rem;
-  background-position: 50% 50%;
-  ${mq({ display: ["block", "block", "none", "none"] })}
-`;
-
-export const ImageContainerLarge = styled.div`
-  max-width: 1168px;
-  ${mq({ display: ["none", "none", "block", "block"] })}
-`;
-
-export const Image = styled.img`
-  display: block;
-  height: 100vh;
-  background-size: cover;
-  background-position: 50% 50%;
+  ${mq({
+    backgroundPosition: [
+      "center center",
+      "center center",
+      "left center",
+      "left center",
+    ],
+    gridColumn: ["span 7", "span 7", "span 5", "span 5"],
+    gridRow: ["1", "1", "auto", "auto"],
+    height: ["360px", "360px", "auto", "auto"],
+  })}
 `;

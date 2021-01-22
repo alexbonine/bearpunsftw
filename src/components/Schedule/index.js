@@ -2,6 +2,7 @@ import React from "react";
 import TurksInn from "images/turks-inn.jpg";
 import {
   Container,
+  Grid,
   EventContainer,
   EventDate,
   EventLocation,
@@ -9,8 +10,6 @@ import {
   EventTime,
   EventTitle,
   Image,
-  ImageContainerLarge,
-  ImageContainerSmall,
   TextContainer,
   Title,
 } from "./styles";
@@ -90,16 +89,15 @@ const mapEvents = () =>
 const Schedule = () => {
   return (
     <Container>
-      <TextContainer>
-        <div>
-          <Title>The Weekend</Title>
-        </div>
-        {mapEvents()}
-      </TextContainer>
-      <ImageContainerSmall />
-      <ImageContainerLarge>
+      <Grid>
+        <TextContainer>
+          <div>
+            <Title>The Weekend</Title>
+          </div>
+          {mapEvents()}
+        </TextContainer>
         <Image src={TurksInn} alt="Turks Inn" />
-      </ImageContainerLarge>
+      </Grid>
     </Container>
   );
 };
