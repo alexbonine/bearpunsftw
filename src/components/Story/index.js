@@ -88,12 +88,12 @@ const Story = () => {
                 <TimelineRowItemTextText>
                   Alex and Shawna have a typical Silicon Valley meet cute. After
                   both swiping right on Tinder, Shawna captured Alex's attention
-                  with a bear meme asking "is it was Friday yet?" He fired back
-                  with "tell me about it; I'm bearly surviving" - perfect
-                  response. On their first date, they had easy conversation and
-                  laughs over charcuterie and even though Shawna left the date
-                  to apply for a job in Ireland, she was cautiously optimistic
-                  about this one.
+                  with a bear meme asking "is it Friday yet?" He fired back with
+                  "tell me about it; I'm bearly surviving" - perfect response.
+                  On their first date, they had easy conversation and laughs
+                  over charcuterie and even though Shawna left the date to apply
+                  for a job in Ireland, she was cautiously optimistic about this
+                  one.
                 </TimelineRowItemTextText>
               </TimelineRowItemTextContainer>
             </TimelineRowItemContainer>
