@@ -141,13 +141,13 @@ const Story = () => {
                 <TimelineRowItemTextText>
                   They share a love of exploration and have traveled to over 10
                   countries together so far. Their first big trip was to Japan
-                  over Christmas in 2016. This was the first time Shawna was
-                  introduced to Alex's LOVE of walking. Sfter 13 miles on day 1,
-                  her boots were relegated to evening use only. Whether road
-                  tripping through New Zealand and Western Europe, giving belly
-                  rubs to kangaroos or finding themselves on an accidental dive
-                  bar crawl through the Castro (and now the Lower East Side),
-                  there is always fun to be had and memories to be made.
+                  over Christmas in 2016. This was Shawna's introduction to
+                  Alex's LOVE of walking. After 13 miles on day 1, her boots
+                  were relegated to evening use only. Whether road tripping
+                  through New Zealand and Western Europe, giving belly rubs to
+                  kangaroos or finding themselves on an accidental dive bar
+                  crawl through the Castro (and now the Lower East Side), there
+                  is always fun to be had and memories to be made.
                 </TimelineRowItemTextText>
               </TimelineRowItemTextContainer>
             </TimelineRowItemContainer>
@@ -238,7 +238,7 @@ const Story = () => {
                   pizzaiolo. Even as everything shut down around them, they
                   found a sense of community on their block that has continued
                   to thrive through to today. Summer and fall nights usually
-                  ended on the stoop, where they have lovingly earned he
+                  ended on the stoop, where they have lovingly earned the
                   nickname "the cage couple." While this isn't the NYC
                   experience they were expecting, they've had a blast so far and
                   can't wait for what's next!
