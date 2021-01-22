@@ -31,6 +31,7 @@ import {
   TimelineRowImage,
   TimelineRowImageBear,
   TimelineRowImageBottom,
+  TimelineRowImageRight,
   TimelineRowImageEngagement,
   TimelineRowImageEngagementPic1,
   TimelineRowImageEngagementPic2,
@@ -196,7 +197,7 @@ const Story = () => {
             <TimelineRowItemContainer>
               <TimelineRowImageNyc>
                 <TimelineRowImageNycItem>
-                  <TimelineRowImage src={NycStoopShawna} />
+                  <TimelineRowImageRight src={NycStoopShawna} />
                 </TimelineRowImageNycItem>
                 <TimelineRowImageNycItem>
                   <TimelineRowImage src={NycPicnic} />

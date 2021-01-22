@@ -137,7 +137,13 @@ export const TimelineRowImage = styled.img`
 
 export const TimelineRowImageBottom = styled(TimelineRowImage)`
   ${mq({
-    alignItems: ["none", "none", "flex-end", "flex-end"],
+    alignSelf: ["none", "none", "flex-end", "flex-end"],
+  })}
+`;
+
+export const TimelineRowImageRight = styled(TimelineRowImage)`
+  ${mq({
+    justifySelf: ["flex-end", "flex-end", "none", "none"],
   })}
 `;
 
@@ -173,7 +179,7 @@ export const TimelineRowImageTravelThird = styled.div`
 export const TimelineRowImageEngagement = styled.div`
   display: grid;
   width: 100%;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(3, 1fr);
   grid-gap: 5px;
   overflow: hidden;
@@ -190,22 +196,29 @@ export const TimelineRowImageEngagementPic = styled.div`
 export const TimelineRowImageEngagementPic1 = styled(
   TimelineRowImageEngagementPic
 )`
-  grid-column: 1;
-  grid-row: 1 / 3;
+  ${mq({
+    gridColumn: ["span 3", "span 3", "span 2", "span 2"],
+    gridRow: ["1 / 4", "1 / 4", "1 / 3", "1 / 3"],
+  })}
 `;
 
 export const TimelineRowImageEngagementPic2 = styled(
   TimelineRowImageEngagementPic
 )`
-  grid-column: 2;
+  grid-column: span 2;
   grid-row: 2 / 4;
+  ${mq({
+    display: ["none", "none", "block", "block"],
+  })}
 `;
 
 export const TimelineRowImageEngagementPic3 = styled(
   TimelineRowImageEngagementPic
 )`
-  grid-column: 3;
-  grid-row: 1 / 3;
+  ${mq({
+    gridColumn: ["span 3", "span 3", "span 2", "span 2"],
+    gridRow: ["1 / 4", "1 / 4", "1 / 3", "1 / 3"],
+  })}
 `;
 
 export const TimelineRowImageNyc = styled.div`
