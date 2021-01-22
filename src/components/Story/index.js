@@ -6,7 +6,7 @@ import Cliffs from "images/cliffs.jpg";
 import TokyoRex from "images/tokyo-rex.jpg";
 import KangarooPet from "images/kangaroo-pet.jpg";
 import NzKayak from "images/nz-kayak.jpg";
-import LondonDrinks from "images/london-drinks.jpg";
+import SfBridgeHeart from "images/sf-bridge-heart.jpg";
 import PostEngagement from "images/post-engagement.jpg";
 import ShawnaRing from "images/shawna-ring.jpg";
 import TruckEngagement from "images/truck-engagement.jpg";
@@ -119,7 +119,7 @@ const Story = () => {
                   <TimelineRowImage src={NzKayak} />
                 </TimelineRowImageTravelHalf>
                 <TimelineRowImageTravelHalf>
-                  <TimelineRowImage src={LondonDrinks} />
+                  <TimelineRowImage src={SfBridgeHeart} />
                 </TimelineRowImageTravelHalf>
               </TimelineRowImageTravel>
               <TimelineRowNotchSmall>
