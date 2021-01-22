@@ -39,7 +39,7 @@ const ThingsToDo = () => {
   return (
     <Container>
       <TitleSmallContainer>
-        <TitleSmall>Things to Eat See Drink</TitleSmall>
+        <TitleSmall>Things to...</TitleSmall>
         <Divider />
       </TitleSmallContainer>
       <FlexContainer>
@@ -53,9 +53,8 @@ const ThingsToDo = () => {
         </MapContainer>
         <Grid ref={stuffRef}>
           <GridItemTitle>
-            <h1>Things to</h1>
-            <h1>Eat See</h1>
-            <h1>Drink</h1>
+            <h1>Things</h1>
+            <h1>to...</h1>
             <Divider />
           </GridItemTitle>
           <GridItem>

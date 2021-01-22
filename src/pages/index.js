@@ -8,6 +8,7 @@ import Schedule from "components/Schedule";
 import Accomodations from "components/Accomodations";
 import ThingsToDo from "components/ThingsToDo";
 import Rsvp from "components/Rsvp";
+import CopyRight from "components/Copyright";
 
 import "styles/styles.css";
 
@@ -29,6 +30,7 @@ const IndexPage = () => {
       <Article id="rsvp">
         <Rsvp />
       </Article>
+      <CopyRight />
     </Layout>
   );
 };

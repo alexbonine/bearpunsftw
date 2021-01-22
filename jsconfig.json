@@ -4,7 +4,7 @@
     "target": "es2018",
     "allowSyntheticDefaultImports": true,
     "jsx": "react",
-    "baseUrl": ".",
+    "baseUrl": "src",
     "paths": {
       "components/*": ["./src/components/*"],
       "fonts/*": ["./src/fonts/*"],

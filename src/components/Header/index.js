@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useWindowHeight } from "@react-hook/window-size";
 import useMq from "hooks/useMq";
 import IconCopyright from "components/IconCopyright";
 import {
@@ -22,18 +23,21 @@ const Header = () => {
   const [isFixedHeader, setFixedHeader] = useState(false);
   const [isMenuOpen, setMenuOpen] = useState(false);
   const { isNotDesktop } = useMq();
+  const screenHeight = useWindowHeight();
 
   useEffect(() => {
     const onScroll = (e) => {
       setScrollTop(e.target.documentElement.scrollTop.scrollTop);
-      const screenHeight =
-        window.innerHeight || e.target.documentElement.clientHeight;
-      setFixedHeader(e.target.documentElement.scrollTop > screenHeight);
     };
+
     window.addEventListener("scroll", onScroll);
 
     return () => window.removeEventListener("scroll", onScroll);
-  }, [scrollTop]);
+  }, [scrollTop, screenHeight]);
+
+  useEffect(() => {
+    setFixedHeader(isNotDesktop);
+  }, [isNotDesktop]);
 
   return (
     <Container
@@ -78,6 +82,7 @@ const Header = () => {
         <NavItem isNotDesktop={isNotDesktop} isMenuOpen={isMenuOpen}>
           <ATag
             target="_blank"
+            rel="noreferrer"
             href="https://www.zola.com/registry/shawna_alex"
           >
             Registry

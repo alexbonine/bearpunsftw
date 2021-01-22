@@ -71,7 +71,11 @@ const mapEvents = () =>
       {locationLink && (
         <EventLocation>
           at&nbsp;
-          <EventLocationTag href={locationLink} target="_blank">
+          <EventLocationTag
+            href={locationLink}
+            target="_blank"
+            rel="noreferrer"
+          >
             {location}
           </EventLocationTag>
         </EventLocation>

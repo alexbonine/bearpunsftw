@@ -35,14 +35,15 @@ const Accomodations = () => {
             For the "out of towners" AKA 95% of you, here's the scoop.
           </Text>
           <Text>
-            Blocks of rooms have been reserved at Moxy NYC East Village. This
-            will act as the main hub and where the Sunday farewell breakfast
-            will be held. It's walking distance of our apartment and easy access
-            to trains (the L will take you straight to the venue).
+            Blocks of rooms have been reserved at Moxy NYC East Village, which
+            will act as the main hub. It's within walking distance of our
+            apartment with easy access to trains (the L will take you straight
+            to the venue).
           </Text>
           <Text>
-            For those looking for something different, we've included a couple
-            location recommendations for AirBnB.
+            Rooms have also been reserved at the W Union Square, and for those
+            looking for something different, we've included a couple location
+            recommendations for AirBnB.
           </Text>
         </TextBox>
         <HorizontalDivider />
@@ -59,10 +60,10 @@ const Accomodations = () => {
             <PlaceTextSpacing>New York, NY 10003</PlaceTextSpacing>
             <PlaceTextSpacing>(212) 288-6699</PlaceTextSpacing>
             <PlaceTextSpacing>
-              1 Queen or 2 Double beds rooms are available and rates vary by
-              type. Use the link below or be sure you mention the Carney/Bonine
+              Queen & Double beds rooms are available and rates vary by type.
+              Use the link below or be sure you mention the Carney/Bonine
               wedding block to receive the group rate. Rooms must be booked by
-              8/18/21 to take advantage of the group rate.
+              8/18 to take advantage of the group rate.
             </PlaceTextSpacing>
             <PlaceText>0.5 miles to Shawna & Alex (11 min walk)</PlaceText>
             <PlaceText>
@@ -73,7 +74,11 @@ const Accomodations = () => {
             <PlaceTextSpacing>
               16.9 miles to JFK (~35-55 min car)
             </PlaceTextSpacing>
-            <PlaceLink href="https://www.marriott.com/events/start.mi?id=1611155360643&key=GRP">
+            <PlaceLink
+              target="_blank"
+              rel="noreferrer"
+              href="https://www.marriott.com/events/start.mi?id=1611155360643&key=GRP"
+            >
               View
             </PlaceLink>
           </Place>
@@ -99,11 +104,16 @@ const Accomodations = () => {
             <PlaceTextSpacing>New York, NY 10003</PlaceTextSpacing>
             <PlaceTextSpacing>(212) 253-9119</PlaceTextSpacing>
             <PlaceTextSpacing>
-              1 King or 2 Double bed rooms are available and rates vary by room
-              type. Make sure you mention the Carney/Bonine wedding block to
-              receive a group rate.
+              King bed rooms are available. Use the link below or be sure you
+              mention the Carney/Bonine wedding block to receive the group rate.
+              Rooms must be reserved by 8/19 to take advantage of the group
+              rate.
             </PlaceTextSpacing>
-            <PlaceLink href="https://www.marriott.com/hotels/travel/nycot-moxy-nyc-east-village/?scid=bb1a189a-fec3-4d19-a255-54ba596febe2&y_source=1_MTI5MTI4OTMtNzE1LWxvY2F0aW9uLmdvb2dsZV93ZWJzaXRlX292ZXJyaWRl">
+            <PlaceLink
+              target="_blank"
+              rel="noreferrer"
+              href="https://www.marriott.com/hotels/travel/nycnu-w-new-york-union-square/?scid=bb1a189a-fec3-4d19-a255-54ba596febe2&y_source=1_MTUwMjY1Ny03MTUtbG9jYXRpb24uZ29vZ2xlX3dlYnNpdGVfb3ZlcnJpZGU="
+            >
               View
             </PlaceLink>
           </Place>
@@ -124,7 +134,11 @@ const Accomodations = () => {
               AirBnBs walking distance to us, the L train, and about 20ish
               minute car ride to Turks Inn.
             </PlaceTextSpacing>
-            <PlaceLink href="https://www.airbnb.com/s/East-Village--New-York--NY--United-States/homes?tab_id=home_tab&refinement_paths%5B%5D=%2Fhomes&checkin=2021-09-16&checkout=2021-09-19&source=structured_search_input_header&search_type=filter_change&ne_lat=40.734353873913676&ne_lng=-73.97286892578126&sw_lat=40.72004405868993&sw_lng=-73.99569988891602&zoom=15&search_by_map=true&place_id=ChIJRU7M53dZwokR7GgPQPM1qW8&room_types%5B%5D=Entire%20home%2Fapt">
+            <PlaceLink
+              target="_blank"
+              rel="noreferrer"
+              href="https://www.airbnb.com/s/East-Village--New-York--NY--United-States/homes?tab_id=home_tab&refinement_paths%5B%5D=%2Fhomes&checkin=2021-09-16&checkout=2021-09-19&source=structured_search_input_header&search_type=filter_change&ne_lat=40.734353873913676&ne_lng=-73.97286892578126&sw_lat=40.72004405868993&sw_lng=-73.99569988891602&zoom=15&search_by_map=true&place_id=ChIJRU7M53dZwokR7GgPQPM1qW8&room_types%5B%5D=Entire%20home%2Fapt"
+            >
               View
             </PlaceLink>
           </Place>
@@ -144,7 +158,11 @@ const Accomodations = () => {
               For those who are only able to join for the big day, check out
               AirBnBs closer to the venue.
             </PlaceTextSpacing>
-            <PlaceLink href="https://www.airbnb.com/s/Hana-Natural--Wyckoff-Avenue--Brooklyn--NY--USA/homes?tab_id=home_tab&refinement_paths%5B%5D=%2Fhomes&checkin=2021-09-17&checkout=2021-09-19&adults=0&source=structured_search_input_header&search_type=autocomplete_click&room_types%5B%5D=Entire%20home%2Fapt&place_id=ChIJAxNFrjpcwokR7bxesI5CdYc">
+            <PlaceLink
+              target="_blank"
+              rel="noreferrer"
+              href="https://www.airbnb.com/s/Hana-Natural--Wyckoff-Avenue--Brooklyn--NY--USA/homes?tab_id=home_tab&refinement_paths%5B%5D=%2Fhomes&checkin=2021-09-17&checkout=2021-09-19&adults=0&source=structured_search_input_header&search_type=autocomplete_click&room_types%5B%5D=Entire%20home%2Fapt&place_id=ChIJAxNFrjpcwokR7bxesI5CdYc"
+            >
               View
             </PlaceLink>
           </Place>
