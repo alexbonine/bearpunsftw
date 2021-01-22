@@ -132,9 +132,18 @@ export const TimelineRowItemTextText = styled.p`
 `;
 
 export const TimelineRowImage = styled.img`
+  object-fit: cover;
+`;
+
+export const TimelineRowImageBottom = styled(TimelineRowImage)`
+  ${mq({
+    alignItems: ["none", "none", "flex-end", "flex-end"],
+  })}
+`;
+
+export const TimelineRowImageBear = styled.img`
   height: 100%;
   width: 100%;
-  // height: auto;
   object-fit: contain;
   justify-self: flex-end;
 `;
@@ -144,22 +153,21 @@ export const TimelineRowImageTravel = styled.div`
   width: 100%;
   grid-template-columns: repeat(6, 1fr);
   grid-gap: 5px;
+  overflow: hidden;
 `;
 
 export const TimelineRowImageTravelHalf = styled.div`
   grid-column: span 3;
   display: flex;
   max-height: 100px;
-`;
-
-export const TimelineRowImage2 = styled.img`
-  object-fit: cover;
+  overflow: hidden;
 `;
 
 export const TimelineRowImageTravelThird = styled.div`
   grid-column: span 2;
   display: flex;
   max-height: 140px;
+  overflow: hidden;
 `;
 
 export const TimelineRowImageEngagement = styled.div`
@@ -168,11 +176,15 @@ export const TimelineRowImageEngagement = styled.div`
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
   grid-gap: 5px;
+  overflow: hidden;
 `;
 
 export const TimelineRowImageEngagementPic = styled.div`
   display: flex;
-  max-height: 180px;
+  ${mq({
+    minHeight: ["180px", "180px", "auto", "auto"],
+    maxHeight: ["250px", "250px", "180px", "180px"],
+  })}
 `;
 
 export const TimelineRowImageEngagementPic1 = styled(
@@ -199,14 +211,17 @@ export const TimelineRowImageEngagementPic3 = styled(
 export const TimelineRowImageNyc = styled.div`
   display: grid;
   width: 100%;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   grid-gap: 5px;
+  overflow: hidden;
 `;
 
 export const TimelineRowImageNycItem = styled.div`
-  grid-column: span 1;
   display: flex;
-  max-height: 180px;
+  ${mq({
+    gridColumn: ["span 3", "span 3", "span 2", "span 2"],
+    maxHeight: ["250px", "250px", "180px", "180px"],
+  })}
 `;
 
 export const TimelineRowNotch = styled.div`

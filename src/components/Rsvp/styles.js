@@ -15,7 +15,7 @@ export const Container = styled.div`
 export const InnerContainer = styled.div`
   display: flex;
   ${mq({
-    maxWidth: ["none", "none", "60%", "60%"],
+    maxWidth: ["100vw", "100vw", "60%", "60%"],
     flexDirection: ["column", "column", "row", "row"],
   })}
 `;

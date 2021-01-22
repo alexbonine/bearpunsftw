@@ -18,35 +18,36 @@ import NycStoopShawna from "images/nyc-stoop-shawna.jpg";
 import NycXmas from "images/nyc-xmas.jpg";
 import IconCopyright from "components/IconCopyright";
 import {
-  TimelineRowItemTextContainer,
-  TimelineRowItemTextTitle,
-  TimelineRowItemTextSubTitle,
-  TimelineRowItemTextText,
   Container,
   EngagementIcon,
+  InnerContainer,
   Line,
   LineEnd,
   LineInnerEndpoint,
   LineStart,
-  InnerContainer,
   StoopIcon,
   Timeline,
   TimelineRow,
-  TimelineRowRev,
   TimelineRowImage,
-  TimelineRowImage2,
-  TimelineRowImageTravel,
-  TimelineRowImageNyc,
-  TimelineRowImageNycItem,
-  TimelineRowImageTravelHalf,
-  TimelineRowImageTravelThird,
+  TimelineRowImageBear,
+  TimelineRowImageBottom,
   TimelineRowImageEngagement,
   TimelineRowImageEngagementPic1,
   TimelineRowImageEngagementPic2,
   TimelineRowImageEngagementPic3,
+  TimelineRowImageNyc,
+  TimelineRowImageNycItem,
+  TimelineRowImageTravel,
+  TimelineRowImageTravelHalf,
+  TimelineRowImageTravelThird,
   TimelineRowItemContainer,
+  TimelineRowItemTextContainer,
+  TimelineRowItemTextSubTitle,
+  TimelineRowItemTextText,
+  TimelineRowItemTextTitle,
   TimelineRowNotch,
   TimelineRowNotchSmall,
+  TimelineRowRev,
   TinderIcon,
   Title,
   TravelIcon,
@@ -67,7 +68,7 @@ const Story = () => {
         <Timeline>
           <TimelineRow>
             <TimelineRowItemContainer>
-              <TimelineRowImage src={BearWavingGif} />
+              <TimelineRowImageBear src={BearWavingGif} />
               <TimelineRowNotchSmall>
                 <TinderIcon />
               </TimelineRowNotchSmall>
@@ -100,25 +101,25 @@ const Story = () => {
             <TimelineRowItemContainer>
               <TimelineRowImageTravel>
                 <TimelineRowImageTravelHalf>
-                  <TimelineRowImage2 src={Porto} />
+                  <TimelineRowImage src={Porto} />
                 </TimelineRowImageTravelHalf>
                 <TimelineRowImageTravelHalf>
-                  <TimelineRowImage2 src={NzFlowers} />
+                  <TimelineRowImage src={NzFlowers} />
                 </TimelineRowImageTravelHalf>
                 <TimelineRowImageTravelThird>
-                  <TimelineRowImage2 src={Cliffs} />
+                  <TimelineRowImage src={Cliffs} />
                 </TimelineRowImageTravelThird>
                 <TimelineRowImageTravelThird>
-                  <TimelineRowImage2 src={TokyoRex} />
+                  <TimelineRowImage src={TokyoRex} />
                 </TimelineRowImageTravelThird>
                 <TimelineRowImageTravelThird>
-                  <TimelineRowImage2 src={KangarooPet} />
+                  <TimelineRowImage src={KangarooPet} />
                 </TimelineRowImageTravelThird>
                 <TimelineRowImageTravelHalf>
-                  <TimelineRowImage2 src={NzKayak} />
+                  <TimelineRowImage src={NzKayak} />
                 </TimelineRowImageTravelHalf>
                 <TimelineRowImageTravelHalf>
-                  <TimelineRowImage2 src={LondonDrinks} />
+                  <TimelineRowImage src={LondonDrinks} />
                 </TimelineRowImageTravelHalf>
               </TimelineRowImageTravel>
               <TimelineRowNotchSmall>
@@ -154,13 +155,13 @@ const Story = () => {
             <TimelineRowItemContainer>
               <TimelineRowImageEngagement>
                 <TimelineRowImageEngagementPic1>
-                  <TimelineRowImage2 src={PostEngagement} />
+                  <TimelineRowImageBottom src={PostEngagement} />
                 </TimelineRowImageEngagementPic1>
                 <TimelineRowImageEngagementPic2>
-                  <TimelineRowImage2 src={TruckEngagement} />
+                  <TimelineRowImage src={TruckEngagement} />
                 </TimelineRowImageEngagementPic2>
                 <TimelineRowImageEngagementPic3>
-                  <TimelineRowImage2 src={ShawnaRing} />
+                  <TimelineRowImage src={ShawnaRing} />
                 </TimelineRowImageEngagementPic3>
               </TimelineRowImageEngagement>
               <TimelineRowNotchSmall>
@@ -195,22 +196,22 @@ const Story = () => {
             <TimelineRowItemContainer>
               <TimelineRowImageNyc>
                 <TimelineRowImageNycItem>
-                  <TimelineRowImage2 src={NycStoopShawna} />
+                  <TimelineRowImage src={NycStoopShawna} />
                 </TimelineRowImageNycItem>
                 <TimelineRowImageNycItem>
-                  <TimelineRowImage2 src={NycPicnic} />
+                  <TimelineRowImage src={NycPicnic} />
                 </TimelineRowImageNycItem>
                 <TimelineRowImageNycItem>
-                  <TimelineRowImage2 src={NycPinks} />
+                  <TimelineRowImage src={NycPinks} />
                 </TimelineRowImageNycItem>
                 <TimelineRowImageNycItem>
-                  <TimelineRowImage2 src={NycPizza} />
+                  <TimelineRowImage src={NycPizza} />
                 </TimelineRowImageNycItem>
                 <TimelineRowImageNycItem>
-                  <TimelineRowImage2 src={NycSnow} />
+                  <TimelineRowImage src={NycSnow} />
                 </TimelineRowImageNycItem>
                 <TimelineRowImageNycItem>
-                  <TimelineRowImage2 src={NycXmas} />
+                  <TimelineRowImage src={NycXmas} />
                 </TimelineRowImageNycItem>
               </TimelineRowImageNyc>
               <TimelineRowNotchSmall>
@@ -229,15 +230,17 @@ const Story = () => {
                   Stoop Life
                 </TimelineRowItemTextSubTitle>
                 <TimelineRowItemTextText>
-                  They share a love of exploration and have traveled to over 10
-                  countries so far. Their first big trip was to Japan over
-                  Christmas in 2016. This was the first time Shawna was
-                  introduced to Alex's LOVE of walking; after 13 miles on day 1,
-                  her boots were relegated to evening use only. Whether road
-                  tripping through New Zealand, giving belly rubs to kangaroos
-                  or finding themselves on an accidental dive bar crawl through
-                  the Castro (and now the Lower East Side), there is always fun
-                  to be had and memories to be made.
+                  Alex and Shawna set foot in NYC on March 1st 2020, excited
+                  about the adventures they would embark on. They landed the
+                  perfect place in the East Village, ensuring that Alex got the
+                  full size oven he'd need to fully realize his dream of being a
+                  pizza chef. Even as everything shut down around them, they
+                  found a sense of community on their block that has continued
+                  to thrive through to today. Summer and fall nights usually
+                  ended on the stoop, where they have lovingly earned he
+                  nickname "the cage couple." While this isn't the NYC
+                  experience they were expecting, they've had a blast so far and
+                  can't wait for what's next!
                 </TimelineRowItemTextText>
               </TimelineRowItemTextContainer>
             </TimelineRowItemContainer>

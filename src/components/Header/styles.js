@@ -16,7 +16,7 @@ export const Container = styled.nav`
   left: 0;
   height: ${(props) =>
     props.isNotDesktop && props.isMenuOpen ? "100%" : "50px"};
-  width: 100%;
+  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -1,17 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Hero from "components/Hero";
-import { Content } from "./styles";
+import { Content, Parent } from "./styles";
 
 const Layout = ({ children, header, hero }) => {
   return (
-    <div>
+    <Parent>
       <Hero>{hero}</Hero>
       <Content>
         {header}
         <main>{children}</main>
       </Content>
-    </div>
+    </Parent>
   );
 };
 
