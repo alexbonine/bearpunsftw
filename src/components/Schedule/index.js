@@ -10,6 +10,7 @@ import {
   EventTime,
   EventTitle,
   Image,
+  NoChildren,
   TextContainer,
   Title,
 } from "./styles";
@@ -95,6 +96,7 @@ const Schedule = () => {
             <Title>The Weekend</Title>
           </div>
           {mapEvents()}
+          <NoChildren>* All events 21 and over *</NoChildren>
         </TextContainer>
         <Image src={TurksInn} alt="Turks Inn" />
       </Grid>

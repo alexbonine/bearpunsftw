@@ -50,6 +50,15 @@ export const Title = styled.h1`
   })}
 `;
 
+export const NoChildren = styled.p`
+  padding-top: 10px;
+  font-size: 10px;
+  color: ${colors.white};
+  ${mq({
+    textAlign: ["center", "left"],
+  })}
+`;
+
 export const EventContainer = styled.div`
   margin-top: ${(props) => (props.first ? "20px" : "10px")};
 `;
