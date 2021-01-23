@@ -29,6 +29,9 @@ const Header = () => {
   useEffect(() => {
     const onScroll = (e) => {
       setScrollTop(e.target.documentElement.scrollTop.scrollTop);
+      const screenHeight =
+        window.innerHeight || e.target.documentElement.clientHeight;
+      setFixedHeader(e.target.documentElement.scrollTop > screenHeight);
     };
 
     window.addEventListener("scroll", onScroll);
