@@ -8,11 +8,18 @@ module.exports = {
   plugins: [
     "gatsby-plugin-emotion",
     {
-      resolve: "gatsby-plugin-google-analytics",
+      resolve: "gatsby-plugin-google-tagmanager",
       options: {
-        trackingId: "258471519",
+        id: "258471519",
+        defaultDataLayer: { platform: "gatsby" },
       },
     },
+    // {
+    //   resolve: "gatsby-plugin-google-analytics",
+    //   options: {
+    //     trackingId: "258471519",
+    //   },
+    // },
     {
       resolve: `gatsby-alias-imports`,
       options: {
