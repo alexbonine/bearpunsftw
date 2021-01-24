@@ -29,7 +29,6 @@
     "@emotion/react": "^11.1.4",
     "@emotion/styled": "^11.0.0",
     "@react-hook/window-size": "^3.0.7",
-    "@rehooks/component-size": "^1.0.3",
     "facepaint": "^1.2.1",
     "gatsby": "^2.26.1",
     "gatsby-alias-imports": "^1.0.6",

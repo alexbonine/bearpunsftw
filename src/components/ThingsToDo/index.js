@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import useComponentSize from "@rehooks/component-size";
 import useMq from "hooks/useMq";
 import {
   Container,
@@ -18,23 +17,22 @@ const ThingsToDo = () => {
   const stuffRef = useRef(null);
   const [iframeHeight, setIframeHeight] = useState(640);
   const [iframeWidth, setIframeWidth] = useState(480);
-  const size = useComponentSize(stuffRef);
-  const { isNotDesktop } = useMq();
+  const { isNotDesktop, screenHeight, screenWidth } = useMq();
 
   /* eslint-disable react-hooks/exhaustive-deps */
   useEffect(() => {
     if (isNotDesktop) {
       setIframeHeight(400);
     } else {
-      setIframeHeight(Math.max(size.height, 640));
+      setIframeHeight(Math.min(screenHeight, 640));
     }
 
-    if (size.width <= 500) {
-      setIframeWidth(size.width - 20);
+    if (screenWidth <= 500) {
+      setIframeWidth(screenWidth - 20);
     } else {
       setIframeWidth(480);
     }
-  }, [size.width, isNotDesktop]);
+  }, [isNotDesktop, screenHeight, screenWidth]);
 
   return (
     <Container>
