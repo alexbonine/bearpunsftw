@@ -19,7 +19,6 @@ const ThingsToDo = () => {
   const [iframeWidth, setIframeWidth] = useState(480);
   const { isNotDesktop, screenHeight, screenWidth } = useMq();
 
-  /* eslint-disable react-hooks/exhaustive-deps */
   useEffect(() => {
     if (isNotDesktop) {
       setIframeHeight(400);

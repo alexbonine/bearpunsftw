@@ -112,7 +112,7 @@ const Accomodations = () => {
             <PlaceLink
               target="_blank"
               rel="noreferrer"
-              href="https://www.marriott.com/hotels/travel/nycnu-w-new-york-union-square/?scid=bb1a189a-fec3-4d19-a255-54ba596febe2&y_source=1_MTUwMjY1Ny03MTUtbG9jYXRpb24uZ29vZ2xlX3dlYnNpdGVfb3ZlcnJpZGU="
+              href="https://www.marriott.com/event-reservations/reservation-link.mi?id=1612630645229&key=GRP&app=resvlink"
             >
               View
             </PlaceLink>
