@@ -79,8 +79,8 @@ const Header = () => {
           </ATag>
         </NavItem>
         <NavItem isNotDesktop={isNotDesktop} isMenuOpen={isMenuOpen}>
-          <ATag href="#accomodations" onClick={closeMenu}>
-            Accomodations
+          <ATag href="#accommodations" onClick={closeMenu}>
+            Accommodations
           </ATag>
         </NavItem>
         <NavItem isNotDesktop={isNotDesktop} isMenuOpen={isMenuOpen}>

@@ -6,7 +6,7 @@ import Header from "components/Header";
 import Welcome from "components/Welcome";
 import Story from "components/Story";
 import Schedule from "components/Schedule";
-import Accomodations from "components/Accomodations";
+import Accommodations from "components/Accommodations";
 import ThingsToDo from "components/ThingsToDo";
 import Rsvp from "components/Rsvp";
 import CopyRight from "components/Copyright";
@@ -33,8 +33,8 @@ const IndexPage = () => {
       <Article id="schedule">
         <Schedule />
       </Article>
-      <Article id="accomodations">
-        <Accomodations />
+      <Article id="accommodations">
+        <Accomm odations />
       </Article>
       <Article id="thingstodo">
         <ThingsToDo />

@@ -2,7 +2,7 @@ import React from "react";
 import HotelIcon from "images/hotel-bags.svg";
 import AirbnbIcon from "images/airbnb-house.svg";
 import IconCopyright from "components/IconCopyright";
-import AccomodationsMap from "images/accomodations.png";
+import AccommodationsMap from "images/accommodations.png";
 import {
   Container,
   GridBottom,
@@ -25,10 +25,10 @@ import {
   VerticalDivider,
 } from "./styles";
 
-const Accomodations = () => {
+const Accommodations = () => {
   return (
     <Container>
-      <Title>Accomodations</Title>
+      <Title>Accommodations</Title>
       <TextContainer>
         <TextBox>
           <Text>
@@ -88,7 +88,7 @@ const Accomodations = () => {
         </GridItemDivider>
         <GridItem>
           <MapContainer>
-            <Map src={AccomodationsMap} />
+            <Map src={AccommodationsMap} />
           </MapContainer>
         </GridItem>
       </GridTop>
@@ -173,4 +173,4 @@ const Accomodations = () => {
   );
 };
 
-export default Accomodations;
+export default Accommodations;
