@@ -34,7 +34,7 @@ const IndexPage = () => {
         <Schedule />
       </Article>
       <Article id="accommodations">
-        <Accomm odations />
+        <Accommodations />
       </Article>
       <Article id="thingstodo">
         <ThingsToDo />
