@@ -18,13 +18,6 @@ import {
 const events = [
   {
     day: "Friday 17th",
-    key: "coney",
-    location: "Luna Park",
-    locationLink: "https://lunaparknyc.com/",
-    title: "Coney Island Adventure",
-    time: "12pm-4pm",
-  },
-  {
     key: "dinner",
     location: "",
     locationLink: "",
