@@ -8,34 +8,59 @@ import colors from "styles/colors";
 const HOME_ICON_SIZE = "24px";
 const ITEM_COLOR = colors.white;
 
+const getContainerStyles = ({ isFixedHeader, isMenuOpen }) => {
+  const styles = {};
+
+  if (isFixedHeader) {
+    styles.position = "fixed";
+  } else {
+    styles.position = ["fixed", "fixed", "absolute", "absolute"];
+  }
+
+  if (isMenuOpen) {
+    styles.height = ["100%", "100%", "50px", "50px"];
+    styles.backgroundColor = [
+      colors.gray,
+      colors.gray,
+      "rgba(0, 0, 0, 0.5)",
+      "rgba(0, 0, 0, 0.5)",
+    ];
+  } else {
+    styles.height = "50px";
+    styles.backgroundColor = "rgba(0, 0, 0, 0.5)";
+  }
+
+  return mq(styles);
+};
+
 export const Container = styled.nav`
   z-index: 1;
-  position: ${(props) =>
-    props.isFixedHeader || props.isNotDesktop ? "fixed" : "absolute"};
   top: 0;
   left: 0;
-  height: ${(props) =>
-    props.isNotDesktop && props.isMenuOpen ? "100%" : "50px"};
   width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${(props) =>
-    props.isNotDesktop && props.isMenuOpen
-      ? colors.gray
-      : "rgba(0, 0, 0, 0.5)"};
   transition: 0.4s;
+
+  ${getContainerStyles}
 `;
 
 export const Home = styled.div`
   position: absolute;
-  left: ${(props) => (props.isNotDesktop ? "20px" : "50px")};
-  top: ${(props) => (props.isNotDesktop ? "2px" : "")};
+
+  ${mq({
+    left: ["20px", "20px", "50px", "50px"],
+    top: ["2px", "2px", "auto", "auto"],
+  })}
 `;
 
 export const MenuButton = styled.div`
-  display: inline-block;
   cursor: pointer;
+
+  ${mq({
+    display: ["inline-block", "inline-block", "none", "none"],
+  })}
 
   ${pseudo({
     "&": {
@@ -86,26 +111,36 @@ export const Plus = styled.div`
 `;
 
 export const NavList = styled.ul`
-  ${(props) =>
-    props.isNotDesktop && props.isMenuOpen
-      ? {
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-        }
+  ${({ isMenuOpen }) =>
+    isMenuOpen
+      ? mq({
+          display: ["flex", "flex", "flex", ""],
+          flexDirection: ["column", "column", "", ""],
+          justifyContent: ["center", "center", "", ""],
+          alignItems: ["center", "center", "", ""],
+        })
       : {}}
 `;
 
-export const NavItem = styled.li`
-  display: ${(props) =>
-    !props.isNotDesktop || props.isMenuOpen ? "inline-block" : "none"};
-  text-transform: uppercase;
-
-  ${mq({
+const getNavItemStyles = (props) => {
+  const styles = {
     marginRight: ["0px", "0px", "20px"],
     marginBottom: ["10px", "10px", "0px"],
-  })}
+  };
+
+  if (props.isMenuOpen) {
+    styles.display = ["inline-block", "inline-block", "", ""];
+  } else {
+    styles.display = ["none", "none", "inline-block", "inline-block"];
+  }
+
+  return mq(styles);
+};
+
+export const NavItem = styled.li`
+  text-transform: uppercase;
+
+  ${getNavItemStyles};
 
   &:last-child {
     margin-right: 0;
@@ -125,6 +160,9 @@ export const ATag = styled.a`
 `;
 
 export const ATagIconContainer = styled(ATag)`
-  display: flex;
   height: 24px;
+
+  ${mq({
+    display: ["none", "none", "flex", "flex"],
+  })}
 `;

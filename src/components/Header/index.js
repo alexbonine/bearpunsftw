@@ -44,56 +44,47 @@ const Header = () => {
   }, [isNotDesktop]);
 
   return (
-    <Container
-      isFixedHeader={isFixedHeader}
-      isMenuOpen={isMenuOpen}
-      isNotDesktop={isNotDesktop}
-    >
-      <Home isNotDesktop={isNotDesktop}>
-        {isNotDesktop ? (
-          <MenuButton onClick={() => setMenuOpen(!isMenuOpen)}>
-            <MenuBar1 isMenuOpen={isMenuOpen} />
-            <MenuBar2 isMenuOpen={isMenuOpen} />
-            <MenuBar3 isMenuOpen={isMenuOpen} />
-          </MenuButton>
-        ) : (
-          <>
-            <ATagIconContainer href="#">
-              <BearIcon />
-              <Plus>&#43;</Plus>
-              <LemurIcon />
-            </ATagIconContainer>
-            <IconCopyright />
-          </>
-        )}
+    <Container isFixedHeader={isFixedHeader} isMenuOpen={isMenuOpen}>
+      <Home>
+        <MenuButton onClick={() => setMenuOpen(!isMenuOpen)}>
+          <MenuBar1 isMenuOpen={isMenuOpen} />
+          <MenuBar2 isMenuOpen={isMenuOpen} />
+          <MenuBar3 isMenuOpen={isMenuOpen} />
+        </MenuButton>
+        <ATagIconContainer href="#">
+          <BearIcon />
+          <Plus>&#43;</Plus>
+          <LemurIcon />
+        </ATagIconContainer>
+        <IconCopyright />
       </Home>
-      <NavList isNotDesktop={isNotDesktop} isMenuOpen={isMenuOpen}>
-        <NavItem isNotDesktop={isNotDesktop} isMenuOpen={isMenuOpen}>
+      <NavList isMenuOpen={isMenuOpen}>
+        <NavItem isMenuOpen={isMenuOpen}>
           <ATag href="#ourstory" onClick={closeMenu}>
             Our Story
           </ATag>
         </NavItem>
-        <NavItem isNotDesktop={isNotDesktop} isMenuOpen={isMenuOpen}>
+        <NavItem isMenuOpen={isMenuOpen}>
           <ATag href="#schedule" onClick={closeMenu}>
             The Weekend
           </ATag>
         </NavItem>
-        <NavItem isNotDesktop={isNotDesktop} isMenuOpen={isMenuOpen}>
+        <NavItem isMenuOpen={isMenuOpen}>
           <ATag href="#accommodations" onClick={closeMenu}>
             Accommodations
           </ATag>
         </NavItem>
-        <NavItem isNotDesktop={isNotDesktop} isMenuOpen={isMenuOpen}>
+        <NavItem isMenuOpen={isMenuOpen}>
           <ATag href="#thingstodo" onClick={closeMenu}>
             Things To Do
           </ATag>
         </NavItem>
-        <NavItem isNotDesktop={isNotDesktop} isMenuOpen={isMenuOpen}>
+        <NavItem isMenuOpen={isMenuOpen}>
           <ATag href="#rsvp" onClick={closeMenu}>
             RSVP
           </ATag>
         </NavItem>
-        <NavItem isNotDesktop={isNotDesktop} isMenuOpen={isMenuOpen}>
+        <NavItem isMenuOpen={isMenuOpen}>
           <ATag
             target="_blank"
             rel="noreferrer"
@@ -103,7 +94,7 @@ const Header = () => {
             Registry
           </ATag>
         </NavItem>
-        {/* <NavItem isNotDesktop={isNotDesktop} isMenuOpen={isMenuOpen}>
+        {/* <NavItem isMenuOpen={isMenuOpen}>
           <ATag href="/gallery" onClick={closeMenu}>Gallery</ATag>
         </NavItem> */}
       </NavList>

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Hero from "components/Hero";
 import { Content, Parent } from "./styles";
 
-const Layout = ({ children, header, hero }) => {
+const Homepage = ({ children, header, hero }) => {
   return (
     <Parent>
       <Hero>{hero}</Hero>
@@ -15,10 +15,10 @@ const Layout = ({ children, header, hero }) => {
   );
 };
 
-Layout.propTypes = {
+Homepage.propTypes = {
   children: PropTypes.arrayOf(PropTypes.node).isRequired,
   header: PropTypes.node.isRequired,
   hero: PropTypes.node.isRequired,
 };
 
-export default Layout;
+export default Homepage;

@@ -1,6 +1,5 @@
 import React from "react";
-import { Helmet } from "react-helmet";
-import Layout from "components/Layout";
+import Homepage from "components/Homepage";
 import Article from "components/Article";
 import Header from "components/Header";
 import Welcome from "components/Welcome";
@@ -11,22 +10,9 @@ import ThingsToDo from "components/ThingsToDo";
 import Rsvp from "components/Rsvp";
 import CopyRight from "components/Copyright";
 
-import "styles/styles.css";
-
 const IndexPage = () => {
   return (
-    <Layout header={<Header />} hero={<Welcome />}>
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>Bear Puns FTW</title>
-        <meta
-          name="description"
-          content="Wedding Website of Shawna Carney and Alex Bonine"
-        />
-        <meta name="author" content="Alex Bonine (lemurdev@gmail.com)" />
-        <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://bearpunsftw.com/" />
-      </Helmet>
+    <Homepage header={<Header />} hero={<Welcome />}>
       <Article id="ourstory">
         <Story />
       </Article>
@@ -43,7 +29,7 @@ const IndexPage = () => {
         <Rsvp />
       </Article>
       <CopyRight />
-    </Layout>
+    </Homepage>
   );
 };
 
