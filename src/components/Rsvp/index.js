@@ -20,7 +20,7 @@ const Rsvp = () => {
           <h1>RSVP</h1>
           <Text>
             Already know you'll be joining us or unable to make the trip? Send
-            us a message at{" "}
+            us a message at&nbsp;
             <ATag
               target="_blank"
               rel="noreferrer"

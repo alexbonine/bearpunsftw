@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { HEADER_HEIGHT } from "styles/constants";
+import { HEADER_HEIGHT, STANDARD_INPUT_MARGIN } from "styles/constants";
 import colors from "styles/colors";
 import mq from "styles/mq";
 
@@ -46,10 +46,8 @@ export const FormContainer = styled.div`
   })}
 `;
 
-const STANDARD_MARGIN = "20px";
-
 export const FormTitle = styled.h1`
-  margin-bottom: ${STANDARD_MARGIN};
+  margin-bottom: ${STANDARD_INPUT_MARGIN};
 `;
 
 export const Form = styled.div`
@@ -60,51 +58,14 @@ export const Form = styled.div`
 `;
 
 export const SubFormTitle = styled.div`
-  margin-bottom: ${STANDARD_MARGIN};
-`;
-
-export const Input = styled.input`
-  display: block;
-  margin-bottom: ${STANDARD_MARGIN};
-  padding: 4px 10px;
-  border: 1px solid ${colors.grayLightest};
-  outline: none;
-  border-radius: 4px;
-
-  &:hover,
-  &:focus {
-    border-color: ${colors.blueLight};
-  }
-
-  &::placeholder {
-    color: ${colors.gray};
-    font-style: italic;
-  }
-`;
-
-export const Submit = styled.button`
-  margin-top: ${STANDARD_MARGIN};
-  margin-bottom: ${STANDARD_MARGIN};
-  padding: 5px 20px;
-  color: ${colors.white};
-  background-color: ${colors.blue};
-  border: 1px solid transparent;
-  cursor: pointer;
-  font-size: 16px;
-  min-width: 80px;
-  border-radius: 4px;
-
-  &:hover,
-  &:active {
-    background-color: ${colors.blueDark};
-  }
+  margin-bottom: ${STANDARD_INPUT_MARGIN};
 `;
 
 export const Error = styled.div`
   color: ${colors.red};
   text-align: center;
 
-  margin-bottom: ${STANDARD_MARGIN};
+  margin-bottom: ${STANDARD_INPUT_MARGIN};
 `;
 
 export const ErrorEmail = styled.div`
