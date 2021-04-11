@@ -12,6 +12,7 @@
       "images/*": ["./src/images/*"],
       "pages/*": ["./src/pages/*"],
       "styles/*": ["./client/styles/*"],
+      "utils/*": ["./src/utils/*"],
     }
   },
   "exclude": ["node_modules"],

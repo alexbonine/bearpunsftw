@@ -59,7 +59,7 @@ export const Alex = styled.h1`
 `;
 
 export const Countdown = styled.h4`
-  color: ${colors.blueLight};
+  color: ${colors.blueLightest};
 `;
 
 export const TextContainer = styled.div`

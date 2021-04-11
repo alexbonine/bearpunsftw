@@ -5,7 +5,7 @@ import colors from "styles/colors";
 export const Container = styled.div`
   min-height: 100vh;
   width: 100%;
-  background-color: ${colors.blueLight};
+  background-color: ${colors.blueLightest};
 `;
 
 export const FlexContainer = styled.div`

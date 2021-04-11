@@ -5,6 +5,11 @@ const client = new faunadb.Client({
   secret: process.env.FAUNADB_SECRET,
 });
 
+const respond = (statusCode, body) => ({
+  statusCode,
+  body: JSON.stringify(body),
+});
+
 const faunaDbSucks = async (index, formattedName) => {
   try {
     const result = await client.query(
@@ -21,10 +26,7 @@ exports.handler = async (event) => {
   const { name = "" } = event.queryStringParameters;
 
   if (!name) {
-    return {
-      statusCode: 400,
-      body: "Name is required",
-    };
+    return respond(400, { error: "Name is required" });
   }
 
   const formatedName = name.toLowerCase();
@@ -33,14 +35,8 @@ exports.handler = async (event) => {
   const rsvp = primary || secondary;
 
   if (!rsvp) {
-    return {
-      statusCode: 400,
-      body: "not-found",
-    };
+    return respond(400, { error: true, errorCode: "Lemur 1" });
   }
 
-  return {
-    statusCode: 200,
-    body: JSON.stringify(rsvp),
-  };
+  return respond(200, rsvp);
 };

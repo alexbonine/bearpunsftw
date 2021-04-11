@@ -7,6 +7,11 @@ const client = new faunadb.Client({
   secret: process.env.FAUNADB_SECRET,
 });
 
+const respond = (statusCode, body) => ({
+  statusCode,
+  body: JSON.stringify(body),
+});
+
 const transporter = nodemailer.createTransport(
   mg({
     auth: {
@@ -99,29 +104,20 @@ const getEmail = (current, previous) => {
 
 exports.handler = async ({ body, httpMethod }) => {
   if (httpMethod !== "PUT" || !body.id) {
-    return {
-      statusCode: 400,
-      body: "Error updating",
-    };
+    return respond(400, { error: true, errorCode: "Lemur 2" });
   }
 
   const data = onlyData(body);
 
   if (Object.keys(data).length === 0) {
-    return {
-      statusCode: 400,
-      body: "Error updating",
-    };
+    return respond(400, { error: true, errorCode: "Lemur 3" });
   }
 
   const previousRsvp = faunaDbSucksGet(body.id);
   const rsvp = faunaDbSucksPut(body.id, data);
 
   if (!rsvp) {
-    return {
-      statusCode: 400,
-      body: "error",
-    };
+    return respond(400, { error: true, errorCode: "Lemur 4" });
   }
 
   await transporter.sendMail({
@@ -130,8 +126,5 @@ exports.handler = async ({ body, httpMethod }) => {
     ...getEmail(rsvp, previousRsvp),
   });
 
-  return {
-    statusCode: 200,
-    body: JSON.stringify(rsvp),
-  };
+  return respond(200, rsvp);
 };

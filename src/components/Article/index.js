@@ -10,7 +10,10 @@ const Article = ({ children, className, id }) => {
 };
 
 Article.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
   className: PropTypes.string,
   id: PropTypes.string.isRequired,
 };

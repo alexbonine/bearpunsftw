@@ -4,6 +4,7 @@ import mq from "styles/mq";
 import Bear from "images/bear.svg";
 import Lemur from "images/lemur.svg";
 import colors from "styles/colors";
+import { HEADER_HEIGHT } from "styles/constants";
 
 const HOME_ICON_SIZE = "24px";
 const ITEM_COLOR = colors.white;
@@ -18,7 +19,7 @@ const getContainerStyles = ({ isFixedHeader, isMenuOpen }) => {
   }
 
   if (isMenuOpen) {
-    styles.height = ["100%", "100%", "50px", "50px"];
+    styles.height = ["100%", "100%", HEADER_HEIGHT, HEADER_HEIGHT];
     styles.backgroundColor = [
       colors.gray,
       colors.gray,
@@ -26,7 +27,7 @@ const getContainerStyles = ({ isFixedHeader, isMenuOpen }) => {
       "rgba(0, 0, 0, 0.5)",
     ];
   } else {
-    styles.height = "50px";
+    styles.height = HEADER_HEIGHT;
     styles.backgroundColor = "rgba(0, 0, 0, 0.5)";
   }
 

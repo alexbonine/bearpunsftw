@@ -16,7 +16,10 @@ const Homepage = ({ children, header, hero }) => {
 };
 
 Homepage.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.node).isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
   header: PropTypes.node.isRequired,
   hero: PropTypes.node.isRequired,
 };

@@ -65,7 +65,7 @@ export const EventContainer = styled.div`
 
 export const EventDate = styled.h4`
   margin-bottom: 4px;
-  color: ${colors.blueLight};
+  color: ${colors.blueLightest};
   text-transform: uppercase;
   ${mq({
     textAlign: ["center", "left"],

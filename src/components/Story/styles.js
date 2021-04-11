@@ -34,7 +34,7 @@ export const InnerContainer = styled.div`
 
 export const Line = styled.div`
   width: 4px;
-  background-color: ${colors.blueLight};
+  background-color: ${colors.blueLightest};
   height: 100%;
   position: absolute;
   ${mq({
@@ -239,7 +239,7 @@ export const TimelineRowImageNycItem = styled.div`
 
 export const TimelineRowNotch = styled.div`
   border-radius: 50%;
-  background-color: ${colors.blueLight};
+  background-color: ${colors.blueLightest};
   color: ${colors.red};
   align-items: center;
   justify-content: center;
