@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { updateRsvp } from "utils/rsvp";
-import Button from "components/Button";
 import { getEvents, INDEX_KEYS } from "../utils";
 import Event from "../Event";
 import { Error } from "../styles";
-import { Welcome } from "./styles";
+import {
+  Attending,
+  NotAttending,
+  Button,
+  SimpleContainer,
+  Welcome,
+} from "./styles";
 
 const RsvpFormEvents = ({ rsvp, setErrorCode, setNextState }) => {
   const {
@@ -19,6 +24,7 @@ const RsvpFormEvents = ({ rsvp, setErrorCode, setNextState }) => {
   } = rsvp;
   const [error, setError] = useState("");
   const [response, setResponse] = useState(previousResponse || {});
+  const [simpleAction, setSimpleAction] = useState(null);
 
   const onUpdate = async (event) => {
     event.preventDefault();
@@ -51,15 +57,34 @@ const RsvpFormEvents = ({ rsvp, setErrorCode, setNextState }) => {
         Hey there,&nbsp;{userText}! We're super excited to see you
         {otherText}&nbsp;soon!
       </Welcome>
-      {getEvents(type).map((event) => (
-        <Event
-          event={event}
-          key={event.key}
-          onChange={handleChange}
-          allowed={count}
-          response={response[event.key]}
-        />
-      ))}
+      {!simpleAction && (
+        <SimpleContainer>
+          <div>
+            <NotAttending
+              onClick={() => setSimpleAction(false)}
+              selected={simpleAction === false}
+            >
+              Not Attending
+            </NotAttending>
+            <Attending
+              onClick={() => setSimpleAction(true)}
+              selected={simpleAction === true}
+            >
+              Attending
+            </Attending>
+          </div>
+        </SimpleContainer>
+      )}
+      {simpleAction &&
+        getEvents(type).map((event) => (
+          <Event
+            event={event}
+            key={event.key}
+            onChange={handleChange}
+            allowed={count}
+            response={response[event.key]}
+          />
+        ))}
       <Button onClick={onUpdate}>Submit</Button>
       {error && <Error>{error}</Error>}
     </>

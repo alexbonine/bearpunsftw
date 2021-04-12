@@ -30,9 +30,11 @@ const Event = ({ allowed, event, onChange, response }) => {
   return (
     <EventBase>
       <PlusMinusContainer>
-        <Plus onClick={response !== allowed && setupOnClick(true)} />
+        <Plus
+          onClick={(response !== allowed && setupOnClick(true)) || undefined}
+        />
         {response}
-        <Minus onClick={response !== 0 && setupOnClick(false)} />
+        <Minus onClick={(response !== 0 && setupOnClick(false)) || undefined} />
       </PlusMinusContainer>
       <Info>
         <Date>{date}</Date>

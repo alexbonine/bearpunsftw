@@ -1,10 +1,9 @@
 import React, { useRef, useState } from "react";
 import PropTypes from "prop-types";
 import { getRsvp } from "utils/rsvp";
-import Button from "components/Button";
 import Input from "components/Input";
 import { Error } from "../styles";
-import { Title } from "./styles";
+import { Button, Title } from "./styles";
 
 const ERROR_THRESHOLD = 3;
 
@@ -41,13 +40,13 @@ const RsvpFormLogin = ({ setErrorCode, setNextState, setRsvp }) => {
     const rsvpObj = await getRsvp(first, last);
 
     if (!rsvpObj) {
-      setErrorStatus("Bear 1");
+      setErrorStatus("bear-1");
       return;
     } else if (rsvpObj.errorCode) {
       setErrorStatus(rsvpObj.errorCode);
       return;
     } else if (rsvpObj.error) {
-      setErrorStatus("Bear 2");
+      setErrorStatus("bear-2");
       return;
     }
 

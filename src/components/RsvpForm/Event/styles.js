@@ -1,14 +1,7 @@
 import styled from "@emotion/styled";
-import pseudo from "styles/pseudo";
 import mq from "styles/mq";
-import Bear from "images/bear.svg";
-import Lemur from "images/lemur.svg";
 import { STANDARD_INPUT_MARGIN } from "styles/constants";
 import colors from "styles/colors";
-
-const HOME_ICON_SIZE = "24px";
-const SELECTED_COLOR = colors.green;
-const UNSELECTED_COLOR = colors.red;
 
 export const Event = styled.div`
   margin-bottom: ${STANDARD_INPUT_MARGIN};

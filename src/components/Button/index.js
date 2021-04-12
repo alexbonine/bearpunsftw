@@ -1,10 +1,7 @@
 import styled from "@emotion/styled";
-import { STANDARD_INPUT_MARGIN } from "styles/constants";
 import colors from "styles/colors";
 
 const Button = styled.button`
-  margin-top: ${STANDARD_INPUT_MARGIN};
-  margin-bottom: ${STANDARD_INPUT_MARGIN};
   padding: 5px 20px;
   color: ${colors.white};
   background-color: ${colors.blue};
@@ -13,6 +10,7 @@ const Button = styled.button`
   font-size: 16px;
   min-width: 80px;
   border-radius: 4px;
+  outline: none;
 
   &:hover,
   &:active {

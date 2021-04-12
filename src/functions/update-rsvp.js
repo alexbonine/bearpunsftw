@@ -104,20 +104,20 @@ const getEmail = (current, previous) => {
 
 exports.handler = async ({ body, httpMethod }) => {
   if (httpMethod !== "PUT" || !body.id) {
-    return respond(400, { error: true, errorCode: "Lemur 2" });
+    return respond(400, { error: true, errorCode: "lemur-2" });
   }
 
   const eventResponse = onlyData(body);
 
   if (Object.keys(data).length === 0) {
-    return respond(400, { error: true, errorCode: "Lemur 3" });
+    return respond(400, { error: true, errorCode: "lemur-3" });
   }
 
   const previousRsvp = faunaDbSucksGet(body.id);
   const rsvp = faunaDbSucksPut(body.id, eventResponse);
 
   if (!rsvp) {
-    return respond(400, { error: true, errorCode: "Lemur 4" });
+    return respond(400, { error: true, errorCode: "lemur-4" });
   }
 
   await transporter.sendMail({

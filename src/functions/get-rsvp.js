@@ -39,7 +39,7 @@ exports.handler = async (event) => {
   const rsvp = primary || secondary;
 
   if (!rsvp) {
-    return respond(400, { error: true, errorCode: "Lemur 1" });
+    return respond(400, { error: true, errorCode: "lemur-1" });
   }
 
   return respond(200, rsvp);
