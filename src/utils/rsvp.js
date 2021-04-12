@@ -9,10 +9,11 @@ export const getRsvp = async (first, last) => {
 };
 
 export const updateRsvp = async (data) => {
-  return fetch(`${BASE_URL}update-rsvp`, {
-    body: JSON.stringify(data),
-    method: "POST",
-  }).then((response) => {
-    return response.json();
-  });
+  return Promise.resolve({ error: true });
+  // return fetch(`${BASE_URL}update-rsvp`, {
+  //   body: JSON.stringify(data),
+  //   method: "POST",
+  // }).then((response) => {
+  //   return response.json();
+  // });
 };

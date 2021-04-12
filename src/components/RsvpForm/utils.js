@@ -96,3 +96,37 @@ export const getEvents = (type) => {
       return [WELCOME_DRINKS, PARTY, BRUNCH];
   }
 };
+
+export const parseSubmit = (response) => {
+  return Object.keys(response).reduce((accum, key) => {
+    switch (key) {
+      case KEYS.BRUNCH:
+        accum[key] = response[key] || 0;
+        break;
+      case KEYS.CEREMONY:
+        accum[key] = response[key] || 0;
+        accum[KEYS.PARTY] = response[key] || 0;
+        break;
+      case KEYS.FAMILY_PIZZA:
+        accum[key] = response[key] || 0;
+        break;
+      case KEYS.FRIENDS_PIZZA:
+        accum[key] = response[key] || 0;
+        break;
+      case KEYS.PARTY:
+        accum[key] = response[KEYS.CEREMONY] || response[key] || 0;
+        break;
+      case KEYS.WELCOME_DINNER:
+        accum[key] = response[key] || 0;
+        accum[KEYS.WELCOME_DRINKS] = response[key] || 0;
+        break;
+      case KEYS.WELCOME_DRINKS:
+        accum[key] = response[KEYS.WELCOME_DINNER] || response[key] || 0;
+        break;
+      default:
+        break;
+    }
+
+    return accum;
+  }, {});
+};

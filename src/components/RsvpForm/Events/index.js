@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { updateRsvp } from "utils/rsvp";
-import { getEvents, INDEX_KEYS } from "../utils";
+import { getEvents, INDEX_KEYS, KEYS, parseSubmit } from "../utils";
 import Event from "../Event";
-import { Error } from "../styles";
+// import { Error } from "../styles";
 import {
   Attending,
-  NotAttending,
   Button,
+  EventsContainer,
+  NotAttending,
   SimpleContainer,
   Welcome,
 } from "./styles";
@@ -22,18 +23,41 @@ const RsvpFormEvents = ({ rsvp, setErrorCode, setNextState }) => {
     type,
     userKey,
   } = rsvp;
-  const [error, setError] = useState("");
-  const [response, setResponse] = useState(previousResponse || {});
+  // const [error, setError] = useState("");
+  const [response, setResponse] = useState(
+    previousResponse ||
+      Object.values(KEYS).reduce((accum, key) => {
+        accum[key] = 0;
+
+        return accum;
+      }, {})
+  );
   const [simpleAction, setSimpleAction] = useState(null);
+  const [disableButton, setDisableButton] = useState(false);
 
   const onUpdate = async (event) => {
     event.preventDefault();
     event.stopPropagation();
 
-    setError("");
+    setDisableButton(true);
+    // setError("");
     setErrorCode("");
+    console.log(parseSubmit(response));
+    const rsvpObj = await updateRsvp(parseSubmit(response));
 
-    await updateRsvp();
+    if (!rsvpObj) {
+      setErrorCode("bear-3");
+      setDisableButton(false);
+      return;
+    } else if (rsvpObj.errorCode) {
+      setErrorCode(rsvpObj.errorCode);
+      setDisableButton(false);
+      return;
+    } else if (rsvpObj.error) {
+      setErrorCode("bear-4");
+      setDisableButton(false);
+      return;
+    }
 
     // setNextState();
   };
@@ -58,35 +82,41 @@ const RsvpFormEvents = ({ rsvp, setErrorCode, setNextState }) => {
         {otherText}&nbsp;soon!
       </Welcome>
       {!simpleAction && (
-        <SimpleContainer>
-          <div>
-            <NotAttending
-              onClick={() => setSimpleAction(false)}
-              selected={simpleAction === false}
-            >
-              Not Attending
-            </NotAttending>
-            <Attending
-              onClick={() => setSimpleAction(true)}
-              selected={simpleAction === true}
-            >
-              Attending
-            </Attending>
-          </div>
-        </SimpleContainer>
+        <>
+          <SimpleContainer>
+            <div>
+              <NotAttending
+                onClick={() => setSimpleAction(false)}
+                selected={simpleAction === false}
+              >
+                Not Attending
+              </NotAttending>
+              <Attending
+                onClick={() => setSimpleAction(true)}
+                selected={simpleAction === true}
+              >
+                Attending
+              </Attending>
+            </div>
+          </SimpleContainer>
+          <Button onClick={disableButton ? undefined : onUpdate}>Submit</Button>
+        </>
       )}
-      {simpleAction &&
-        getEvents(type).map((event) => (
-          <Event
-            event={event}
-            key={event.key}
-            onChange={handleChange}
-            allowed={count}
-            response={response[event.key]}
-          />
-        ))}
-      <Button onClick={onUpdate}>Submit</Button>
-      {error && <Error>{error}</Error>}
+      {simpleAction && (
+        <EventsContainer>
+          {getEvents(type).map((event) => (
+            <Event
+              event={event}
+              key={event.key}
+              onChange={handleChange}
+              allowed={count}
+              response={response[event.key]}
+            />
+          ))}
+          <Button onClick={disableButton ? undefined : onUpdate}>Submit</Button>
+        </EventsContainer>
+      )}
+      {/* {error && <Error>{error}</Error>} */}
     </>
   );
 };

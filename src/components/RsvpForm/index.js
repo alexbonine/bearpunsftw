@@ -9,6 +9,7 @@ import {
   FormContainer,
   FormTitle,
   Form,
+  ErrorContainer,
   Error,
   ErrorEmail,
   ATag,
@@ -47,8 +48,17 @@ const getFormComponent = ({ rsvp, setErrorCode, setRsvp, setState, state }) => {
 };
 
 const RsvpForm = () => {
-  const [state, setState] = useState(STATES.LOGIN);
-  const [rsvp, setRsvp] = useState(null);
+  const [state, setState] = useState(STATES.EVENTS);
+  const [rsvp, setRsvp] = useState({
+    first: "Alex",
+    last: "Bonine",
+    partnerFirst: "Shawna",
+    partnerLast: "Carney",
+    type: "family-pizza",
+    count: 2,
+    id: "295526196351861251",
+    userKey: "name",
+  });
   const [errorCode, setErrorCode] = useState("");
 
   return (
@@ -61,7 +71,7 @@ const RsvpForm = () => {
         <Form large={state === STATES.EVENTS}>
           {getFormComponent({ rsvp, setErrorCode, setState, setRsvp, state })}
           {errorCode && (
-            <>
+            <ErrorContainer>
               <Error>Sorry but it looks like Alex screwed up...again.</Error>
               <ErrorEmail>
                 Please let us know by&nbsp;
@@ -74,7 +84,7 @@ const RsvpForm = () => {
                 </ATag>
                 &nbsp; with the error:&nbsp;{errorCode}.
               </ErrorEmail>
-            </>
+            </ErrorContainer>
           )}
         </Form>
       </FormContainer>

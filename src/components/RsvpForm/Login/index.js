@@ -10,12 +10,14 @@ const ERROR_THRESHOLD = 3;
 const RsvpFormLogin = ({ setErrorCode, setNextState, setRsvp }) => {
   const [error, setError] = useState("");
   const [errorCount, setErrorCount] = useState(0);
+  const [disableButton, setDisableButton] = useState(false);
   const firstRef = useRef();
   const lastRef = useRef();
 
   const setErrorStatus = (code) => {
     const nextErrorCount = errorCount + 1;
     setErrorCount(nextErrorCount);
+    setDisableButton(false);
 
     if (nextErrorCount >= ERROR_THRESHOLD) {
       setErrorCode(code);
@@ -34,6 +36,7 @@ const RsvpFormLogin = ({ setErrorCode, setNextState, setRsvp }) => {
       return;
     }
 
+    setDisableButton(true);
     setError("");
     setErrorCode("");
 
@@ -59,7 +62,7 @@ const RsvpFormLogin = ({ setErrorCode, setNextState, setRsvp }) => {
       <Title>Let's start with your name!</Title>
       <Input ref={firstRef} name="first" placeholder="First" />
       <Input ref={lastRef} name="last" placeholder="Last" />
-      <Button onClick={onGet}>Submit</Button>
+      <Button onClick={disableButton ? undefined : onGet}>Submit</Button>
       {error && <Error>{error}</Error>}
       {errorCount > 0 && errorCount < ERROR_THRESHOLD && (
         <Error>

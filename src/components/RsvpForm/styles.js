@@ -36,7 +36,7 @@ export const Image = styled.img`
 `;
 
 export const FormContainer = styled.div`
-  margin: 60px 100px;
+  margin: 60px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -56,7 +56,12 @@ export const Form = styled("div", {
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: ${({ large }) => (large ? "80%" : "60%")};
+  width: ${({ large }) => (large ? "100%" : "60%")};
+  min-height: 0;
+`;
+
+export const ErrorContainer = styled.div`
+  margin-top: ${STANDARD_INPUT_MARGIN};
 `;
 
 export const Error = styled.div`

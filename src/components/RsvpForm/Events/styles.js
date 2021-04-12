@@ -6,6 +6,7 @@ import colors from "styles/colors";
 export const Welcome = styled.div`
   text-align: center;
   margin-bottom: ${STANDARD_INPUT_MARGIN};
+  max-width: 60%;
 `;
 
 export const SimpleContainer = styled.div`
@@ -72,4 +73,12 @@ export const Attending = styled(ButtonBase)`
             borderColor: colors.green,
           },
         }}
+`;
+
+export const EventsContainer = styled.div`
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 `;
