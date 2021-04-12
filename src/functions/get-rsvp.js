@@ -10,28 +10,32 @@ const respond = (statusCode, body) => ({
   body: JSON.stringify(body),
 });
 
-const faunaDbSucks = async (index, formattedName) => {
+const faunaDbSucks = async (key, first, last) => {
   try {
     const result = await client.query(
-      q.Get(q.Match(q.Index(index), formattedName))
+      q.Get(
+        q.Match(q.Index(`guests_by_${key}_first_last`), [
+          q.Casefold(first),
+          q.Casefold(last),
+        ])
+      )
     );
 
-    return { ...result.data, id: result.ref.id };
+    return { ...result.data, id: result.ref.id, userKey: key };
   } catch (e) {
     return null;
   }
 };
 
 exports.handler = async (event) => {
-  const { name = "" } = event.queryStringParameters;
+  const { first = "", last = "" } = event.queryStringParameters;
 
-  if (!name) {
-    return respond(400, { error: "Name is required" });
+  if (!first || !last) {
+    return respond(400, { error: "First and last name are required" });
   }
 
-  const formatedName = name.toLowerCase();
-  const primary = await faunaDbSucks("guests_by_name", formatedName);
-  const secondary = await faunaDbSucks("guests_by_alternate", formatedName);
+  const primary = await faunaDbSucks("guest", first, last);
+  const secondary = await faunaDbSucks("partner", first, last);
   const rsvp = primary || secondary;
 
   if (!rsvp) {

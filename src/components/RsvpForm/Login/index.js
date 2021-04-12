@@ -3,11 +3,12 @@ import PropTypes from "prop-types";
 import { getRsvp } from "utils/rsvp";
 import Button from "components/Button";
 import Input from "components/Input";
-import { SubFormTitle, Error } from "./styles";
+import { Error } from "../styles";
+import { Title } from "./styles";
 
 const ERROR_THRESHOLD = 3;
 
-const RsvpFormLogin = ({ setErrorCode, setRsvp }) => {
+const RsvpFormLogin = ({ setErrorCode, setNextState, setRsvp }) => {
   const [error, setError] = useState("");
   const [errorCount, setErrorCount] = useState(0);
   const firstRef = useRef();
@@ -37,9 +38,7 @@ const RsvpFormLogin = ({ setErrorCode, setRsvp }) => {
     setError("");
     setErrorCode("");
 
-    const name = `${first} ${last}`;
-
-    const rsvpObj = await getRsvp(name);
+    const rsvpObj = await getRsvp(first, last);
 
     if (!rsvpObj) {
       setErrorStatus("Bear 1");
@@ -53,11 +52,12 @@ const RsvpFormLogin = ({ setErrorCode, setRsvp }) => {
     }
 
     setRsvp(rsvpObj);
+    setNextState();
   };
 
   return (
     <>
-      <SubFormTitle>Let's start with your name!</SubFormTitle>
+      <Title>Let's start with your name!</Title>
       <Input ref={firstRef} name="first" placeholder="First" />
       <Input ref={lastRef} name="last" placeholder="Last" />
       <Button onClick={onGet}>Submit</Button>
@@ -75,6 +75,7 @@ const RsvpFormLogin = ({ setErrorCode, setRsvp }) => {
 
 RsvpFormLogin.propTypes = {
   setErrorCode: PropTypes.func.isRequired,
+  setNextState: PropTypes.func.isRequired,
   setRsvp: PropTypes.func.isRequired,
 };
 

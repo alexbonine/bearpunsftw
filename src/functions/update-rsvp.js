@@ -24,10 +24,10 @@ const transporter = nodemailer.createTransport(
 const KEYS = [
   "familyPizza",
   "friendsPizza",
-  "familyDinner",
+  "welcomeDinner",
   "welcomeDrinks",
-  "familyWedding",
   "wedding",
+  "ceremony",
   "brunch",
 ];
 
@@ -43,10 +43,10 @@ const faunaDbSucksGet = async (id) => {
   }
 };
 
-const faunaDbSucksPut = async (id, data = {}) => {
+const faunaDbSucksPut = async (id, response = {}) => {
   try {
     const result = await client.query(
-      q.Update(q.Ref(q.Collection("guests"), id), { data })
+      q.Update(q.Ref(q.Collection("guests"), id), { response })
     );
 
     return { ...result.data, id: result.ref.id };
@@ -107,14 +107,14 @@ exports.handler = async ({ body, httpMethod }) => {
     return respond(400, { error: true, errorCode: "Lemur 2" });
   }
 
-  const data = onlyData(body);
+  const eventResponse = onlyData(body);
 
   if (Object.keys(data).length === 0) {
     return respond(400, { error: true, errorCode: "Lemur 3" });
   }
 
   const previousRsvp = faunaDbSucksGet(body.id);
-  const rsvp = faunaDbSucksPut(body.id, data);
+  const rsvp = faunaDbSucksPut(body.id, eventResponse);
 
   if (!rsvp) {
     return respond(400, { error: true, errorCode: "Lemur 4" });

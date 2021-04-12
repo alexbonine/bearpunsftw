@@ -52,7 +52,7 @@ const events = [
     location: "TBD",
     locationLink: "",
     title: "Farewell Bites",
-    time: "10am-12pm",
+    time: "11am-1pm",
   },
 ];
 

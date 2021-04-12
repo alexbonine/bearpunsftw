@@ -36,7 +36,7 @@ export const Image = styled.img`
 `;
 
 export const FormContainer = styled.div`
-  margin: 100px;
+  margin: 60px 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -50,15 +50,13 @@ export const FormTitle = styled.h1`
   margin-bottom: ${STANDARD_INPUT_MARGIN};
 `;
 
-export const Form = styled.div`
+export const Form = styled("div", {
+  shouldForwardProp: (prop) => !["large"].includes(prop),
+})`
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 60%;
-`;
-
-export const SubFormTitle = styled.div`
-  margin-bottom: ${STANDARD_INPUT_MARGIN};
+  max-width: ${({ large }) => (large ? "80%" : "60%")};
 `;
 
 export const Error = styled.div`

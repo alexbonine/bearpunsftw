@@ -1,8 +1,10 @@
 const BASE_URL = `/.netlify/functions/`;
 
-export const getRsvp = async (name) => {
+export const getRsvp = async (first, last) => {
   return fetch(
-    `${BASE_URL}get-rsvp?name=${encodeURIComponent(name)}`
+    `${BASE_URL}get-rsvp?first=${encodeURIComponent(
+      first
+    )}&last=${encodeURIComponent(last)}`
   ).then((response) => response.json());
 };
 

@@ -6,7 +6,7 @@ const Input = styled.input`
   display: block;
   margin-bottom: ${STANDARD_INPUT_MARGIN};
   padding: 4px 10px;
-  border: 1px solid ${colors.grayLightest};
+  border: 1px solid ${colors.grayLight};
   outline: none;
   border-radius: 4px;
 
