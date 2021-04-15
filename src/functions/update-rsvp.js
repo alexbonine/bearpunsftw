@@ -26,16 +26,14 @@ const KEYS = [
   "friendsPizza",
   "welcomeDinner",
   "welcomeDrinks",
-  "wedding",
+  "party",
   "ceremony",
   "brunch",
 ];
 
 const faunaDbSucksGet = async (id) => {
   try {
-    const result = await client.query(
-      q.Get(q.Ref(q.Collection("guests", "id")))
-    );
+    const result = await client.query(q.Get(q.Ref(q.Collection("guests"), id)));
 
     return { ...result.data, id: result.ref.id };
   } catch (e) {
@@ -43,10 +41,10 @@ const faunaDbSucksGet = async (id) => {
   }
 };
 
-const faunaDbSucksPut = async (id, response = {}) => {
+const faunaDbSucksPut = async (id, data = {}) => {
   try {
     const result = await client.query(
-      q.Update(q.Ref(q.Collection("guests"), id), { response })
+      q.Update(q.Ref(q.Collection("guests"), id), { data })
     );
 
     return { ...result.data, id: result.ref.id };
@@ -56,9 +54,9 @@ const faunaDbSucksPut = async (id, response = {}) => {
 };
 
 const onlyData = (data = {}) =>
-  Object.keys(data).reduce(
+  KEYS.reduce(
     (accum, key) => {
-      if (KEYS.includes(key)) {
+      if (typeof data[key] === "number") {
         accum[key] = data[key];
       }
 
@@ -102,29 +100,38 @@ const getEmail = (current, previous) => {
   };
 };
 
-exports.handler = async ({ body, httpMethod }) => {
-  if (httpMethod !== "PUT" || !body.id) {
+exports.handler = async ({ body, httpMethod, queryStringParameters }) => {
+  if (httpMethod !== "PUT" || !queryStringParameters.id) {
     return respond(400, { error: true, errorCode: "lemur-2" });
   }
 
-  const eventResponse = onlyData(body);
+  const { id } = queryStringParameters;
+  let response;
 
-  if (Object.keys(data).length === 0) {
+  try {
+    response = JSON.parse(body);
+  } catch (e) {
+    response = {};
+  }
+
+  const eventResponse = onlyData(response);
+
+  if (Object.keys(eventResponse).length === 0) {
     return respond(400, { error: true, errorCode: "lemur-3" });
   }
 
-  const previousRsvp = faunaDbSucksGet(body.id);
-  const rsvp = faunaDbSucksPut(body.id, eventResponse);
+  const previousRsvp = await faunaDbSucksGet(id);
+  const rsvp = await faunaDbSucksPut(id, eventResponse);
 
   if (!rsvp) {
     return respond(400, { error: true, errorCode: "lemur-4" });
   }
 
-  await transporter.sendMail({
-    from: process.env.MAILGUN_SENDER,
-    to: process.env.MAILGUN_SENDER,
-    ...getEmail(rsvp, previousRsvp),
-  });
+  // await transporter.sendMail({
+  //   from: process.env.MAILGUN_SENDER,
+  //   to: process.env.MAILGUN_SENDER,
+  //   ...getEmail(rsvp, previousRsvp),
+  // });
 
   return respond(200, rsvp);
 };

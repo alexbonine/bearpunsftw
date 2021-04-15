@@ -48,15 +48,18 @@ const RsvpFormEvents = ({ rsvp, setErrorCode, setNextState }) => {
     setError("");
     setErrorCode("");
 
-    const parsed = parseSubmit(response);
+    const parsedResponse = parseSubmit(response);
 
-    if (simpleAction && Object.values(parsed).every((value) => value === 0)) {
+    if (
+      simpleAction &&
+      Object.values(parsedResponse).every((value) => value === 0)
+    ) {
       setError("You didn't select any events you would be joining us.");
       setDisableButton(false);
       return;
     }
 
-    const rsvpObj = await updateRsvp(parsed);
+    const rsvpObj = await updateRsvp(id, parsedResponse);
 
     if (!rsvpObj) {
       setErrorCode("bear-3");
