@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 import { updateRsvp } from "utils/rsvp";
 import { getEvents, INDEX_KEYS, KEYS, parseSubmit } from "../utils";
 import Event from "../Event";
-// import { Error } from "../styles";
 import {
   Attending,
   Button,
+  Error,
   EventsContainer,
   NotAttending,
   SimpleContainer,
@@ -23,7 +23,7 @@ const RsvpFormEvents = ({ rsvp, setErrorCode, setNextState }) => {
     type,
     userKey,
   } = rsvp;
-  // const [error, setError] = useState("");
+  const [error, setError] = useState("");
   const [response, setResponse] = useState(
     previousResponse ||
       Object.values(KEYS).reduce((accum, key) => {
@@ -39,11 +39,24 @@ const RsvpFormEvents = ({ rsvp, setErrorCode, setNextState }) => {
     event.preventDefault();
     event.stopPropagation();
 
+    if (typeof simpleAction !== "boolean") {
+      setError("That door isn't unlocked yet.");
+      return;
+    }
+
     setDisableButton(true);
-    // setError("");
+    setError("");
     setErrorCode("");
-    console.log(parseSubmit(response));
-    const rsvpObj = await updateRsvp(parseSubmit(response));
+
+    const parsed = parseSubmit(response);
+
+    if (simpleAction && Object.values(parsed).every((value) => value === 0)) {
+      setError("You didn't select any events you would be joining us.");
+      setDisableButton(false);
+      return;
+    }
+
+    const rsvpObj = await updateRsvp(parsed);
 
     if (!rsvpObj) {
       setErrorCode("bear-3");
@@ -59,7 +72,7 @@ const RsvpFormEvents = ({ rsvp, setErrorCode, setNextState }) => {
       return;
     }
 
-    // setNextState();
+    setNextState(!simpleAction);
   };
 
   const userText =
@@ -116,7 +129,7 @@ const RsvpFormEvents = ({ rsvp, setErrorCode, setNextState }) => {
           <Button onClick={disableButton ? undefined : onUpdate}>Submit</Button>
         </EventsContainer>
       )}
-      {/* {error && <Error>{error}</Error>} */}
+      {error && <Error>{error}</Error>}
     </>
   );
 };

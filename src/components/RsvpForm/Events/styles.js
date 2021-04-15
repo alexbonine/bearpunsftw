@@ -82,3 +82,9 @@ export const EventsContainer = styled.div`
   align-items: center;
   width: 100%;
 `;
+
+export const Error = styled.div`
+  margin-top: ${STANDARD_INPUT_MARGIN};
+  color: ${colors.red};
+  text-align: center;
+`;

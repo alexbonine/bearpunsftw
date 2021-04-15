@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import FrankApe from "images/frank-ape.jpg";
 import Login from "./Login";
 import Events from "./Events";
+import Done from "./Done";
 import {
   Container,
   ImageContainer,
@@ -18,10 +19,12 @@ import {
 const STATES = {
   LOGIN: "login",
   EVENTS: "events",
-  DONE: "done",
+  DONE_NO: "done-no",
+  DONE_YES: "done-yes",
 };
 
-const setupSetNextState = (nextState, setState) => () => setState(nextState);
+const setupSetNextState = (nextState, setState) => (notAttending = false) =>
+  setState(notAttending ? STATES.DONE_NO : nextState);
 
 const getFormComponent = ({ rsvp, setErrorCode, setRsvp, setState, state }) => {
   switch (state) {
@@ -30,35 +33,27 @@ const getFormComponent = ({ rsvp, setErrorCode, setRsvp, setState, state }) => {
         <Events
           rsvp={rsvp}
           setErrorCode={setErrorCode}
-          setNextState={setupSetNextState(STATES.DONE, setState)}
+          setNextState={setupSetNextState(STATES.DONE_YES, setState)}
         />
       );
-    case STATES.DONE:
-      return <div>Done</div>;
+    case STATES.DONE_NO:
+    case STATES.DONE_YES:
+      return <Done notAttending={state === STATES.DONE_NO} />;
     case STATES.LOGIN:
     default:
       return (
         <Login
           setErrorCode={setErrorCode}
           setRsvp={setRsvp}
-          setNextState={setupSetNextState(STATES.LOGIN, setState)}
+          setNextState={setupSetNextState(STATES.EVENTS, setState)}
         />
       );
   }
 };
 
 const RsvpForm = () => {
-  const [state, setState] = useState(STATES.EVENTS);
-  const [rsvp, setRsvp] = useState({
-    first: "Alex",
-    last: "Bonine",
-    partnerFirst: "Shawna",
-    partnerLast: "Carney",
-    type: "family-pizza",
-    count: 2,
-    id: "295526196351861251",
-    userKey: "name",
-  });
+  const [state, setState] = useState(STATES.LOGIN);
+  const [rsvp, setRsvp] = useState();
   const [errorCode, setErrorCode] = useState("");
 
   return (
