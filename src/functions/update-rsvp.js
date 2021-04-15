@@ -66,7 +66,7 @@ const onlyData = (data = {}) =>
   );
 
 const camelToSentenceCase = (key) => {
-  const result = text.replace(/([A-Z])/g, " $1");
+  const result = key.replace(/([A-Z])/g, " $1");
 
   return result.charAt(0).toUpperCase() + result.slice(1).toLowerCase();
 };
@@ -80,23 +80,29 @@ const getDataValue = (value) => {
 };
 
 const getEmail = (current, previous) => {
+  const names = `Name(s): ${current.first} ${current.last}${
+    current.partnerFirst
+      ? ` & ${current.partnerFirst} ${current.partnerLast}`
+      : ""
+  }\n\n`;
+
   if (previous && previous.responded) {
     return {
       subject: "Updated RSVP!!",
-      text: KEYS.map(
+      text: `${names}${KEYS.map(
         (key) =>
           `${camelToSentenceCase(key)}: ${getDataValue(
             current[key]
           )} (was ${getDataValue(previous[key])})`
-      ).join("\n"),
+      ).join("\n")}`,
     };
   }
 
   return {
     subject: "New RSVP!!",
-    text: KEYS.map(
+    text: `${names}${KEYS.map(
       (key) => `${camelToSentenceCase(key)}: ${getDataValue(current[key])}`
-    ).join("\n"),
+    ).join("\n")}`,
   };
 };
 
@@ -127,11 +133,17 @@ exports.handler = async ({ body, httpMethod, queryStringParameters }) => {
     return respond(400, { error: true, errorCode: "lemur-4" });
   }
 
-  // await transporter.sendMail({
-  //   from: process.env.MAILGUN_SENDER,
-  //   to: process.env.MAILGUN_SENDER,
-  //   ...getEmail(rsvp, previousRsvp),
-  // });
+  const email = getEmail(rsvp, previousRsvp);
+
+  try {
+    await transporter.sendMail({
+      from: process.env.MAILGUN_SENDER,
+      to: "lemurdev@gmail.com", // process.env.MAILGUN_SENDER,
+      ...email,
+    });
+  } catch (e) {
+    console.log("Issue sending email", JSON.stringify(email));
+  }
 
   return respond(200, rsvp);
 };

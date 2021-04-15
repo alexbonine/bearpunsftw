@@ -14,23 +14,18 @@ import {
 } from "./styles";
 
 const RsvpFormEvents = ({ rsvp, setErrorCode, setNextState }) => {
-  const {
-    count,
-    id,
-    first,
-    partnerFirst,
-    response: previousResponse,
-    type,
-    userKey,
-  } = rsvp;
+  const { count, id, first, partnerFirst, type, userKey, ...rest } = rsvp;
   const [error, setError] = useState("");
   const [response, setResponse] = useState(
-    previousResponse ||
-      Object.values(KEYS).reduce((accum, key) => {
+    Object.values(KEYS).reduce((accum, key) => {
+      if (typeof rest[key] === "number") {
+        accum[key] = rest[key];
+      } else {
         accum[key] = 0;
+      }
 
-        return accum;
-      }, {})
+      return accum;
+    }, {})
   );
   const [simpleAction, setSimpleAction] = useState(null);
   const [disableButton, setDisableButton] = useState(false);
