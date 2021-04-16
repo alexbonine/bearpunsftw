@@ -1,6 +1,12 @@
 const faunadb = require("faunadb");
 const nodemailer = require("nodemailer");
 const mg = require("nodemailer-mailgun-transport");
+const {
+  KEYS,
+  KEYS_VALUES,
+  RESPONSE_KEYS_VALUES,
+} = require("../utils/constants");
+const { getEvents } = require("../utils/events");
 
 const q = faunadb.query;
 const client = new faunadb.Client({
@@ -20,16 +26,6 @@ const transporter = nodemailer.createTransport(
     },
   })
 );
-
-const KEYS = [
-  "familyPizza",
-  "friendsPizza",
-  "welcomeDinner",
-  "welcomeDrinks",
-  "party",
-  "ceremony",
-  "brunch",
-];
 
 const faunaDbSucksGet = async (id) => {
   try {
@@ -53,8 +49,8 @@ const faunaDbSucksPut = async (id, data = {}) => {
   }
 };
 
-const onlyData = (data = {}) =>
-  KEYS.reduce(
+const onlyResponseData = (data = {}) =>
+  RESPONSE_KEYS_VALUES.reduce(
     (accum, key) => {
       if (typeof data[key] === "number") {
         accum[key] = data[key];
@@ -65,44 +61,83 @@ const onlyData = (data = {}) =>
     { responded: true }
   );
 
-const camelToSentenceCase = (key) => {
-  const result = key.replace(/([A-Z])/g, " $1");
+const onlyData = (data = {}) =>
+  KEYS_VALUES.reduce(
+    (accum, key) => {
+      switch (key) {
+        case KEYS.ATTENDING:
+          if (typeof data[key] === "boolean") {
+            accum[key] = data[key];
+          }
+          break;
+        case KEYS.BY_USER:
+          if (typeof data[key] === "string") {
+            accum[key] = data[key];
+          }
+          break;
+        case KEYS.RESPONSE:
+          if (typeof data[key] === "object") {
+            accum[key] = onlyResponseData(data[key]);
+          }
+          break;
+        default:
+          break;
+      }
 
-  return result.charAt(0).toUpperCase() + result.slice(1).toLowerCase();
+      return accum;
+    },
+    { responded: true }
+  );
+
+const getEnglishEvents = (current, previous) => {
+  const events = getEvents(current.type);
+
+  return events.map(
+    ({ key, title }) =>
+      `${title}: ${current[key]}${previous ? ` (was ${previous[key]})` : ""}`
+  );
 };
 
-const getDataValue = (value) => {
-  if (typeof value === "number") {
-    return value || 0;
-  }
-
-  return "N/A";
-};
-
-const getEmail = (current, previous) => {
+const getOurEmail = (current, previous) => {
   const names = `Name(s): ${current.first} ${current.last}${
     current.partnerFirst
       ? ` & ${current.partnerFirst} ${current.partnerLast}`
       : ""
+  }\nStatus: ${current.attending ? "Attending" : "Not attending"}\nBy: ${
+    current.byUser
   }\n\n`;
 
   if (previous && previous.responded) {
     return {
       subject: "Updated RSVP!!",
-      text: `${names}${KEYS.map(
-        (key) =>
-          `${camelToSentenceCase(key)}: ${getDataValue(
-            current[key]
-          )} (was ${getDataValue(previous[key])})`
-      ).join("\n")}`,
+      text: `${names}${getEnglishEvents(current, previous).join("\n")}`,
     };
   }
 
   return {
     subject: "New RSVP!!",
-    text: `${names}${KEYS.map(
-      (key) => `${camelToSentenceCase(key)}: ${getDataValue(current[key])}`
-    ).join("\n")}`,
+    text: `${names}${getEnglishEvents(current).join("\n")}`,
+  };
+};
+
+const getUserEmailAttending = (current) => {
+  const names = `${current.first}${
+    current.partnerFirst ? ` & ${current.partnerFirst}` : ""
+  }`;
+  const welcome = `We can't wait to see you, ${names}!\n\nBelow is your response for your peace of mind. You can return to https://bearpunsftw.com/rsvp to update your RSVP until July 18th.\n\nSincerely,\nShawna & Alex\n\n`;
+
+  return {
+    subject: "Carney-Bonine RSVP!!",
+    text: `${welcome}${getEnglishEvents(current).join("\n")}`,
+  };
+};
+
+const getUserEmailNotAttending = (current) => {
+  const text = `We're sorry we won't be celebrating with you. Hopefully we'll still be able to see you real soon.\n\nSincerely,\nShawna & Alex\n\n`;
+
+  return {
+    subject: "Carney-Bonine RSVP",
+    text,
   };
 };
 
@@ -112,35 +147,51 @@ exports.handler = async ({ body, httpMethod, queryStringParameters }) => {
   }
 
   const { id } = queryStringParameters;
-  let response;
+  let responseBody;
 
   try {
-    response = JSON.parse(body);
+    responseBody = JSON.parse(body);
   } catch (e) {
-    response = {};
+    responseBody = {};
   }
 
-  const eventResponse = onlyData(response);
+  const data = onlyData(responseBody);
 
-  if (Object.keys(eventResponse).length === 0) {
+  if (Object.keys((data && data.response) || {}).length === 0) {
     return respond(400, { error: true, errorCode: "lemur-3" });
   }
 
   const previousRsvp = await faunaDbSucksGet(id);
-  const rsvp = await faunaDbSucksPut(id, eventResponse);
+  const { response, ...rest } = data;
+  const rsvp = await faunaDbSucksPut(id, { ...response, ...rest });
 
   if (!rsvp) {
     return respond(400, { error: true, errorCode: "lemur-4" });
   }
 
-  const email = getEmail(rsvp, previousRsvp);
+  const ourEmail = getOurEmail(rsvp, previousRsvp);
+  const userEmail = rsvp.attending
+    ? getUserEmailAttending(rsvp)
+    : getUserEmailNotAttending(rsvp);
 
   try {
     await transporter.sendMail({
       from: process.env.MAILGUN_SENDER,
       to: "lemurdev@gmail.com", // process.env.MAILGUN_SENDER,
-      ...email,
+      ...ourEmail,
     });
+
+    const userEmails = [rsvp.email, rsvp.partnerEmail].filter(
+      (email) => !!email
+    );
+
+    if (userEmails.length) {
+      await transporter.sendMail({
+        from: process.env.MAILGUN_SENDER,
+        to: ["lemurdev@gmail.com"], // process.env.MAILGUN_SENDER, userEmails
+        ...userEmail,
+      });
+    }
   } catch (e) {
     console.log("Issue sending email", JSON.stringify(email));
   }

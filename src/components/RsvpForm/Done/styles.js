@@ -5,6 +5,7 @@ import { STANDARD_INPUT_MARGIN } from "styles/constants";
 export const Title = styled.h2`
   margin-bottom: ${STANDARD_INPUT_MARGIN};
   text-align: center;
+  line-height: 1.3;
 `;
 
 export const Text = styled.div`

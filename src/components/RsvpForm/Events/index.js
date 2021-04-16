@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { updateRsvp } from "utils/rsvp";
-import { getEvents, INDEX_KEYS, KEYS, parseSubmit } from "../utils";
+import { INDEX_KEYS, KEYS, RESPONSE_KEYS } from "utils/constants";
+import { getEvents, parseResponse } from "utils/events";
 import Event from "../Event";
 import {
   Attending,
@@ -17,7 +18,7 @@ const RsvpFormEvents = ({ rsvp, setErrorCode, setNextState }) => {
   const { count, id, first, partnerFirst, type, userKey, ...rest } = rsvp;
   const [error, setError] = useState("");
   const [response, setResponse] = useState(
-    Object.values(KEYS).reduce((accum, key) => {
+    Object.values(RESPONSE_KEYS).reduce((accum, key) => {
       if (typeof rest[key] === "number") {
         accum[key] = rest[key];
       } else {
@@ -43,7 +44,7 @@ const RsvpFormEvents = ({ rsvp, setErrorCode, setNextState }) => {
     setError("");
     setErrorCode("");
 
-    const parsedResponse = parseSubmit(response);
+    const parsedResponse = parseResponse(response, !simpleAction);
 
     if (
       simpleAction &&
@@ -54,7 +55,11 @@ const RsvpFormEvents = ({ rsvp, setErrorCode, setNextState }) => {
       return;
     }
 
-    const rsvpObj = await updateRsvp(id, parsedResponse);
+    const rsvpObj = await updateRsvp(id, {
+      [KEYS.ATTENDING]: simpleAction,
+      [KEYS.BY_USER]: userKey === INDEX_KEYS.GUEST ? first : partnerFirst,
+      [KEYS.RESPONSE]: parsedResponse,
+    });
 
     if (!rsvpObj) {
       setErrorCode("bear-3");
@@ -73,8 +78,7 @@ const RsvpFormEvents = ({ rsvp, setErrorCode, setNextState }) => {
     setNextState(!simpleAction);
   };
 
-  const userText =
-    (userKey === INDEX_KEYS.PARTNER && ` and ${partnerFirst}`) || first;
+  const userText = (userKey === INDEX_KEYS.PARTNER && partnerFirst) || first;
   const otherText =
     (userKey === INDEX_KEYS.PARTNER && ` and ${first}`) ||
     (partnerFirst && ` and ${partnerFirst}`) ||
