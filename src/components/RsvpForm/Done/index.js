@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import ShawnaDancing from "images/shawna-dancing.gif";
 import SadPanda from "images/sad-panda.gif";
 import { Gif, GifContainer, Text, Title } from "./styles";
 
-const RsvpFormDone = ({ notAttending }) => {
+const RsvpFormDone = ({ notAttending, titleRef }) => {
+  useEffect(() => {
+    if (titleRef.current) {
+      titleRef.current.scrollIntoView(true);
+    }
+  }, []);
+
   if (notAttending) {
     return (
       <>
@@ -33,6 +39,7 @@ const RsvpFormDone = ({ notAttending }) => {
 
 RsvpFormDone.propTypes = {
   notAttending: PropTypes.bool.isRequired,
+  titleRef: PropTypes.node,
 };
 
 export default RsvpFormDone;

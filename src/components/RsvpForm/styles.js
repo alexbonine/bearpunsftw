@@ -17,32 +17,26 @@ export const Container = styled.div`
   })}
 `;
 
-export const ImageContainer = styled.div`
-  max-width: 50%;
-
-  ${mq({
+export const ImageContainer = styled("div")(
+  mq({
+    maxWidth: ["100%", "100%", "50%", "50%"],
     marginLeft: ["0", "0", "50px", "50px"],
-  })}
-`;
+  })
+);
 
 export const Image = styled.img`
   height: calc(100vh - ${HEADER_HEIGHT});
   object-fit: contain;
-
-  ${mq({
-    // width: ["100%", "100%", "80%", "80%"],
-    // maxHeight: ["100vh", "100vh", "635px", "540px"],
-  })}
 `;
 
 export const FormContainer = styled.div`
-  margin: 60px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
 
   ${mq({
     flex: [undefined, undefined, "1", "1"],
+    margin: ["0 0 100px 0", "0 0 100px 0", "60px 0", "60px 0"],
   })}
 `;
 

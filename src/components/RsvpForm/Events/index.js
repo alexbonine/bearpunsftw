@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { updateRsvp } from "utils/rsvp";
 import { INDEX_KEYS, KEYS, RESPONSE_KEYS } from "utils/constants";
@@ -14,7 +14,7 @@ import {
   Welcome,
 } from "./styles";
 
-const RsvpFormEvents = ({ rsvp, setErrorCode, setNextState }) => {
+const RsvpFormEvents = ({ rsvp, setErrorCode, setNextState, titleRef }) => {
   const { count, id, first, partnerFirst, type, userKey, ...rest } = rsvp;
   const [error, setError] = useState("");
   const [response, setResponse] = useState(
@@ -30,6 +30,12 @@ const RsvpFormEvents = ({ rsvp, setErrorCode, setNextState }) => {
   );
   const [simpleAction, setSimpleAction] = useState(null);
   const [disableButton, setDisableButton] = useState(false);
+
+  useEffect(() => {
+    if (simpleAction && titleRef.current) {
+      titleRef.current.scrollIntoView(true);
+    }
+  }, [simpleAction]);
 
   const onUpdate = async (event) => {
     event.preventDefault();
@@ -140,6 +146,7 @@ RsvpFormEvents.propTypes = {
   rsvp: PropTypes.object.isRequired,
   setErrorCode: PropTypes.func.isRequired,
   setNextState: PropTypes.func.isRequired,
+  titleRef: PropTypes.node.isRequired,
 };
 
 export default RsvpFormEvents;

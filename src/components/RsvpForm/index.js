@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import FrankApe from "images/frank-ape.jpg";
 import Login from "./Login";
 import Events from "./Events";
@@ -26,7 +26,14 @@ const STATES = {
 const setupSetNextState = (nextState, setState) => (notAttending = false) =>
   setState(notAttending ? STATES.DONE_NO : nextState);
 
-const getFormComponent = ({ rsvp, setErrorCode, setRsvp, setState, state }) => {
+const getFormComponent = ({
+  rsvp,
+  setErrorCode,
+  setRsvp,
+  setState,
+  state,
+  titleRef,
+}) => {
   switch (state) {
     case STATES.EVENTS:
       return (
@@ -34,11 +41,14 @@ const getFormComponent = ({ rsvp, setErrorCode, setRsvp, setState, state }) => {
           rsvp={rsvp}
           setErrorCode={setErrorCode}
           setNextState={setupSetNextState(STATES.DONE_YES, setState)}
+          titleRef={titleRef}
         />
       );
     case STATES.DONE_NO:
     case STATES.DONE_YES:
-      return <Done notAttending={state === STATES.DONE_NO} />;
+      return (
+        <Done notAttending={state === STATES.DONE_NO} titleRef={titleRef} />
+      );
     case STATES.LOGIN:
     default:
       return (
@@ -55,6 +65,7 @@ const RsvpForm = () => {
   const [state, setState] = useState(STATES.LOGIN);
   const [rsvp, setRsvp] = useState();
   const [errorCode, setErrorCode] = useState("");
+  const titleRef = useRef();
 
   return (
     <Container>
@@ -62,9 +73,16 @@ const RsvpForm = () => {
         <Image src={FrankApe} />
       </ImageContainer>
       <FormContainer>
-        <FormTitle>RSVP</FormTitle>
+        <FormTitle ref={titleRef}>RSVP</FormTitle>
         <Form large={state === STATES.EVENTS}>
-          {getFormComponent({ rsvp, setErrorCode, setState, setRsvp, state })}
+          {getFormComponent({
+            rsvp,
+            setErrorCode,
+            setState,
+            setRsvp,
+            state,
+            titleRef,
+          })}
           {errorCode && (
             <ErrorContainer>
               <Error>Sorry but it looks like Alex screwed up...again.</Error>
