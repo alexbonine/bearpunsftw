@@ -193,7 +193,9 @@ exports.handler = async ({ body, httpMethod, queryStringParameters }) => {
       });
     }
   } catch (e) {
-    console.log("Issue sending email", JSON.stringify(email));
+    console.log("Issue sending email", rsvp.email);
+    console.log("Issue sending email", JSON.stringify(e));
+    respond(500, { error: e });
   }
 
   return respond(200, rsvp);
