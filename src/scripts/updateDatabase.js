@@ -42,7 +42,7 @@ const RSVPS_COLUMN_NAMES = {
   FIRST_NAME: "First Name",
   PARTY: "It's Party Time!",
   LAST_NAME: "Last Name",
-  FRIENDS_PIZZA: "Pizza & Karaoke in the East Village",
+  FRIENDS_PIZZA: "Friend Pizza",
   WELCOME_DINNER: "Welcome Dinner (Family Only)",
   WELCOME_DRINKS: "Welcome Cocktails",
 };

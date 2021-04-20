@@ -35,7 +35,7 @@ const RsvpFormEvents = ({ rsvp, setErrorCode, setNextState, titleRef }) => {
     if (simpleAction && titleRef.current) {
       titleRef.current.scrollIntoView(true);
     }
-  }, [simpleAction]);
+  }, [simpleAction, titleRef]);
 
   const onUpdate = async (event) => {
     event.preventDefault();
@@ -146,7 +146,7 @@ RsvpFormEvents.propTypes = {
   rsvp: PropTypes.object.isRequired,
   setErrorCode: PropTypes.func.isRequired,
   setNextState: PropTypes.func.isRequired,
-  titleRef: PropTypes.node.isRequired,
+  titleRef: PropTypes.shape({ current: PropTypes.object }),
 };
 
 export default RsvpFormEvents;

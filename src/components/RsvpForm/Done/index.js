@@ -9,7 +9,7 @@ const RsvpFormDone = ({ notAttending, titleRef }) => {
     if (titleRef.current) {
       titleRef.current.scrollIntoView(true);
     }
-  }, []);
+  }, [titleRef]);
 
   if (notAttending) {
     return (
@@ -30,8 +30,8 @@ const RsvpFormDone = ({ notAttending, titleRef }) => {
         <Gif src={ShawnaDancing}></Gif>
       </GifContainer>
       <Text>
-        You can return to the RSVP page to update your response at any time. See
-        you soon!
+        You can return to the RSVP page to update your response until July 18th.
+        See you soon!
       </Text>
     </>
   );
@@ -39,7 +39,7 @@ const RsvpFormDone = ({ notAttending, titleRef }) => {
 
 RsvpFormDone.propTypes = {
   notAttending: PropTypes.bool.isRequired,
-  titleRef: PropTypes.node,
+  titleRef: PropTypes.shape({ current: PropTypes.object }),
 };
 
 export default RsvpFormDone;

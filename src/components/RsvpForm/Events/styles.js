@@ -17,6 +17,7 @@ export const SimpleContainer = styled.div`
 
 export const Button = styled(ButtonBase)`
   margin-top: ${STANDARD_INPUT_MARGIN};
+  flex-shrink: 0;
 `;
 
 export const NotAttending = styled(ButtonBase)`

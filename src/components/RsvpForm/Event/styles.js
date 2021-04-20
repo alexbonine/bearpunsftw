@@ -6,6 +6,7 @@ import colors from "styles/colors";
 export const Event = styled.div`
   margin-bottom: ${STANDARD_INPUT_MARGIN};
   display: flex;
+  flex-shrink: 0;
 `;
 
 export const PlusMinusContainer = styled.div`

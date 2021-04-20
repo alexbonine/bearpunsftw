@@ -177,7 +177,7 @@ exports.handler = async ({ body, httpMethod, queryStringParameters }) => {
   try {
     await transporter.sendMail({
       from: process.env.MAILGUN_SENDER,
-      to: "lemurdev@gmail.com", // process.env.MAILGUN_SENDER,
+      to: process.env.MAILGUN_SENDER,
       ...ourEmail,
     });
 
@@ -188,7 +188,7 @@ exports.handler = async ({ body, httpMethod, queryStringParameters }) => {
     if (userEmails.length) {
       await transporter.sendMail({
         from: process.env.MAILGUN_SENDER,
-        to: ["lemurdev@gmail.com"], // process.env.MAILGUN_SENDER, userEmails
+        to: userEmails,
         ...userEmail,
       });
     }

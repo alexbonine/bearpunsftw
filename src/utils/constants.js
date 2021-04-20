@@ -31,7 +31,7 @@ const RESPONSE_KEYS = {
 const RESPONSE_KEYS_VALUES = Object.values(RESPONSE_KEYS);
 
 const FAMILY_PIZZA = {
-  date: "Weds the 15th",
+  date: "Weds Sept 15th",
   key: RESPONSE_KEYS.FAMILY_PIZZA,
   location: "Our apartment, East Village",
   time: "6pm - 9pm",
@@ -40,7 +40,7 @@ const FAMILY_PIZZA = {
 };
 
 const FRIENDS_PIZZA = {
-  date: "Thurs the 16th",
+  date: "Thurs Sept 16th",
   key: RESPONSE_KEYS.FRIENDS_PIZZA,
   location: "Our apartment, East Village",
   time: "7pm - 10pm",
@@ -49,7 +49,7 @@ const FRIENDS_PIZZA = {
 };
 
 const WELCOME_DRINKS = {
-  date: "Fri the 17th",
+  date: "Fri Sept 17th",
   key: RESPONSE_KEYS.WELCOME_DRINKS,
   location: "TBD",
   time: "8pm - 10pm",
@@ -58,7 +58,7 @@ const WELCOME_DRINKS = {
 };
 
 const WELCOME_DINNER = {
-  date: "Fri the 17th",
+  date: "Fri Sept 17th",
   key: RESPONSE_KEYS.WELCOME_DINNER,
   location: "TBD",
   time: "6pm - 8pm",
@@ -67,7 +67,7 @@ const WELCOME_DINNER = {
 };
 
 const PARTY = {
-  date: "Sat the 18th",
+  date: "Sat Sept 18th",
   key: RESPONSE_KEYS.PARTY,
   location: "Turk's Inn, Bushwick",
   time: "6pm - 12am",
@@ -76,7 +76,7 @@ const PARTY = {
 };
 
 const CEREMONY = {
-  date: "Sat the 18th",
+  date: "Sat Sept 18th",
   key: RESPONSE_KEYS.CEREMONY,
   location: "Turk's Inn, Bushwick",
   time: "5pm - 6pm",
@@ -85,7 +85,7 @@ const CEREMONY = {
 };
 
 const BRUNCH = {
-  date: "Sun the 19th",
+  date: "Sun Sept 19th",
   key: RESPONSE_KEYS.BRUNCH,
   location: "TBD",
   time: "11am - 1pm",
