@@ -11,7 +11,9 @@
     "build": "gatsby build",
     "serve": "gatsby serve",
     "local": "npm run build && npm run serve",
-    "clean": "gatsby clean"
+    "clean": "gatsby clean",
+    "data": "node ./src/scripts/updateDatabase.js",
+    "data:write": "node ./src/scripts/updateDatabase.js --write"
   },
   "repository": {
     "type": "git",
@@ -31,8 +33,10 @@
     "@emotion/react": "^11.1.4",
     "@emotion/styled": "^11.0.0",
     "@react-hook/window-size": "^3.0.7",
+    "csv-parse": "^4.15.4",
     "facepaint": "^1.2.1",
     "faunadb": "^4.1.3",
+    "fs-extra": "^9.1.0",
     "gatsby": "^2.26.1",
     "gatsby-alias-imports": "^1.0.6",
     "gatsby-cli": "^2.17.0",

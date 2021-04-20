@@ -103,3 +103,5 @@ public
 
 # Local Netlify folder
 .netlify
+
+data/
