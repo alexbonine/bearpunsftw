@@ -153,7 +153,7 @@ const getUserEmailAttending = (current) => {
     to.push((byUser === partnerFirst && partnerEmail) || email);
   }
 
-  const welcome = `We can't wait to see you, ${names}!\n\nBelow is your response for your peace of mind. You can return to https://bearpunsftw.com/rsvp to update your RSVP until July 18th.\n\nSincerely,\nShawna & Alex\n\n`;
+  const welcome = `We can't wait to see you, ${names}!\n\nBelow is your response for your peace of mind. Please note our capacity is limited. You can return to https://bearpunsftw.com/rsvp to update your RSVP until July 18th.\n\nSincerely,\nShawna & Alex\n\n`;
 
   return {
     subject: "Carney-Bonine RSVP!!",
@@ -206,16 +206,18 @@ exports.handler = async ({ body, httpMethod, queryStringParameters }) => {
     : getUserEmailNotAttending(rsvp);
 
   try {
-    await transporter.sendMail({
-      from: process.env.MAILGUN_SENDER,
-      to: process.env.MAILGUN_SENDER,
-      ...ourEmail,
-    });
+    console.log(ourEmail);
+    console.log(userEmail);
+    // await transporter.sendMail({
+    //   from: process.env.MAILGUN_SENDER,
+    //   to: process.env.MAILGUN_SENDER,
+    //   ...ourEmail,
+    // });
 
-    await transporter.sendMail({
-      from: process.env.MAILGUN_SENDER,
-      ...userEmail,
-    });
+    // await transporter.sendMail({
+    //   from: process.env.MAILGUN_SENDER,
+    //   ...userEmail,
+    // });
   } catch (e) {
     console.log("Issue sending email", rsvp.email);
     console.log("Issue sending email", JSON.stringify(e));
