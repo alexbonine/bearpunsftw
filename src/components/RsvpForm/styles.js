@@ -33,6 +33,7 @@ export const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 
   ${mq({
     flex: [undefined, undefined, "1", "1"],

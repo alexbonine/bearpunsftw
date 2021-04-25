@@ -15,6 +15,7 @@ import {
   ErrorEmail,
   ATag,
 } from "./styles";
+import LoadingIndicator from "components/LoadingIndicator";
 
 const STATES = {
   LOGIN: "login",
@@ -23,14 +24,15 @@ const STATES = {
   DONE_YES: "done-yes",
 };
 
-const setupSetNextState = (nextState, setState) => (notAttending = false) =>
-  setState(notAttending ? STATES.DONE_NO : nextState);
+const setupSetNextState = (nextState, setNextState) => (notAttending = false) =>
+  setNextState(notAttending ? STATES.DONE_NO : nextState);
 
 const getFormComponent = ({
   rsvp,
   setErrorCode,
+  setLoading,
   setRsvp,
-  setState,
+  setNextState,
   state,
   titleRef,
 }) => {
@@ -40,7 +42,8 @@ const getFormComponent = ({
         <Events
           rsvp={rsvp}
           setErrorCode={setErrorCode}
-          setNextState={setupSetNextState(STATES.DONE_YES, setState)}
+          setLoading={setLoading}
+          setNextState={setupSetNextState(STATES.DONE_YES, setNextState)}
           titleRef={titleRef}
         />
       );
@@ -54,8 +57,9 @@ const getFormComponent = ({
       return (
         <Login
           setErrorCode={setErrorCode}
+          setLoading={setLoading}
           setRsvp={setRsvp}
-          setNextState={setupSetNextState(STATES.EVENTS, setState)}
+          setNextState={setupSetNextState(STATES.EVENTS, setNextState)}
         />
       );
   }
@@ -65,7 +69,13 @@ const RsvpForm = () => {
   const [state, setState] = useState(STATES.LOGIN);
   const [rsvp, setRsvp] = useState();
   const [errorCode, setErrorCode] = useState("");
+  const [loading, setLoading] = useState(false);
   const titleRef = useRef();
+
+  const setNextState = (value) => {
+    setState(value);
+    setLoading(false);
+  };
 
   return (
     <Container>
@@ -75,12 +85,14 @@ const RsvpForm = () => {
         </a>
       </ImageContainer>
       <FormContainer>
+        {loading && <LoadingIndicator />}
         <FormTitle ref={titleRef}>RSVP</FormTitle>
         <Form large={state === STATES.EVENTS}>
           {getFormComponent({
             rsvp,
             setErrorCode,
-            setState,
+            setLoading,
+            setNextState,
             setRsvp,
             state,
             titleRef,

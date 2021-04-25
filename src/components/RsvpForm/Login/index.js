@@ -7,7 +7,7 @@ import { Button, Title } from "./styles";
 
 const ERROR_THRESHOLD = 3;
 
-const RsvpFormLogin = ({ setErrorCode, setNextState, setRsvp }) => {
+const RsvpFormLogin = ({ setErrorCode, setLoading, setNextState, setRsvp }) => {
   const [error, setError] = useState("");
   const [errorCount, setErrorCount] = useState(0);
   const [disableButton, setDisableButton] = useState(false);
@@ -36,6 +36,7 @@ const RsvpFormLogin = ({ setErrorCode, setNextState, setRsvp }) => {
       return;
     }
 
+    setLoading(true);
     setDisableButton(true);
     setError("");
     setErrorCode("");
@@ -44,12 +45,15 @@ const RsvpFormLogin = ({ setErrorCode, setNextState, setRsvp }) => {
 
     if (!rsvpObj) {
       setErrorStatus("bear-1");
+      setLoading(false);
       return;
     } else if (rsvpObj.errorCode) {
       setErrorStatus(rsvpObj.errorCode);
+      setLoading(false);
       return;
     } else if (rsvpObj.error) {
       setErrorStatus("bear-2");
+      setLoading(false);
       return;
     }
 
@@ -89,6 +93,7 @@ const RsvpFormLogin = ({ setErrorCode, setNextState, setRsvp }) => {
 
 RsvpFormLogin.propTypes = {
   setErrorCode: PropTypes.func.isRequired,
+  setLoading: PropTypes.func.isRequired,
   setNextState: PropTypes.func.isRequired,
   setRsvp: PropTypes.func.isRequired,
 };

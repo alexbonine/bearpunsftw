@@ -14,7 +14,13 @@ import {
   Welcome,
 } from "./styles";
 
-const RsvpFormEvents = ({ rsvp, setErrorCode, setNextState, titleRef }) => {
+const RsvpFormEvents = ({
+  rsvp,
+  setErrorCode,
+  setLoading,
+  setNextState,
+  titleRef,
+}) => {
   const { count, id, first, partnerFirst, type, userKey, ...rest } = rsvp;
   const [error, setError] = useState("");
   const [response, setResponse] = useState(
@@ -46,6 +52,7 @@ const RsvpFormEvents = ({ rsvp, setErrorCode, setNextState, titleRef }) => {
       return;
     }
 
+    setLoading(true);
     setDisableButton(true);
     setError("");
     setErrorCode("");
@@ -58,6 +65,7 @@ const RsvpFormEvents = ({ rsvp, setErrorCode, setNextState, titleRef }) => {
     ) {
       setError("You didn't select any events you would be joining us.");
       setDisableButton(false);
+      setLoading(false);
       return;
     }
 
@@ -70,14 +78,17 @@ const RsvpFormEvents = ({ rsvp, setErrorCode, setNextState, titleRef }) => {
     if (!rsvpObj) {
       setErrorCode("bear-3");
       setDisableButton(false);
+      setLoading(false);
       return;
     } else if (rsvpObj.errorCode) {
       setErrorCode(rsvpObj.errorCode);
       setDisableButton(false);
+      setLoading(false);
       return;
     } else if (rsvpObj.error) {
       setErrorCode("bear-4");
       setDisableButton(false);
+      setLoading(false);
       return;
     }
 
@@ -145,6 +156,7 @@ const RsvpFormEvents = ({ rsvp, setErrorCode, setNextState, titleRef }) => {
 RsvpFormEvents.propTypes = {
   rsvp: PropTypes.object.isRequired,
   setErrorCode: PropTypes.func.isRequired,
+  setLoading: PropTypes.func.isRequired,
   setNextState: PropTypes.func.isRequired,
   titleRef: PropTypes.shape({ current: PropTypes.object }),
 };
