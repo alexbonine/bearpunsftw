@@ -19,15 +19,15 @@ const events = [
   {
     day: "Friday 17th",
     key: "dinner",
-    location: "",
-    locationLink: "",
+    location: "Royale",
+    locationLink: "https://www.royalebarnyc.com/",
     title: "Welcome Dinner (FAMILY ONLY)",
     time: "6pm-8pm",
   },
   {
     key: "cocktails",
-    location: "TBD",
-    locationLink: "",
+    location: "Royale",
+    locationLink: "https://www.royalebarnyc.com/",
     title: "Welcome Cocktails",
     time: "8pm-10pm",
   },
@@ -49,7 +49,7 @@ const events = [
   {
     day: "Sunday 19th",
     key: "bites",
-    location: "TBD",
+    location: "815 Broadway New York, NY 10003",
     locationLink: "",
     title: "Farewell Bites",
     time: "11am-1pm",

@@ -4,7 +4,9 @@ const mg = require("nodemailer-mailgun-transport");
 const {
   KEYS,
   KEYS_VALUES,
+  RESPONSE_KEYS,
   RESPONSE_KEYS_VALUES,
+  EVENTS,
 } = require("../utils/constants");
 const { getEvents } = require("../utils/events");
 
@@ -98,6 +100,15 @@ const getEnglishEvents = (current, previous) => {
   );
 };
 
+const getEnglishEventsUser = (current) => {
+  const events = getEvents(current.type);
+
+  return events.map(
+    ({ attire, dateShort, key, title }) =>
+      `${dateShort}: ${title} - ${current[key]}${attire ? ` - ${attire}` : ""}`
+  );
+};
+
 const getOurEmail = (current, previous) => {
   const names = `Name(s): ${current.first} ${current.last}${
     current.partnerFirst
@@ -128,7 +139,7 @@ const getUserEmailAttending = (current) => {
 
   return {
     subject: "Carney-Bonine RSVP!!",
-    text: `${welcome}${getEnglishEvents(current).join("\n")}`,
+    text: `${welcome}${getEnglishEventsUser(current).join("\n")}`,
   };
 };
 

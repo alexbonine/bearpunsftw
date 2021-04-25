@@ -28,6 +28,8 @@ const Circle = styled.button`
   vertical-align: middle;
   outline: none;
   background-color: ${colors.white};
+  padding-left: 6px;
+  padding-right: 6px;
 
   &:before,
   &:after {

@@ -51,7 +51,7 @@ const Header = () => {
           <MenuBar2 isMenuOpen={isMenuOpen} />
           <MenuBar3 isMenuOpen={isMenuOpen} />
         </MenuButton>
-        <ATagIconContainer href="#">
+        <ATagIconContainer href="/">
           <BearIcon />
           <Plus>&#43;</Plus>
           <LemurIcon />

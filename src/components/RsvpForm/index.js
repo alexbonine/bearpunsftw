@@ -70,7 +70,9 @@ const RsvpForm = () => {
   return (
     <Container>
       <ImageContainer>
-        <Image src={FrankApe} />
+        <a href="https://frankape.com/pages/frank-ape" target="blank">
+          <Image src={FrankApe} />
+        </a>
       </ImageContainer>
       <FormContainer>
         <FormTitle ref={titleRef}>RSVP</FormTitle>

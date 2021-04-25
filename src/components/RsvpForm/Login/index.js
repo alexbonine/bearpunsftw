@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import { getRsvp } from "utils/rsvp";
 import Input from "components/Input";
@@ -56,6 +56,18 @@ const RsvpFormLogin = ({ setErrorCode, setNextState, setRsvp }) => {
     setRsvp(rsvpObj);
     setNextState();
   };
+
+  const onKeyPress = (event) => {
+    if (event.key === "Enter") {
+      onGet(event);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("keydown", onKeyPress);
+
+    return () => window.removeEventListener("keydown", onKeyPress);
+  }, []);
 
   return (
     <>

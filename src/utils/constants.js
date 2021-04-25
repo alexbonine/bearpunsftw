@@ -31,7 +31,9 @@ const RESPONSE_KEYS = {
 const RESPONSE_KEYS_VALUES = Object.values(RESPONSE_KEYS);
 
 const FAMILY_PIZZA = {
+  attire: "",
   date: "Weds Sept 15th",
+  dateShort: "9/15",
   key: RESPONSE_KEYS.FAMILY_PIZZA,
   location: "Our apartment, East Village",
   time: "6pm - 9pm",
@@ -40,7 +42,9 @@ const FAMILY_PIZZA = {
 };
 
 const FRIENDS_PIZZA = {
+  attire: "",
   date: "Thurs Sept 16th",
+  dateShort: "9/16",
   key: RESPONSE_KEYS.FRIENDS_PIZZA,
   location: "Our apartment, East Village",
   time: "7pm - 10pm",
@@ -49,45 +53,55 @@ const FRIENDS_PIZZA = {
 };
 
 const WELCOME_DRINKS = {
+  attire: "New York-night-out attire",
   date: "Fri Sept 17th",
+  dateShort: "9/17",
   key: RESPONSE_KEYS.WELCOME_DRINKS,
-  location: "TBD",
+  location: "Royale",
   time: "8pm - 10pm",
   title: "Welcome Drinks",
-  toFollow: "",
+  toFollow: "New York-night-out attire required.",
 };
 
 const WELCOME_DINNER = {
+  attire: "New York-night-out attire",
   date: "Fri Sept 17th",
+  dateShort: "9/17",
   key: RESPONSE_KEYS.WELCOME_DINNER,
-  location: "TBD",
+  location: "Royale",
   time: "6pm - 8pm",
   title: "Welcome Dinner",
-  toFollow: `Welcome Drinks to follow from ${WELCOME_DRINKS.time} at ${WELCOME_DRINKS.location}`,
+  toFollow: `New York-night-out attire required. Welcome Drinks to follow from ${WELCOME_DRINKS.time} at ${WELCOME_DRINKS.location}.`,
 };
 
 const PARTY = {
+  attire: "Cocktail attire",
   date: "Sat Sept 18th",
+  dateShort: "9/18",
   key: RESPONSE_KEYS.PARTY,
   location: "Turk's Inn, Bushwick",
   time: "6pm - 12am",
   title: "Party",
-  toFollow: "",
+  toFollow: "Cocktail attire required.",
 };
 
 const CEREMONY = {
+  attire: "Cocktail attire",
   date: "Sat Sept 18th",
+  dateShort: "9/18",
   key: RESPONSE_KEYS.CEREMONY,
   location: "Turk's Inn, Bushwick",
   time: "5pm - 6pm",
   title: "Ceremony",
-  toFollow: `Party to follow from ${PARTY.time} at ${PARTY.location}`,
+  toFollow: `Cocktail attire required. Party to follow from ${PARTY.time} at ${PARTY.location}.`,
 };
 
 const BRUNCH = {
+  attire: "",
   date: "Sun Sept 19th",
+  dateShort: "9/19",
   key: RESPONSE_KEYS.BRUNCH,
-  location: "TBD",
+  location: "815 Broadway New York, NY 10003",
   time: "11am - 1pm",
   title: "Farewell Bites",
   toFollow: "",

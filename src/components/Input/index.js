@@ -3,6 +3,10 @@ import { STANDARD_INPUT_MARGIN } from "styles/constants";
 import colors from "styles/colors";
 
 const Input = styled.input`
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
   display: block;
   margin-bottom: ${STANDARD_INPUT_MARGIN};
   padding: 4px 10px;
