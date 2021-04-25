@@ -2,7 +2,7 @@ const { readFileSync } = require("fs-extra");
 const { join } = require("path");
 const parseCsv = require("csv-parse/lib/sync");
 const faunadb = require("faunadb");
-const { KEYS, RESPONSE_KEYS, TYPES } = require("../utils/constants");
+const { KEYS_GET, RESPONSE_KEYS, TYPES } = require("../utils/constants");
 
 const q = faunadb.query;
 let WRITING = false;
@@ -64,8 +64,8 @@ const DATABASE_PROPERTIES = {
   PARTY: RESPONSE_KEYS.PARTY,
   WELCOME_DINNER: RESPONSE_KEYS.WELCOME_DINNER,
   WELCOME_DRINKS: RESPONSE_KEYS.WELCOME_DRINKS,
-  ATTENDING: KEYS.ATTENDING,
-  BY_USER: KEYS.BY_USER,
+  ATTENDING: KEYS_GET.ATTENDING,
+  BY_USER: KEYS_GET.BY_USER,
 };
 
 const keyGuestListByFirstLast = (records = []) =>

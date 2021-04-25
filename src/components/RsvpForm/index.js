@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import FrankApe from "images/frank-ape.jpg";
+import LoadingIndicator from "components/LoadingIndicator";
 import Login from "./Login";
 import Events from "./Events";
 import Done from "./Done";
@@ -15,7 +16,6 @@ import {
   ErrorEmail,
   ATag,
 } from "./styles";
-import LoadingIndicator from "components/LoadingIndicator";
 
 const STATES = {
   LOGIN: "login",

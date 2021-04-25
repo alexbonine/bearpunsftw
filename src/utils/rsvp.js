@@ -26,3 +26,9 @@ export const updateRsvp = async (id, data) => {
     method: "PUT",
   }).then(parseResponse);
 };
+
+export const getRsvps = async (pw) => {
+  return fetch(`${BASE_URL}get-rsvps?pw=${encodeURIComponent(pw)}`).then(
+    parseResponse
+  );
+};

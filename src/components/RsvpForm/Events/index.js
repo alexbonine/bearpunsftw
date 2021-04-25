@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { updateRsvp } from "utils/rsvp";
-import { INDEX_KEYS, KEYS, RESPONSE_KEYS } from "utils/constants";
+import { INDEX_KEYS, KEYS_GET, RESPONSE_KEYS } from "utils/constants";
 import { getEvents, parseResponse } from "utils/events";
 import Event from "../Event";
 import {
@@ -71,9 +71,9 @@ const RsvpFormEvents = ({
     }
 
     const rsvpObj = await updateRsvp(id, {
-      [KEYS.ATTENDING]: simpleAction,
-      [KEYS.BY_USER]: userKey === INDEX_KEYS.GUEST ? first : partnerFirst,
-      [KEYS.RESPONSE]: parsedResponse,
+      [KEYS_GET.ATTENDING]: simpleAction,
+      [KEYS_GET.BY_USER]: userKey === INDEX_KEYS.GUEST ? first : partnerFirst,
+      [KEYS_GET.RESPONSE]: parsedResponse,
     });
 
     if (!rsvpObj) {

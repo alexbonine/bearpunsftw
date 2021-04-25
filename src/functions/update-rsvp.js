@@ -2,7 +2,7 @@ const faunadb = require("faunadb");
 const nodemailer = require("nodemailer");
 const mg = require("nodemailer-mailgun-transport");
 const {
-  KEYS,
+  KEYS_GET,
   KEYS_VALUES,
   RESPONSE_KEYS,
   RESPONSE_KEYS_VALUES,
@@ -67,17 +67,17 @@ const onlyData = (data = {}) =>
   KEYS_VALUES.reduce(
     (accum, key) => {
       switch (key) {
-        case KEYS.ATTENDING:
+        case KEYS_GET.ATTENDING:
           if (typeof data[key] === "boolean") {
             accum[key] = data[key];
           }
           break;
-        case KEYS.BY_USER:
+        case KEYS_GET.BY_USER:
           if (typeof data[key] === "string") {
             accum[key] = data[key];
           }
           break;
-        case KEYS.RESPONSE:
+        case KEYS_GET.RESPONSE:
           if (typeof data[key] === "object") {
             accum[key] = onlyResponseData(data[key]);
           }

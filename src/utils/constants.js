@@ -10,13 +10,13 @@ const TYPES = {
   FRIENDS: "friends",
 };
 
-const KEYS = {
+const KEYS_GET = {
   ATTENDING: "attending",
   BY_USER: "byUser",
   RESPONSE: "response",
 };
 
-const KEYS_VALUES = Object.values(KEYS);
+const KEYS_VALUES = Object.values(KEYS_GET);
 
 const RESPONSE_KEYS = {
   BRUNCH: "brunch",
@@ -29,6 +29,22 @@ const RESPONSE_KEYS = {
 };
 
 const RESPONSE_KEYS_VALUES = Object.values(RESPONSE_KEYS);
+
+const KEYS = {
+  FIRST: "first",
+  LAST: "last",
+  EMAIL: "email",
+  COUNT: "count",
+  PARTNER_EMAIL: "partnerEmail",
+  PARTNER_FIRST: "partnerFirst",
+  PARTNER_LAST: "partnerLast",
+  TYPE: "type",
+  RESPONDED: "responded",
+  ATTENDING: KEYS_GET.ATTENDING,
+  BY_USER: KEYS_GET.BY_USER,
+  ...RESPONSE_KEYS,
+  TEST: "test",
+};
 
 const FAMILY_PIZZA = {
   attire: "",
@@ -119,10 +135,11 @@ const EVENTS = {
 
 module.exports = {
   EVENTS,
-  KEYS,
+  KEYS_GET,
   KEYS_VALUES,
   RESPONSE_KEYS_VALUES,
   RESPONSE_KEYS,
   TYPES,
   INDEX_KEYS,
+  KEYS,
 };

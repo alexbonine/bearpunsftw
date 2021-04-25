@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import mq from "styles/mq";
 import { STANDARD_INPUT_MARGIN } from "styles/constants";
 
 export const Title = styled.h2`
