@@ -132,14 +132,33 @@ const getOurEmail = (current, previous) => {
 };
 
 const getUserEmailAttending = (current) => {
-  const names = `${current.first}${
-    current.partnerFirst ? ` & ${current.partnerFirst}` : ""
-  }`;
+  const { byUser, count, email, first, partnerEmail, partnerFirst } = current;
+  let names = "";
+  let to = [];
+
+  if (count <= 1) {
+    names = first;
+    to.push(email);
+  } else if (
+    RESPONSE_KEYS_VALUES.some((responseKey) => current[responseKey] === count)
+  ) {
+    names = `${byUser} & ${byUser === first ? partnerFirst : first}`;
+    to.push(email);
+
+    if (partnerEmail) {
+      to.push(partnerEmail);
+    }
+  } else {
+    names = byUser;
+    to.push((byUser === partnerFirst && partnerEmail) || email);
+  }
+
   const welcome = `We can't wait to see you, ${names}!\n\nBelow is your response for your peace of mind. You can return to https://bearpunsftw.com/rsvp to update your RSVP until July 18th.\n\nSincerely,\nShawna & Alex\n\n`;
 
   return {
     subject: "Carney-Bonine RSVP!!",
     text: `${welcome}${getEnglishEventsUser(current).join("\n")}`,
+    to,
   };
 };
 
@@ -149,6 +168,7 @@ const getUserEmailNotAttending = (current) => {
   return {
     subject: "Carney-Bonine RSVP",
     text,
+    to: [rsvp.email, rsvp.partnerEmail].filter((email) => !!email),
   };
 };
 
@@ -192,17 +212,10 @@ exports.handler = async ({ body, httpMethod, queryStringParameters }) => {
       ...ourEmail,
     });
 
-    const userEmails = [rsvp.email, rsvp.partnerEmail].filter(
-      (email) => !!email
-    );
-
-    if (userEmails.length) {
-      await transporter.sendMail({
-        from: process.env.MAILGUN_SENDER,
-        to: userEmails,
-        ...userEmail,
-      });
-    }
+    await transporter.sendMail({
+      from: process.env.MAILGUN_SENDER,
+      ...userEmail,
+    });
   } catch (e) {
     console.log("Issue sending email", rsvp.email);
     console.log("Issue sending email", JSON.stringify(e));

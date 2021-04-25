@@ -44,13 +44,18 @@ const getFormComponent = ({
           setErrorCode={setErrorCode}
           setLoading={setLoading}
           setNextState={setupSetNextState(STATES.DONE_YES, setNextState)}
+          setRsvp={setRsvp}
           titleRef={titleRef}
         />
       );
     case STATES.DONE_NO:
     case STATES.DONE_YES:
       return (
-        <Done notAttending={state === STATES.DONE_NO} titleRef={titleRef} />
+        <Done
+          notAttending={state === STATES.DONE_NO}
+          rsvp={rsvp}
+          titleRef={titleRef}
+        />
       );
     case STATES.LOGIN:
     default:

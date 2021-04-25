@@ -19,6 +19,7 @@ const RsvpFormEvents = ({
   setErrorCode,
   setLoading,
   setNextState,
+  setRsvp,
   titleRef,
 }) => {
   const { count, id, first, partnerFirst, type, userKey, ...rest } = rsvp;
@@ -92,6 +93,7 @@ const RsvpFormEvents = ({
       return;
     }
 
+    setRsvp(rsvpObj);
     setNextState(!simpleAction);
   };
 
@@ -158,6 +160,7 @@ RsvpFormEvents.propTypes = {
   setErrorCode: PropTypes.func.isRequired,
   setLoading: PropTypes.func.isRequired,
   setNextState: PropTypes.func.isRequired,
+  setRsvp: PropTypes.func.isRequired,
   titleRef: PropTypes.shape({ current: PropTypes.object }),
 };
 

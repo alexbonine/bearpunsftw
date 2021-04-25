@@ -19,9 +19,4 @@ export const GifContainer = styled.div`
 
 export const Gif = styled.img`
   object-fit: contain;
-
-  ${mq({
-    // width: ["100%", "100%", "80%", "80%"],
-    // maxHeight: ["100vh", "100vh", "635px", "540px"],
-  })}
 `;
