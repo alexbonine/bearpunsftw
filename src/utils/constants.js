@@ -8,6 +8,7 @@ const TYPES = {
   FAMILY: "family",
   FRIENDS_PIZZA: "friends-pizza",
   FRIENDS: "friends",
+  OFFICIANT: "officiant",
 };
 
 const KEYS_GET = {

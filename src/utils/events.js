@@ -18,6 +18,13 @@ const getEvents = (type) => {
         EVENTS.PARTY,
         EVENTS.BRUNCH,
       ];
+    case TYPES.OFFICIANT:
+      return [
+        EVENTS.FRIENDS_PIZZA,
+        EVENTS.WELCOME_DRINKS,
+        EVENTS.CEREMONY,
+        EVENTS.BRUNCH,
+      ];
     case TYPES.FRIENDS:
     default:
       return [EVENTS.WELCOME_DRINKS, EVENTS.PARTY, EVENTS.BRUNCH];

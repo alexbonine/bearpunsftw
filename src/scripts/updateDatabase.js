@@ -110,6 +110,11 @@ const keyRsvpsByFirstLast = (records = []) =>
 
     if (record[RSVPS_COLUMN_NAMES.FAMILY_PIZZA]) {
       accum[key][DATABASE_PROPERTIES.TYPE] = TYPES.FAMILY_PIZZA;
+    } else if (
+      record[RSVPS_COLUMN_NAMES.FRIENDS_PIZZA] &&
+      record[RSVPS_COLUMN_NAMES.CEREMONY]
+    ) {
+      accum[key][DATABASE_PROPERTIES.TYPE] = TYPES.OFFICIANT;
     } else if (record[RSVPS_COLUMN_NAMES.FRIENDS_PIZZA]) {
       accum[key][DATABASE_PROPERTIES.TYPE] = TYPES.FRIENDS_PIZZA;
     } else if (record[RSVPS_COLUMN_NAMES.CEREMONY]) {
