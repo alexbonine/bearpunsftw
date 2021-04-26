@@ -26,6 +26,14 @@ export const Total = styled.p`
   cursor: pointer;
 `;
 
+export const TotalItem = styled.span`
+  margin-right: 10px;
+
+  &:last-of-type {
+    margin-right: 0;
+  }
+`;
+
 export const EventsContainer = styled.div``;
 
 export const Event = styled.p`

@@ -87,7 +87,6 @@ const RsvpFormLogin = ({ setErrorCode, setLoading, setNextState, setRsvp }) => {
   );
 
   useEffect(() => {
-    console.log("run");
     window.removeEventListener("keydown", onKeyPress);
     window.addEventListener("keydown", onKeyPress);
 

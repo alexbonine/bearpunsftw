@@ -10,7 +10,7 @@ const respond = (statusCode, body) => ({
   body: JSON.stringify(body),
 });
 
-const faunaDbSucks = async (key, first, last) => {
+const faunaDbSucksGet = async (key, first, last) => {
   try {
     const result = await client.query(
       q.Get(
@@ -27,19 +27,69 @@ const faunaDbSucks = async (key, first, last) => {
   }
 };
 
+const faunaDbSucksPost = async (data = {}) => {
+  try {
+    const result = await client.query(
+      q.Create(q.Collection("actions"), { data })
+    );
+
+    return { ...result.data, id: result.ref.id };
+  } catch (e) {
+    return null;
+  }
+};
+
+const faunaDbSucksPut = async (id, data = {}) => {
+  try {
+    const result = await client.query(
+      q.Update(q.Ref(q.Collection("guests"), id), { data })
+    );
+
+    return { ...result.data, id: result.ref.id };
+  } catch (e) {
+    return null;
+  }
+};
+
 exports.handler = async (event) => {
   const { first = "", last = "" } = event.queryStringParameters;
 
   if (!first || !last) {
+    await faunaDbSucksPost({
+      first,
+      last,
+      success: false,
+      action: "login",
+      error: "no first and/or last",
+    });
     return respond(400, { error: "First and last name are required" });
   }
 
-  const primary = await faunaDbSucks("guest", first, last);
-  const secondary = await faunaDbSucks("partner", first, last);
+  const primary = await faunaDbSucksGet("guest", first, last);
+  const secondary = await faunaDbSucksGet("partner", first, last);
   const rsvp = primary || secondary;
 
   if (!rsvp) {
+    await faunaDbSucksPost({
+      first,
+      last,
+      success: false,
+      action: "login",
+      error: "no rsvp",
+    });
     return respond(400, { error: true, errorCode: "lemur-1" });
+  }
+
+  await faunaDbSucksPost({
+    first,
+    last,
+    success: true,
+    action: "login",
+    rsvpId: rsvp.id,
+  });
+
+  if (!rsvp.responded) {
+    await faunaDbSucksPut(rsvp.id, { responded: false });
   }
 
   return respond(200, rsvp);

@@ -51,6 +51,30 @@ const faunaDbSucksPut = async (id, data = {}) => {
   }
 };
 
+const faunaDbSucksPostAction = async (data = {}) => {
+  try {
+    const result = await client.query(
+      q.Create(q.Collection("actions"), { data })
+    );
+
+    return { ...result.data, id: result.ref.id };
+  } catch (e) {
+    return null;
+  }
+};
+
+const faunaDbSucksPostEmail = async (data = {}) => {
+  try {
+    const result = await client.query(
+      q.Create(q.Collection("emails"), { data })
+    );
+
+    return { ...result.data, id: result.ref.id };
+  } catch (e) {
+    return null;
+  }
+};
+
 const onlyResponseData = (data = {}) =>
   RESPONSE_KEYS_VALUES.reduce(
     (accum, key) => {
@@ -122,12 +146,14 @@ const getOurEmail = (current, previous) => {
     return {
       subject: "Updated RSVP!!",
       text: `${names}${getEnglishEvents(current, previous).join("\n")}`,
+      to: process.env.MAILGUN_SENDER,
     };
   }
 
   return {
     subject: "New RSVP!!",
     text: `${names}${getEnglishEvents(current).join("\n")}`,
+    to: process.env.MAILGUN_SENDER,
   };
 };
 
@@ -174,6 +200,11 @@ const getUserEmailNotAttending = (current) => {
 
 exports.handler = async ({ body, httpMethod, queryStringParameters }) => {
   if (httpMethod !== "PUT" || !queryStringParameters.id) {
+    await faunaDbSucksPostAction({
+      success: false,
+      action: "update",
+      error: "no id",
+    });
     return respond(400, { error: true, errorCode: "lemur-2" });
   }
 
@@ -189,6 +220,11 @@ exports.handler = async ({ body, httpMethod, queryStringParameters }) => {
   const data = onlyData(responseBody);
 
   if (Object.keys((data && data.response) || {}).length === 0) {
+    await faunaDbSucksPostAction({
+      success: false,
+      action: "update",
+      error: "bad body",
+    });
     return respond(400, { error: true, errorCode: "lemur-3" });
   }
 
@@ -197,8 +233,19 @@ exports.handler = async ({ body, httpMethod, queryStringParameters }) => {
   const rsvp = await faunaDbSucksPut(id, { ...response, ...rest });
 
   if (!rsvp) {
+    await faunaDbSucksPostAction({
+      success: false,
+      action: "update",
+      error: "no rsvp",
+    });
     return respond(400, { error: true, errorCode: "lemur-4" });
   }
+
+  await faunaDbSucksPostAction({
+    success: true,
+    action: "update",
+    rsvpId: rsvp.id,
+  });
 
   const ourEmail = getOurEmail(rsvp, previousRsvp);
   const userEmail = rsvp.attending
@@ -206,18 +253,27 @@ exports.handler = async ({ body, httpMethod, queryStringParameters }) => {
     : getUserEmailNotAttending(rsvp);
 
   try {
-    console.log(ourEmail);
-    console.log(userEmail);
-    // await transporter.sendMail({
-    //   from: process.env.MAILGUN_SENDER,
-    //   to: process.env.MAILGUN_SENDER,
-    //   ...ourEmail,
-    // });
+    await transporter.sendMail({
+      from: process.env.MAILGUN_SENDER,
+      ...ourEmail,
+    });
 
-    // await transporter.sendMail({
-    //   from: process.env.MAILGUN_SENDER,
-    //   ...userEmail,
-    // });
+    await transporter.sendMail({
+      from: process.env.MAILGUN_SENDER,
+      ...userEmail,
+    });
+
+    await faunaDbSucksPostEmail({
+      rsvpId: rsvp.id,
+      action: "internal",
+      ...ourEmail,
+    });
+
+    await faunaDbSucksPostEmail({
+      rsvpId: rsvp.id,
+      action: "external",
+      ...userEmail,
+    });
   } catch (e) {
     console.log("Issue sending email", rsvp.email);
     console.log("Issue sending email", JSON.stringify(e));

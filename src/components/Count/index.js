@@ -13,6 +13,7 @@ import {
   EventsContainer,
   Title,
   Total,
+  TotalItem,
 } from "./styles";
 
 const getAttendee = ({ first, last, partnerFirst, partnerLast }, eventCount) =>
@@ -25,7 +26,12 @@ const parseRows = (rows) =>
     (accum, row) => {
       if (row[KEYS.RESPONDED]) {
         accum.responded += 1;
-        accum.attendees.responded.push(getAttendee(row, row.count));
+        accum.attendees.responded.push(getAttendee(row, 1));
+        accum.viewed += 1;
+        accum.attendees.viewed.push(getAttendee(row, 1));
+      } else if (row[KEYS.RESPONDED] === false) {
+        accum.viewed += 1;
+        accum.attendees.viewed.push(getAttendee(row, 1));
       } else {
         accum.notResponded += 1;
         accum.attendees.notResponded.push(getAttendee(row, row.count));
@@ -63,6 +69,7 @@ const parseRows = (rows) =>
       attending: 0,
       notAttending: 0,
       unknown: 0,
+      viewed: 0,
       [KEYS.FAMILY_PIZZA]: 0,
       [KEYS.FRIENDS_PIZZA]: 0,
       [KEYS.WELCOME_DINNER]: 0,
@@ -83,6 +90,7 @@ const parseRows = (rows) =>
         attending: [],
         notAttending: [],
         unknown: [],
+        viewed: [],
       },
     }
   );
@@ -132,6 +140,7 @@ const Count = () => {
     attending,
     notAttending,
     unknown,
+    viewed,
     [KEYS.FAMILY_PIZZA]: familyPizza,
     [KEYS.FRIENDS_PIZZA]: friendsPizza,
     [KEYS.WELCOME_DINNER]: welcomeDinner,
@@ -154,7 +163,7 @@ const Count = () => {
         <Counts>
           <Title>RSVP Counts</Title>
           <Total>
-            <span
+            <TotalItem
               onClick={setupSetAttendeesKey("attending")}
               onKeyDown={setupSetAttendeesKeyPress("attending")}
               role="button"
@@ -162,9 +171,8 @@ const Count = () => {
             >
               Attending:&nbsp;
               {attending}
-            </span>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <span
+            </TotalItem>
+            <TotalItem
               onClick={setupSetAttendeesKey("notAttending")}
               onKeyDown={setupSetAttendeesKeyPress("notAttending")}
               role="button"
@@ -172,9 +180,8 @@ const Count = () => {
             >
               Not Attending:&nbsp;
               {notAttending}
-            </span>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <span
+            </TotalItem>
+            <TotalItem
               onClick={setupSetAttendeesKey("unknown")}
               onKeyDown={setupSetAttendeesKeyPress("unknown")}
               role="button"
@@ -182,10 +189,10 @@ const Count = () => {
             >
               Unknown:&nbsp;
               {unknown}
-            </span>
+            </TotalItem>
           </Total>
           <Total>
-            <span
+            <TotalItem
               onClick={setupSetAttendeesKey("responded")}
               onKeyDown={setupSetAttendeesKeyPress("responded")}
               role="button"
@@ -193,9 +200,17 @@ const Count = () => {
             >
               Responded:&nbsp;
               {responded}
-            </span>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <span
+            </TotalItem>
+            <TotalItem
+              onClick={setupSetAttendeesKey("viewed")}
+              onKeyDown={setupSetAttendeesKeyPress("viewed")}
+              role="button"
+              tabIndex={0}
+            >
+              Viewed:&nbsp;
+              {viewed}
+            </TotalItem>
+            <TotalItem
               onClick={setupSetAttendeesKey("notResponded")}
               onKeyDown={setupSetAttendeesKeyPress("notResponded")}
               role="button"
@@ -203,7 +218,7 @@ const Count = () => {
             >
               Not Responded:&nbsp;
               {notResponded}
-            </span>
+            </TotalItem>
           </Total>
           <br />
           <EventsContainer>
