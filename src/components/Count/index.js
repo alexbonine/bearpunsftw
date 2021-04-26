@@ -111,6 +111,12 @@ const Count = () => {
 
   const setupSetAttendeesKey = (key) => () => setAttendeesKey(key);
 
+  const setupSetAttendeesKeyPress = (key) => (event) => {
+    if (event.key === "Enter") {
+      setAttendeesKey(key);
+    }
+  };
+
   const {
     responded,
     notResponded,
@@ -134,48 +140,103 @@ const Count = () => {
         <Counts>
           <Title>RSVP Counts</Title>
           <Total>
-            <span onClick={setupSetAttendeesKey("attending")}>
+            <span
+              onClick={setupSetAttendeesKey("attending")}
+              onKeyDown={setupSetAttendeesKeyPress("attending")}
+              role="button"
+              tabIndex={0}
+            >
               Attending:&nbsp;
               {attending}
             </span>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <span onClick={setupSetAttendeesKey("notAttending")}>
+            <span
+              onClick={setupSetAttendeesKey("notAttending")}
+              onKeyDown={setupSetAttendeesKeyPress("notAttending")}
+              role="button"
+              tabIndex={0}
+            >
               Not Attending:&nbsp;
               {notAttending}
             </span>
           </Total>
           <Total>
-            <span onClick={setupSetAttendeesKey("responded")}>
+            <span
+              onClick={setupSetAttendeesKey("responded")}
+              onKeyDown={setupSetAttendeesKeyPress("responded")}
+              role="button"
+              tabIndex={0}
+            >
               Responded:&nbsp;
               {responded}
             </span>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <span onClick={setupSetAttendeesKey("notResponded")}>
+            <span
+              onClick={setupSetAttendeesKey("notResponded")}
+              onKeyDown={setupSetAttendeesKeyPress("notResponded")}
+              role="button"
+              tabIndex={0}
+            >
               Not Responded:&nbsp;
               {notResponded}
             </span>
           </Total>
           <br />
           <EventsContainer>
-            <Event onClick={setupSetAttendeesKey(KEYS.FAMILY_PIZZA)}>
+            <Event
+              onClick={setupSetAttendeesKey(KEYS.FAMILY_PIZZA)}
+              onKeyDown={setupSetAttendeesKeyPress(KEYS.FAMILY_PIZZA)}
+              role="button"
+              tabIndex={0}
+            >
               Family Pizza:&nbsp;{familyPizza}
             </Event>
-            <Event onClick={setupSetAttendeesKey(KEYS.FRIENDS_PIZZA)}>
+            <Event
+              onClick={setupSetAttendeesKey(KEYS.FRIENDS_PIZZA)}
+              onKeyDown={setupSetAttendeesKeyPress(KEYS.FRIENDS_PIZZA)}
+              role="button"
+              tabIndex={0}
+            >
               Friends Pizza:&nbsp;{friendsPizza}
             </Event>
-            <Event onClick={setupSetAttendeesKey(KEYS.WELCOME_DINNER)}>
+            <Event
+              onClick={setupSetAttendeesKey(KEYS.WELCOME_DINNER)}
+              onKeyDown={setupSetAttendeesKeyPress(KEYS.WELCOME_DINNER)}
+              role="button"
+              tabIndex={0}
+            >
               Welcome Dinner:&nbsp;{welcomeDinner}
             </Event>
-            <Event onClick={setupSetAttendeesKey(KEYS.WELCOME_DRINKS)}>
+            <Event
+              onClick={setupSetAttendeesKey(KEYS.WELCOME_DRINKS)}
+              onKeyDown={setupSetAttendeesKeyPress(KEYS.WELCOME_DRINKS)}
+              role="button"
+              tabIndex={0}
+            >
               Welcome Drinks:&nbsp;{welcomeDrinks}
             </Event>
-            <Event onClick={setupSetAttendeesKey(KEYS.CEREMONY)}>
+            <Event
+              onClick={setupSetAttendeesKey(KEYS.CEREMONY)}
+              onKeyDown={setupSetAttendeesKeyPress(KEYS.CEREMONY)}
+              role="button"
+              tabIndex={0}
+            >
               Ceremony:&nbsp;{ceremony}
             </Event>
-            <Event onClick={setupSetAttendeesKey(KEYS.PARTY)}>
+            <Event
+              onClick={setupSetAttendeesKey(KEYS.PARTY)}
+              onKeyDown={setupSetAttendeesKeyPress(KEYS.PARTY)}
+              role="button"
+              tabIndex={0}
+            >
               Party:&nbsp;{party}
             </Event>
-            <Event onClick={setupSetAttendeesKey(KEYS.BRUNCH)}>
+            <Event
+              onClick={setupSetAttendeesKey(KEYS.BRUNCH)}
+              onKeyDown={setupSetAttendeesKeyPress(KEYS.BRUNCH)}
+              role="button"
+              tabIndex={0}
+            >
               Brunch:&nbsp;{brunch}
             </Event>
           </EventsContainer>

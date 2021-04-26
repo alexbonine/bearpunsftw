@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import { getRsvp } from "utils/rsvp";
 import Input from "components/Input";
@@ -14,64 +14,85 @@ const RsvpFormLogin = ({ setErrorCode, setLoading, setNextState, setRsvp }) => {
   const firstRef = useRef();
   const lastRef = useRef();
 
-  const setErrorStatus = (code) => {
-    const nextErrorCount = errorCount + 1;
-    setErrorCount(nextErrorCount);
-    setDisableButton(false);
+  const setErrorStatus = useCallback(
+    (code) => {
+      const nextErrorCount = errorCount + 1;
+      setErrorCount(nextErrorCount);
+      setDisableButton(false);
 
-    if (nextErrorCount >= ERROR_THRESHOLD) {
-      setErrorCode(code);
-    }
-  };
+      if (nextErrorCount >= ERROR_THRESHOLD) {
+        setErrorCode(code);
+      }
+    },
+    [errorCount, setDisableButton, setErrorCode, setErrorCount]
+  );
 
-  const onGet = async (event) => {
-    event.preventDefault();
-    event.stopPropagation();
+  const onGet = useCallback(
+    async (event) => {
+      event.preventDefault();
+      event.stopPropagation();
 
-    const first = firstRef.current.value.trim();
-    const last = lastRef.current.value.trim();
+      const first = firstRef.current.value.trim();
+      const last = lastRef.current.value.trim();
 
-    if (!first || !last) {
-      setError("C'mon, do better!");
-      return;
-    }
+      if (!first || !last) {
+        setError("C'mon, do better!");
+        return;
+      }
 
-    setLoading(true);
-    setDisableButton(true);
-    setError("");
-    setErrorCode("");
+      setLoading(true);
+      setDisableButton(true);
+      setError("");
+      setErrorCode("");
 
-    const rsvpObj = await getRsvp(first, last);
+      const rsvpObj = await getRsvp(first, last);
 
-    if (!rsvpObj) {
-      setErrorStatus("bear-1");
-      setLoading(false);
-      return;
-    } else if (rsvpObj.errorCode) {
-      setErrorStatus(rsvpObj.errorCode);
-      setLoading(false);
-      return;
-    } else if (rsvpObj.error) {
-      setErrorStatus("bear-2");
-      setLoading(false);
-      return;
-    }
+      if (!rsvpObj) {
+        setErrorStatus("bear-1");
+        setLoading(false);
+        return;
+      } else if (rsvpObj.errorCode) {
+        setErrorStatus(rsvpObj.errorCode);
+        setLoading(false);
+        return;
+      } else if (rsvpObj.error) {
+        setErrorStatus("bear-2");
+        setLoading(false);
+        return;
+      }
 
-    setRsvp(rsvpObj);
-    setNextState();
-  };
+      setRsvp(rsvpObj);
+      setNextState();
+    },
+    [
+      firstRef,
+      lastRef,
+      setDisableButton,
+      setError,
+      setErrorCode,
+      setErrorStatus,
+      setLoading,
+      setRsvp,
+      setNextState,
+    ]
+  );
 
-  const onKeyPress = (event) => {
-    if (event.key === "Enter") {
-      onGet(event);
-    }
-  };
+  const onKeyPress = useCallback(
+    (event) => {
+      if (event.key === "Enter") {
+        onGet(event);
+      }
+    },
+    [onGet]
+  );
 
   useEffect(() => {
+    console.log("run");
+    window.removeEventListener("keydown", onKeyPress);
     window.addEventListener("keydown", onKeyPress);
 
     return () => window.removeEventListener("keydown", onKeyPress);
-  }, []);
+  }, [onKeyPress]);
 
   return (
     <>

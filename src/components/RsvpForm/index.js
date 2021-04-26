@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import FrankApe from "images/frank-ape.jpg";
 import LoadingIndicator from "components/LoadingIndicator";
 import Login from "./Login";
@@ -77,10 +77,13 @@ const RsvpForm = () => {
   const [loading, setLoading] = useState(false);
   const titleRef = useRef();
 
-  const setNextState = (value) => {
-    setState(value);
-    setLoading(false);
-  };
+  const setNextState = useCallback(
+    (value) => {
+      setState(value);
+      setLoading(false);
+    },
+    [setState, setLoading]
+  );
 
   return (
     <Container>
