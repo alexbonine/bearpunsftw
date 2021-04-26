@@ -158,6 +158,7 @@ const setupFaunaDbSucksPost = (client) => async ({ id, ...data } = {}) => {
 
     return { ...result.data, id: result.ref.id };
   } catch (e) {
+    console.log(e);
     return null;
   }
 };
@@ -180,6 +181,7 @@ const setupFaunaDbSucksPut = (client) => async (id, data) => {
 
     return { ...result.data, id: result.ref.id };
   } catch (e) {
+    console.log(e);
     return null;
   }
 };
@@ -226,6 +228,11 @@ const run = async () => {
   });
 
   const promises = [];
+  let found = 0;
+  let missed = 0;
+  const missing = [];
+
+  console.log(`${WRITING ? "Writing" : "Not writing"} data`);
 
   for (let i = 0; i < data.length; i += 1) {
     const entry = data[i];
@@ -236,8 +243,13 @@ const run = async () => {
     );
 
     if (previousRecord) {
+      found += entry.count;
       await faunaDbSucksPut(previousRecord.id, entry);
     } else {
+      missed += entry.count;
+      missing.push(
+        `${entry[DATABASE_PROPERTIES.FIRST]} ${entry[DATABASE_PROPERTIES.LAST]}`
+      );
       await faunaDbSucksPost(entry);
     }
 
@@ -246,7 +258,8 @@ const run = async () => {
 
   await Promise.all(promises);
 
-  console.log("Done!");
+  console.log("Done!", found, missed);
+  console.log(missing.join("\n"));
 };
 
 try {

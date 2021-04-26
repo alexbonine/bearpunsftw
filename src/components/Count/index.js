@@ -32,10 +32,17 @@ const parseRows = (rows) =>
       }
 
       if (row[KEYS.ATTENDING]) {
-        accum.attending += 1;
+        accum.attending += RESPONSE_KEYS_VALUES.some(
+          (responseKey) => row[responseKey] === row.count
+        )
+          ? row.count
+          : 1;
         accum.attendees.attending.push(getAttendee(row, row.count));
+      } else if (!row[KEYS.RESPONDED]) {
+        accum.unknown += row.count;
+        accum.attendees.unknown.push(getAttendee(row, row.count));
       } else {
-        accum.notAttending += 1;
+        accum.notAttending += row.count;
         accum.attendees.notAttending.push(getAttendee(row, row.count));
       }
 
@@ -55,6 +62,7 @@ const parseRows = (rows) =>
       notResponded: 0,
       attending: 0,
       notAttending: 0,
+      unknown: 0,
       [KEYS.FAMILY_PIZZA]: 0,
       [KEYS.FRIENDS_PIZZA]: 0,
       [KEYS.WELCOME_DINNER]: 0,
@@ -74,6 +82,7 @@ const parseRows = (rows) =>
         notResponded: [],
         attending: [],
         notAttending: [],
+        unknown: [],
       },
     }
   );
@@ -122,6 +131,7 @@ const Count = () => {
     notResponded,
     attending,
     notAttending,
+    unknown,
     [KEYS.FAMILY_PIZZA]: familyPizza,
     [KEYS.FRIENDS_PIZZA]: friendsPizza,
     [KEYS.WELCOME_DINNER]: welcomeDinner,
@@ -131,6 +141,10 @@ const Count = () => {
     [KEYS.BRUNCH]: brunch,
     attendees,
   } = counts;
+
+  let attendeesTitle = attendeesKey.replace(/([A-Z])/g, " $1");
+  attendeesTitle =
+    attendeesTitle.charAt(0).toUpperCase() + attendeesTitle.slice(1);
 
   return (
     <Container>
@@ -158,6 +172,16 @@ const Count = () => {
             >
               Not Attending:&nbsp;
               {notAttending}
+            </span>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span
+              onClick={setupSetAttendeesKey("unknown")}
+              onKeyDown={setupSetAttendeesKeyPress("unknown")}
+              role="button"
+              tabIndex={0}
+            >
+              Unknown:&nbsp;
+              {unknown}
             </span>
           </Total>
           <Total>
@@ -240,7 +264,7 @@ const Count = () => {
               Brunch:&nbsp;{brunch}
             </Event>
           </EventsContainer>
-          <AttendeesTitle>Attendees: {attendeesKey}</AttendeesTitle>
+          <AttendeesTitle>Attendees: {attendeesTitle}</AttendeesTitle>
           <AttendeesList>
             {(attendees[attendeesKey] || []).map((entry) => (
               <Attendee key={entry}>{entry}</Attendee>
