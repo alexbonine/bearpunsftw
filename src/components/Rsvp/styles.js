@@ -1,6 +1,8 @@
 import styled from "@emotion/styled";
+import { Link } from "gatsby";
 import colors from "styles/colors";
 import mq from "styles/mq";
+import pseudo from "styles/pseudo";
 import AppleIconBase from "images/nyc-icon.svg";
 
 export const Container = styled.div`
@@ -34,17 +36,31 @@ export const WordsContainer = styled.div`
   justify-content: space-around;
   max-width: 350px;
   text-align: center;
-  min-height: 80vh;
   ${mq({
     padding: ["60px", "60px", "0 0 0 80px", "0 0 0 80px"],
     maxWidth: ["none", "none", "350px", "350px"],
+    height: ["80vh", "80vh", "500px", "500px"],
+    minHeight: ["80vh", "80vh", "500px", "500px"],
   })}
 `;
 
 export const Text = styled.p``;
 
-export const ATag = styled.a`
-  color: ${colors.red};
+export const ATag = styled(Link)`
+  text-transform: uppercase;
+  padding: 8px 50px;
+  font-size: 16px;
+  margin-top: 8px;
+
+  ${pseudo({
+    backgroundColor: [
+      colors.red,
+      colors.redDark,
+      colors.redDark,
+      colors.redDark,
+    ],
+    color: [colors.white, colors.white, colors.white, colors.white],
+  })}
 `;
 
 export const AppleIcon = styled(AppleIconBase)`

@@ -104,7 +104,7 @@ const RsvpFormLogin = ({ setErrorCode, setLoading, setNextState, setRsvp }) => {
       {errorCount > 0 && errorCount < ERROR_THRESHOLD && (
         <Error>
           Looks like we're having trouble finding you in the system. Please try
-          both youself or an expected parter. Also please try any informal
+          both yourself or an expected parter. Also please try any informal
           versions of your name (i.e., Alex instead of Alexander).
         </Error>
       )}

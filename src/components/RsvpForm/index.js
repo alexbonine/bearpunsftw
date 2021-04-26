@@ -115,9 +115,9 @@ const RsvpForm = () => {
                   rel="noreferrer"
                   href={`mailto:alexandshawna91821@gmail.com?subject=Issue RSVPing&body=Error code: ${errorCode}`}
                 >
-                  emailing us
+                  emailing us at alexandshawna91821@gmail.com
                 </ATag>
-                &nbsp; with the error:&nbsp;{errorCode}.
+                &nbsp;with the error:&nbsp;{errorCode}.
               </ErrorEmail>
             </ErrorContainer>
           )}

@@ -60,27 +60,27 @@ const Header = () => {
       </Home>
       <NavList isMenuOpen={isMenuOpen}>
         <NavItem isMenuOpen={isMenuOpen}>
-          <ATag href="#ourstory" onClick={closeMenu}>
+          <ATag href="/#ourstory" onClick={closeMenu}>
             Our Story
           </ATag>
         </NavItem>
         <NavItem isMenuOpen={isMenuOpen}>
-          <ATag href="#schedule" onClick={closeMenu}>
+          <ATag href="/#schedule" onClick={closeMenu}>
             The Weekend
           </ATag>
         </NavItem>
         <NavItem isMenuOpen={isMenuOpen}>
-          <ATag href="#accommodations" onClick={closeMenu}>
+          <ATag href="/#accommodations" onClick={closeMenu}>
             Accommodations
           </ATag>
         </NavItem>
         <NavItem isMenuOpen={isMenuOpen}>
-          <ATag href="#thingstodo" onClick={closeMenu}>
+          <ATag href="/#thingstodo" onClick={closeMenu}>
             Things To Do
           </ATag>
         </NavItem>
         <NavItem isMenuOpen={isMenuOpen}>
-          <ATag href="#rsvp" onClick={closeMenu}>
+          <ATag href="/#rsvp" onClick={closeMenu}>
             RSVP
           </ATag>
         </NavItem>
