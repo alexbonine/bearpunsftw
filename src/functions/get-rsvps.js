@@ -36,7 +36,7 @@ const respond = (statusCode, body) => ({
 const faunaDbSucks = async () => {
   try {
     const result = await client.query(
-      q.Paginate(q.Match(q.Index("rows")), { size: 200 })
+      q.Paginate(q.Match(q.Index("guests_rows")), { size: 200 })
     );
 
     return result.data.map((resp) =>
