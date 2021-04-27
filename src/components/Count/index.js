@@ -56,7 +56,7 @@ const parseRows = (rows) =>
         const eventCount = row[responseKey];
 
         if (eventCount) {
-          accum[responseKey] = eventCount;
+          accum[responseKey] += eventCount;
           accum.attendees[responseKey].push(getAttendee(row, eventCount));
         }
       });
