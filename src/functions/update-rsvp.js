@@ -179,11 +179,18 @@ const getUserEmailAttending = (current) => {
     to.push((byUser === partnerFirst && partnerEmail) || email);
   }
 
-  const welcome = `We can't wait to see you, ${names}!\n\nBelow is your response for your peace of mind. Please note our capacity is limited. You can return to https://bearpunsftw.com/rsvp to update your RSVP until July 18th.\n\nSincerely,\nShawna & Alex\n\n`;
+  const welcomeText = `We can't wait to see you, ${names}!\n\nPlease get vaccinated and keep up with the latest NYC travel guidelines: https://www.nycgo.com/coronavirus-information-and-resources-for-travelers.\n\nBelow is your response for your peace of mind. Please note our capacity is limited. You can revisit https://bearpunsftw.com/rsvp to update your RSVP until July 18th.\n\nSincerely,\nShawna & Alex\n\n`;
+  const welcomeHtml = `<p>We can't wait to see you, ${names}!</p><p>Please get vaccinated and keep up with the latest <a href="https://www.nycgo.com/coronavirus-information-and-resources-for-travelers">NYC travel guidelines</a>.</p><p>Below is your response for your peace of mind. Please note our capacity is limited. You can revisit <a href="https://bearpunsftw.com/rsvp">https://bearpunsftw.com/rsvp</a> to update your RSVP until July 18th.</p><p>Sincerely,</p><p>Shawna & Alex</p>`;
+  const events = getEnglishEventsUser(current);
+  const eventsText = events.join("\n");
+  const eventsHtml = `<ul style="margin-block: 0; padding: 0"><ol style="padding: 0">${events.join(
+    `</ol><ol style="padding: 0">`
+  )}</ol></ul>`;
 
   return {
     subject: "Carney-Bonine RSVP!!",
-    text: `${welcome}${getEnglishEventsUser(current).join("\n")}`,
+    text: `${welcomeText}${eventsText}`,
+    html: `${welcomeHtml}${eventsHtml}`,
     to,
   };
 };

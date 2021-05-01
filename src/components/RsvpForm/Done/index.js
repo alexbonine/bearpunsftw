@@ -45,9 +45,9 @@ const RsvpFormDone = ({ notAttending, rsvp, titleRef }) => {
         <Gif src={ShawnaDancing}></Gif>
       </GifContainer>
       <Text>
-        We have sent a copy of your response to {emails.join(" & ")} (might have
-        gone to Spam). You can return to the RSVP page to update your response
-        until July 18th. See you soon!
+        Let's all get vax'd and party! We've sent a copy of your response to{" "}
+        {emails.join(" & ")} (might have gone to Spam). You can return to the
+        RSVP page to update your response until July 18th. See you soon!
       </Text>
     </>
   );
