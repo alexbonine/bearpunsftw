@@ -19,9 +19,6 @@ const Rsvp = () => {
         <WordsContainer>
           <h1>RSVP</h1>
           <Text>
-            Our invitations aren't out yet but our RSVP is in open beta!
-          </Text>
-          <Text>
             Click below to let us know if you're going to be celebrating with us
             in September.
           </Text>
