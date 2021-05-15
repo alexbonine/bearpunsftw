@@ -27,8 +27,6 @@ const parseRows = (rows) =>
       if (row[KEYS.RESPONDED]) {
         accum.responded += 1;
         accum.attendees.responded.push(getAttendee(row, 1));
-        accum.viewed += 1;
-        accum.attendees.viewed.push(getAttendee(row, 1));
       } else if (row[KEYS.RESPONDED] === false) {
         accum.viewed += 1;
         accum.attendees.viewed.push(getAttendee(row, 1));
