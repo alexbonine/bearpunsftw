@@ -21,7 +21,9 @@ const RsvpFormDone = ({ notAttending, rsvp, titleRef }) => {
     RESPONSE_KEYS_VALUES.some((responseKey) => rsvp[responseKey] === count)
   ) {
     emails.push(email);
-    emails.push(partnerEmail);
+    if (partnerEmail) {
+      emails.push(partnerEmail);
+    }
   } else {
     emails.push((byUser === partnerFirst && partnerEmail) || email);
   }

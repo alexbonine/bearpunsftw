@@ -195,7 +195,7 @@ const getUserEmailAttending = (current) => {
   };
 };
 
-const getUserEmailNotAttending = (current) => {
+const getUserEmailNotAttending = (rsvp) => {
   const text = `We're sorry we won't be celebrating with you. Hopefully we'll still be able to see you real soon.\n\nSincerely,\nShawna & Alex\n\n`;
 
   return {
