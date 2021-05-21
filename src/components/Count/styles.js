@@ -22,22 +22,29 @@ export const Counts = styled.div`
 
 export const Title = styled.h1``;
 
-export const Total = styled.p`
+export const TotalContainer = styled.div`
+  display: flex;
+`;
+
+export const Total = styled.div`
   cursor: pointer;
 `;
 
-export const TotalItem = styled.span`
+export const TotalItem = styled("div", {
+  shouldForwardProp: (prop) => !["color"].includes(prop),
+})`
+  width: 160px;
   margin-right: 10px;
 
   &:last-of-type {
     margin-right: 0;
   }
+
+  color: ${({ color }) => color || colors.black};
 `;
 
-export const EventsContainer = styled.div``;
-
-export const Event = styled.p`
-  cursor: pointer;
+export const EventsContainer = styled.div`
+  min-width: 320px;
 `;
 
 export const AttendeesTitle = styled.h3`

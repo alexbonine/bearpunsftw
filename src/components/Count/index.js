@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import LoadingIndicator from "components/LoadingIndicator";
 import { getRsvps } from "utils/rsvp";
-import { KEYS, RESPONSE_KEYS_VALUES } from "utils/constants";
+import { ATTENDEE_KEYS, ATTENDEE_LIST_KEYS, KEYS } from "utils/constants";
+import { parseRows } from "./helpers";
+import CountEvent from "components/CountEvent";
+import colors from "styles/colors";
 import {
   Attendee,
   AttendeesList,
@@ -9,94 +12,20 @@ import {
   Container,
   Counts,
   Error,
-  Event,
   EventsContainer,
   Title,
   Total,
+  TotalContainer,
   TotalItem,
 } from "./styles";
-
-const getAttendee = ({ first, last, partnerFirst, partnerLast }, eventCount) =>
-  `${first} ${last}${
-    partnerFirst ? `/${partnerFirst} ${partnerLast}` : ""
-  } - ${eventCount}`;
-
-const parseRows = (rows) =>
-  rows.reduce(
-    (accum, row) => {
-      if (row[KEYS.RESPONDED]) {
-        accum.responded += 1;
-        accum.attendees.responded.push(getAttendee(row, 1));
-      } else if (row[KEYS.RESPONDED] === false) {
-        accum.viewed += 1;
-        accum.attendees.viewed.push(getAttendee(row, 1));
-      } else {
-        accum.notResponded += 1;
-        accum.attendees.notResponded.push(getAttendee(row, row.count));
-      }
-
-      if (row[KEYS.ATTENDING]) {
-        accum.attending += RESPONSE_KEYS_VALUES.some(
-          (responseKey) => row[responseKey] === row.count
-        )
-          ? row.count
-          : 1;
-        accum.attendees.attending.push(getAttendee(row, row.count));
-      } else if (!row[KEYS.RESPONDED]) {
-        accum.unknown += row.count;
-        accum.attendees.unknown.push(getAttendee(row, row.count));
-      } else {
-        accum.notAttending += row.count;
-        accum.attendees.notAttending.push(getAttendee(row, row.count));
-      }
-
-      RESPONSE_KEYS_VALUES.forEach((responseKey) => {
-        const eventCount = row[responseKey];
-
-        if (eventCount) {
-          accum[responseKey] += eventCount;
-          accum.attendees[responseKey].push(getAttendee(row, eventCount));
-        }
-      });
-
-      return accum;
-    },
-    {
-      responded: 0,
-      notResponded: 0,
-      attending: 0,
-      notAttending: 0,
-      unknown: 0,
-      viewed: 0,
-      [KEYS.FAMILY_PIZZA]: 0,
-      [KEYS.FRIENDS_PIZZA]: 0,
-      [KEYS.WELCOME_DINNER]: 0,
-      [KEYS.WELCOME_DRINKS]: 0,
-      [KEYS.CEREMONY]: 0,
-      [KEYS.PARTY]: 0,
-      [KEYS.BRUNCH]: 0,
-      attendees: {
-        [KEYS.FAMILY_PIZZA]: [],
-        [KEYS.FRIENDS_PIZZA]: [],
-        [KEYS.WELCOME_DINNER]: [],
-        [KEYS.WELCOME_DRINKS]: [],
-        [KEYS.CEREMONY]: [],
-        [KEYS.PARTY]: [],
-        [KEYS.BRUNCH]: [],
-        responded: [],
-        notResponded: [],
-        attending: [],
-        notAttending: [],
-        unknown: [],
-        viewed: [],
-      },
-    }
-  );
 
 const Count = () => {
   const [loading, setLoading] = useState(false);
   const [counts, setCounts] = useState({});
-  const [attendeesKey, setAttendeesKey] = useState("attending");
+  const [attendeesKey, setAttendeesKey] = useState(ATTENDEE_KEYS.ATTENDANCE);
+  const [attendeesListKey, setAttendeesListKey] = useState(
+    ATTENDEE_LIST_KEYS.YES
+  );
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -112,8 +41,9 @@ const Count = () => {
           debugger;
           throw Error("Missing counts");
         }
-
-        setCounts(parseRows(countsObj));
+        const a = parseRows(countsObj);
+        // debugger;
+        setCounts(a);
       } catch (e) {
         setError("Go away");
       }
@@ -124,21 +54,9 @@ const Count = () => {
     fetchData();
   }, []);
 
-  const setupSetAttendeesKey = (key) => () => setAttendeesKey(key);
-
-  const setupSetAttendeesKeyPress = (key) => (event) => {
-    if (event.key === "Enter") {
-      setAttendeesKey(key);
-    }
-  };
-
   const {
-    responded,
-    notResponded,
-    attending,
-    notAttending,
-    unknown,
-    viewed,
+    [ATTENDEE_KEYS.ATTENDANCE]: attendance,
+    [ATTENDEE_KEYS.RESPONSE_STATUS]: status,
     [KEYS.FAMILY_PIZZA]: familyPizza,
     [KEYS.FRIENDS_PIZZA]: friendsPizza,
     [KEYS.WELCOME_DINNER]: welcomeDinner,
@@ -146,140 +64,177 @@ const Count = () => {
     [KEYS.CEREMONY]: ceremony,
     [KEYS.PARTY]: party,
     [KEYS.BRUNCH]: brunch,
-    attendees,
   } = counts;
 
   let attendeesTitle = attendeesKey.replace(/([A-Z])/g, " $1");
   attendeesTitle =
     attendeesTitle.charAt(0).toUpperCase() + attendeesTitle.slice(1);
 
+  const onClick = (key, listKey) => {
+    setAttendeesKey(key);
+    setAttendeesListKey(listKey);
+  };
+
+  const setupOnKeyPress = (key, listKey) => (event) => {
+    if (event.key === "Enter") {
+      onClick(key, listKey);
+    }
+  };
+
+  const setupOnClick = (key, listKey) => () => {
+    onClick(key, listKey);
+  };
+
   return (
     <Container>
       {loading && <LoadingIndicator />}
       {error && <Error>{error}</Error>}
-      {attendees && (
+      {attendance && (
         <Counts>
           <Title>RSVP Counts</Title>
-          <Total>
-            <TotalItem
-              onClick={setupSetAttendeesKey("attending")}
-              onKeyDown={setupSetAttendeesKeyPress("attending")}
-              role="button"
-              tabIndex={0}
-            >
-              Attending:&nbsp;
-              {attending}
-            </TotalItem>
-            <TotalItem
-              onClick={setupSetAttendeesKey("notAttending")}
-              onKeyDown={setupSetAttendeesKeyPress("notAttending")}
-              role="button"
-              tabIndex={0}
-            >
-              Not Attending:&nbsp;
-              {notAttending}
-            </TotalItem>
-            <TotalItem
-              onClick={setupSetAttendeesKey("unknown")}
-              onKeyDown={setupSetAttendeesKeyPress("unknown")}
-              role="button"
-              tabIndex={0}
-            >
-              Unknown:&nbsp;
-              {unknown}
-            </TotalItem>
-          </Total>
-          <Total>
-            <TotalItem
-              onClick={setupSetAttendeesKey("responded")}
-              onKeyDown={setupSetAttendeesKeyPress("responded")}
-              role="button"
-              tabIndex={0}
-            >
-              Responded:&nbsp;
-              {responded}
-            </TotalItem>
-            <TotalItem
-              onClick={setupSetAttendeesKey("viewed")}
-              onKeyDown={setupSetAttendeesKeyPress("viewed")}
-              role="button"
-              tabIndex={0}
-            >
-              Viewed:&nbsp;
-              {viewed}
-            </TotalItem>
-            <TotalItem
-              onClick={setupSetAttendeesKey("notResponded")}
-              onKeyDown={setupSetAttendeesKeyPress("notResponded")}
-              role="button"
-              tabIndex={0}
-            >
-              Not Responded:&nbsp;
-              {notResponded}
-            </TotalItem>
-          </Total>
+          <TotalContainer>
+            <Total>
+              <TotalItem
+                color={colors.green}
+                onClick={setupOnClick(
+                  ATTENDEE_KEYS.ATTENDANCE,
+                  ATTENDEE_LIST_KEYS.YES
+                )}
+                onKeyDown={setupOnKeyPress(
+                  ATTENDEE_KEYS.ATTENDANCE,
+                  ATTENDEE_LIST_KEYS.YES
+                )}
+                role="button"
+                tabIndex={0}
+              >
+                Attending:&nbsp;
+                {attendance.counts.yes}
+              </TotalItem>
+              <TotalItem
+                color={colors.red}
+                onClick={setupOnClick(
+                  ATTENDEE_KEYS.ATTENDANCE,
+                  ATTENDEE_LIST_KEYS.NO
+                )}
+                onKeyDown={setupOnKeyPress(
+                  ATTENDEE_KEYS.ATTENDANCE,
+                  ATTENDEE_LIST_KEYS.NO
+                )}
+                role="button"
+                tabIndex={0}
+              >
+                Not Attending:&nbsp;
+                {attendance.counts.no}
+              </TotalItem>
+              <TotalItem
+                color={colors.yellow}
+                onClick={setupOnClick(
+                  ATTENDEE_KEYS.ATTENDANCE,
+                  ATTENDEE_LIST_KEYS.INVITED
+                )}
+                onKeyDown={setupOnKeyPress(
+                  ATTENDEE_KEYS.ATTENDANCE,
+                  ATTENDEE_LIST_KEYS.INVITED
+                )}
+                role="button"
+                tabIndex={0}
+              >
+                Unknown:&nbsp;
+                {attendance.counts.invited}
+              </TotalItem>
+            </Total>
+            <Total>
+              <TotalItem
+                color={colors.green}
+                onClick={setupOnClick(
+                  ATTENDEE_KEYS.RESPONSE_STATUS,
+                  ATTENDEE_LIST_KEYS.YES
+                )}
+                onKeyDown={setupOnKeyPress(
+                  ATTENDEE_KEYS.RESPONSE_STATUS,
+                  ATTENDEE_LIST_KEYS.YES
+                )}
+                role="button"
+                tabIndex={0}
+              >
+                Responded:&nbsp;
+                {status.counts.yes}
+              </TotalItem>
+              <TotalItem
+                color={colors.red}
+                onClick={setupOnClick(
+                  ATTENDEE_KEYS.RESPONSE_STATUS,
+                  ATTENDEE_LIST_KEYS.NO
+                )}
+                onKeyDown={setupOnKeyPress(
+                  ATTENDEE_KEYS.RESPONSE_STATUS,
+                  ATTENDEE_LIST_KEYS.NO
+                )}
+                role="button"
+                tabIndex={0}
+              >
+                Viewed:&nbsp;
+                {status.counts.no}
+              </TotalItem>
+              <TotalItem
+                color={colors.yellow}
+                onClick={setupOnClick(
+                  ATTENDEE_KEYS.RESPONSE_STATUS,
+                  ATTENDEE_LIST_KEYS.INVITED
+                )}
+                onKeyDown={setupOnKeyPress(
+                  ATTENDEE_KEYS.RESPONSE_STATUS,
+                  ATTENDEE_LIST_KEYS.INVITED
+                )}
+                role="button"
+                tabIndex={0}
+              >
+                Not Responded:&nbsp;
+                {status.counts.invited}
+              </TotalItem>
+            </Total>
+          </TotalContainer>
           <br />
           <EventsContainer>
-            <Event
-              onClick={setupSetAttendeesKey(KEYS.FAMILY_PIZZA)}
-              onKeyDown={setupSetAttendeesKeyPress(KEYS.FAMILY_PIZZA)}
-              role="button"
-              tabIndex={0}
-            >
-              Family Pizza:&nbsp;{familyPizza}
-            </Event>
-            <Event
-              onClick={setupSetAttendeesKey(KEYS.FRIENDS_PIZZA)}
-              onKeyDown={setupSetAttendeesKeyPress(KEYS.FRIENDS_PIZZA)}
-              role="button"
-              tabIndex={0}
-            >
-              Friends Pizza:&nbsp;{friendsPizza}
-            </Event>
-            <Event
-              onClick={setupSetAttendeesKey(KEYS.WELCOME_DINNER)}
-              onKeyDown={setupSetAttendeesKeyPress(KEYS.WELCOME_DINNER)}
-              role="button"
-              tabIndex={0}
-            >
-              Welcome Dinner:&nbsp;{welcomeDinner}
-            </Event>
-            <Event
-              onClick={setupSetAttendeesKey(KEYS.WELCOME_DRINKS)}
-              onKeyDown={setupSetAttendeesKeyPress(KEYS.WELCOME_DRINKS)}
-              role="button"
-              tabIndex={0}
-            >
-              Welcome Drinks:&nbsp;{welcomeDrinks}
-            </Event>
-            <Event
-              onClick={setupSetAttendeesKey(KEYS.CEREMONY)}
-              onKeyDown={setupSetAttendeesKeyPress(KEYS.CEREMONY)}
-              role="button"
-              tabIndex={0}
-            >
-              Ceremony:&nbsp;{ceremony}
-            </Event>
-            <Event
-              onClick={setupSetAttendeesKey(KEYS.PARTY)}
-              onKeyDown={setupSetAttendeesKeyPress(KEYS.PARTY)}
-              role="button"
-              tabIndex={0}
-            >
-              Party:&nbsp;{party}
-            </Event>
-            <Event
-              onClick={setupSetAttendeesKey(KEYS.BRUNCH)}
-              onKeyDown={setupSetAttendeesKeyPress(KEYS.BRUNCH)}
-              role="button"
-              tabIndex={0}
-            >
-              Brunch:&nbsp;{brunch}
-            </Event>
+            <CountEvent
+              counts={familyPizza.counts}
+              countKey={KEYS.FAMILY_PIZZA}
+              onClick={onClick}
+            />
+            <CountEvent
+              counts={friendsPizza.counts}
+              countKey={KEYS.FRIENDS_PIZZA}
+              onClick={onClick}
+            />
+            <CountEvent
+              counts={welcomeDinner.counts}
+              countKey={KEYS.WELCOME_DINNER}
+              onClick={onClick}
+            />
+            <CountEvent
+              counts={welcomeDrinks.counts}
+              countKey={KEYS.WELCOME_DRINKS}
+              onClick={onClick}
+            />
+            <CountEvent
+              counts={ceremony.counts}
+              countKey={KEYS.CEREMONY}
+              onClick={onClick}
+            />
+            <CountEvent
+              counts={party.counts}
+              countKey={KEYS.PARTY}
+              onClick={onClick}
+            />
+            <CountEvent
+              counts={brunch.counts}
+              countKey={KEYS.BRUNCH}
+              onClick={onClick}
+            />
           </EventsContainer>
           <AttendeesTitle>Attendees: {attendeesTitle}</AttendeesTitle>
           <AttendeesList>
-            {(attendees[attendeesKey] || []).map((entry) => (
+            {counts[attendeesKey].lists[attendeesListKey].map((entry) => (
               <Attendee key={entry}>{entry}</Attendee>
             ))}
           </AttendeesList>

@@ -134,7 +134,20 @@ const EVENTS = {
   WELCOME_DRINKS,
 };
 
+const ATTENDEE_KEYS = {
+  ATTENDANCE: "attendance",
+  RESPONSE_STATUS: "responseStatus",
+};
+
+const ATTENDEE_LIST_KEYS = {
+  INVITED: "invited",
+  NO: "no",
+  YES: "yes",
+};
+
 module.exports = {
+  ATTENDEE_KEYS,
+  ATTENDEE_LIST_KEYS,
   EVENTS,
   KEYS_GET,
   KEYS_VALUES,

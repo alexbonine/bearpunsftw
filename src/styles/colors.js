@@ -15,4 +15,5 @@ export default {
   red: "#c00d1e",
   redDark: "#a70005",
   white: "#ffffff",
+  yellow: "#c5ba25",
 };
