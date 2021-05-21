@@ -66,7 +66,7 @@ const Count = () => {
     [KEYS.BRUNCH]: brunch,
   } = counts;
 
-  let attendeesTitle = attendeesKey.replace(/([A-Z])/g, " $1");
+  let attendeesTitle = attendeesListKey.replace(/([A-Z])/g, " $1");
   attendeesTitle =
     attendeesTitle.charAt(0).toUpperCase() + attendeesTitle.slice(1);
 
