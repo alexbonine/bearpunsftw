@@ -41,9 +41,8 @@ const Count = () => {
           debugger;
           throw Error("Missing counts");
         }
-        const a = parseRows(countsObj);
-        // debugger;
-        setCounts(a);
+
+        setCounts(parseRows(countsObj));
       } catch (e) {
         setError("Go away");
       }

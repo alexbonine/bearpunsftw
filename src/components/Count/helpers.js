@@ -73,17 +73,29 @@ export const parseRows = (rows) =>
       }
 
       if (row[KEYS.ATTENDING]) {
+        const count = RESPONSE_KEYS_VALUES.some(
+          (responseKey) => row[responseKey] === row.count
+        )
+          ? row.count
+          : 1;
+
         setAccum(
           accum,
           row,
           ATTENDEE_KEYS.ATTENDANCE,
           ATTENDEE_LIST_KEYS.YES,
-          RESPONSE_KEYS_VALUES.some(
-            (responseKey) => row[responseKey] === row.count
-          )
-            ? row.count
-            : 1
+          count
         );
+
+        if (count !== row.count) {
+          setAccum(
+            accum,
+            row,
+            ATTENDEE_KEYS.ATTENDANCE,
+            ATTENDEE_LIST_KEYS.NO,
+            row.count - count
+          );
+        }
       } else if (!row[KEYS.RESPONDED]) {
         setAccum(
           accum,
