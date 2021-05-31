@@ -49,6 +49,9 @@ const setAccum = (accum, row, key, set, num = 1) => {
 export const parseRows = (rows) =>
   rows.reduce(
     (accum, row) => {
+      accum.totalResponses += 1;
+      accum.totalInvited += row.count;
+
       if (row[KEYS.RESPONDED]) {
         setAccum(
           accum,
@@ -165,5 +168,14 @@ export const parseRows = (rows) =>
       [KEYS.CEREMONY]: getInit(),
       [KEYS.PARTY]: getInit(),
       [KEYS.BRUNCH]: getInit(),
+      totalResponses: 0,
+      totalInvited: 0,
     }
   );
+
+export const round = (count, total) => Math.round((count * 100) / total);
+
+export const formatCounts = (count, total, extraTotal) =>
+  `${count} (${round(count, total)}%${
+    extraTotal ? `/${round(count, extraTotal)}%` : ""
+  })`;

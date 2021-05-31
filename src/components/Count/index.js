@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import LoadingIndicator from "components/LoadingIndicator";
 import { getRsvps } from "utils/rsvp";
 import { ATTENDEE_KEYS, ATTENDEE_LIST_KEYS, KEYS } from "utils/constants";
-import { parseRows } from "./helpers";
+import { formatCounts, parseRows } from "./helpers";
 import CountEvent from "components/CountEvent";
 import colors from "styles/colors";
 import {
@@ -63,6 +63,8 @@ const Count = () => {
     [KEYS.CEREMONY]: ceremony,
     [KEYS.PARTY]: party,
     [KEYS.BRUNCH]: brunch,
+    totalInvited,
+    totalResponses,
   } = counts;
 
   let attendeesTitle = attendeesListKey.replace(/([A-Z])/g, " $1");
@@ -107,7 +109,11 @@ const Count = () => {
                 tabIndex={0}
               >
                 Attending:&nbsp;
-                {attendance.counts.yes}
+                {formatCounts(
+                  attendance.counts.yes,
+                  totalInvited,
+                  attendance.counts.yes + attendance.counts.no
+                )}
               </TotalItem>
               <TotalItem
                 color={colors.red}
@@ -123,7 +129,7 @@ const Count = () => {
                 tabIndex={0}
               >
                 Not Attending:&nbsp;
-                {attendance.counts.no}
+                {formatCounts(attendance.counts.no, totalInvited)}
               </TotalItem>
               <TotalItem
                 color={colors.yellow}
@@ -139,7 +145,7 @@ const Count = () => {
                 tabIndex={0}
               >
                 Unknown:&nbsp;
-                {attendance.counts.invited}
+                {formatCounts(attendance.counts.invited, totalInvited)}
               </TotalItem>
             </Total>
             <Total>
@@ -157,7 +163,7 @@ const Count = () => {
                 tabIndex={0}
               >
                 Responded:&nbsp;
-                {status.counts.yes}
+                {formatCounts(status.counts.yes, totalResponses)}
               </TotalItem>
               <TotalItem
                 color={colors.red}
@@ -173,7 +179,7 @@ const Count = () => {
                 tabIndex={0}
               >
                 Viewed:&nbsp;
-                {status.counts.no}
+                {formatCounts(status.counts.no, totalResponses)}
               </TotalItem>
               <TotalItem
                 color={colors.yellow}
@@ -189,7 +195,7 @@ const Count = () => {
                 tabIndex={0}
               >
                 Not Responded:&nbsp;
-                {status.counts.invited}
+                {formatCounts(status.counts.invited, totalResponses)}
               </TotalItem>
             </Total>
           </TotalContainer>

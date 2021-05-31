@@ -33,7 +33,7 @@ export const Total = styled.div`
 export const TotalItem = styled("div", {
   shouldForwardProp: (prop) => !["color"].includes(prop),
 })`
-  width: 160px;
+  width: 200px;
   margin-right: 10px;
 
   &:last-of-type {
@@ -44,7 +44,7 @@ export const TotalItem = styled("div", {
 `;
 
 export const EventsContainer = styled.div`
-  min-width: 320px;
+  min-width: 400px;
 `;
 
 export const AttendeesTitle = styled.h3`
