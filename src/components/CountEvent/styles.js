@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const Event = styled.p`
+export const Event = styled.div`
   cursor: pointer;
   display: flex;
   justify-content: space-between;

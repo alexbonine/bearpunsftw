@@ -14,7 +14,8 @@ import {
   Error,
   EventsContainer,
   Title,
-  Total,
+  TotalBox,
+  TotalColumn,
   TotalContainer,
   TotalItem,
 } from "./styles";
@@ -94,110 +95,114 @@ const Count = () => {
         <Counts>
           <Title>RSVP Counts</Title>
           <TotalContainer>
-            <Total>
-              <TotalItem
-                color={colors.green}
-                onClick={setupOnClick(
-                  ATTENDEE_KEYS.ATTENDANCE,
-                  ATTENDEE_LIST_KEYS.YES
-                )}
-                onKeyDown={setupOnKeyPress(
-                  ATTENDEE_KEYS.ATTENDANCE,
-                  ATTENDEE_LIST_KEYS.YES
-                )}
-                role="button"
-                tabIndex={0}
-              >
-                Attending:&nbsp;
-                {formatCounts(
-                  attendance.counts.yes,
-                  totalInvited,
-                  attendance.counts.yes + attendance.counts.no
-                )}
-              </TotalItem>
-              <TotalItem
-                color={colors.red}
-                onClick={setupOnClick(
-                  ATTENDEE_KEYS.ATTENDANCE,
-                  ATTENDEE_LIST_KEYS.NO
-                )}
-                onKeyDown={setupOnKeyPress(
-                  ATTENDEE_KEYS.ATTENDANCE,
-                  ATTENDEE_LIST_KEYS.NO
-                )}
-                role="button"
-                tabIndex={0}
-              >
-                Not Attending:&nbsp;
-                {formatCounts(attendance.counts.no, totalInvited)}
-              </TotalItem>
-              <TotalItem
-                color={colors.yellow}
-                onClick={setupOnClick(
-                  ATTENDEE_KEYS.ATTENDANCE,
-                  ATTENDEE_LIST_KEYS.INVITED
-                )}
-                onKeyDown={setupOnKeyPress(
-                  ATTENDEE_KEYS.ATTENDANCE,
-                  ATTENDEE_LIST_KEYS.INVITED
-                )}
-                role="button"
-                tabIndex={0}
-              >
-                Unknown:&nbsp;
-                {formatCounts(attendance.counts.invited, totalInvited)}
-              </TotalItem>
-            </Total>
-            <Total>
-              <TotalItem
-                color={colors.green}
-                onClick={setupOnClick(
-                  ATTENDEE_KEYS.RESPONSE_STATUS,
-                  ATTENDEE_LIST_KEYS.YES
-                )}
-                onKeyDown={setupOnKeyPress(
-                  ATTENDEE_KEYS.RESPONSE_STATUS,
-                  ATTENDEE_LIST_KEYS.YES
-                )}
-                role="button"
-                tabIndex={0}
-              >
-                Responded:&nbsp;
-                {formatCounts(status.counts.yes, totalResponses)}
-              </TotalItem>
-              <TotalItem
-                color={colors.red}
-                onClick={setupOnClick(
-                  ATTENDEE_KEYS.RESPONSE_STATUS,
-                  ATTENDEE_LIST_KEYS.NO
-                )}
-                onKeyDown={setupOnKeyPress(
-                  ATTENDEE_KEYS.RESPONSE_STATUS,
-                  ATTENDEE_LIST_KEYS.NO
-                )}
-                role="button"
-                tabIndex={0}
-              >
-                Viewed:&nbsp;
-                {formatCounts(status.counts.no, totalResponses)}
-              </TotalItem>
-              <TotalItem
-                color={colors.yellow}
-                onClick={setupOnClick(
-                  ATTENDEE_KEYS.RESPONSE_STATUS,
-                  ATTENDEE_LIST_KEYS.INVITED
-                )}
-                onKeyDown={setupOnKeyPress(
-                  ATTENDEE_KEYS.RESPONSE_STATUS,
-                  ATTENDEE_LIST_KEYS.INVITED
-                )}
-                role="button"
-                tabIndex={0}
-              >
-                Not Responded:&nbsp;
-                {formatCounts(status.counts.invited, totalResponses)}
-              </TotalItem>
-            </Total>
+            <TotalColumn>
+              <TotalBox>
+                <TotalItem
+                  color={colors.green}
+                  onClick={setupOnClick(
+                    ATTENDEE_KEYS.ATTENDANCE,
+                    ATTENDEE_LIST_KEYS.YES
+                  )}
+                  onKeyDown={setupOnKeyPress(
+                    ATTENDEE_KEYS.ATTENDANCE,
+                    ATTENDEE_LIST_KEYS.YES
+                  )}
+                  role="button"
+                  tabIndex={0}
+                >
+                  Yes:&nbsp;
+                  {formatCounts(
+                    attendance.counts.yes,
+                    totalInvited,
+                    attendance.counts.yes + attendance.counts.no
+                  )}
+                </TotalItem>
+                <TotalItem
+                  color={colors.red}
+                  onClick={setupOnClick(
+                    ATTENDEE_KEYS.ATTENDANCE,
+                    ATTENDEE_LIST_KEYS.NO
+                  )}
+                  onKeyDown={setupOnKeyPress(
+                    ATTENDEE_KEYS.ATTENDANCE,
+                    ATTENDEE_LIST_KEYS.NO
+                  )}
+                  role="button"
+                  tabIndex={0}
+                >
+                  No:&nbsp;
+                  {formatCounts(attendance.counts.no, totalInvited)}
+                </TotalItem>
+                <TotalItem
+                  color={colors.yellow}
+                  onClick={setupOnClick(
+                    ATTENDEE_KEYS.ATTENDANCE,
+                    ATTENDEE_LIST_KEYS.INVITED
+                  )}
+                  onKeyDown={setupOnKeyPress(
+                    ATTENDEE_KEYS.ATTENDANCE,
+                    ATTENDEE_LIST_KEYS.INVITED
+                  )}
+                  role="button"
+                  tabIndex={0}
+                >
+                  ??:&nbsp;
+                  {formatCounts(attendance.counts.invited, totalInvited)}
+                </TotalItem>
+              </TotalBox>
+            </TotalColumn>
+            <TotalColumn>
+              <TotalBox>
+                <TotalItem
+                  color={colors.green}
+                  onClick={setupOnClick(
+                    ATTENDEE_KEYS.RESPONSE_STATUS,
+                    ATTENDEE_LIST_KEYS.YES
+                  )}
+                  onKeyDown={setupOnKeyPress(
+                    ATTENDEE_KEYS.RESPONSE_STATUS,
+                    ATTENDEE_LIST_KEYS.YES
+                  )}
+                  role="button"
+                  tabIndex={0}
+                >
+                  RSVP'd:&nbsp;
+                  {formatCounts(status.counts.yes, totalResponses)}
+                </TotalItem>
+                <TotalItem
+                  color={colors.red}
+                  onClick={setupOnClick(
+                    ATTENDEE_KEYS.RESPONSE_STATUS,
+                    ATTENDEE_LIST_KEYS.NO
+                  )}
+                  onKeyDown={setupOnKeyPress(
+                    ATTENDEE_KEYS.RESPONSE_STATUS,
+                    ATTENDEE_LIST_KEYS.NO
+                  )}
+                  role="button"
+                  tabIndex={0}
+                >
+                  Viewed:&nbsp;
+                  {formatCounts(status.counts.no, totalResponses)}
+                </TotalItem>
+                <TotalItem
+                  color={colors.yellow}
+                  onClick={setupOnClick(
+                    ATTENDEE_KEYS.RESPONSE_STATUS,
+                    ATTENDEE_LIST_KEYS.INVITED
+                  )}
+                  onKeyDown={setupOnKeyPress(
+                    ATTENDEE_KEYS.RESPONSE_STATUS,
+                    ATTENDEE_LIST_KEYS.INVITED
+                  )}
+                  role="button"
+                  tabIndex={0}
+                >
+                  Waiting:&nbsp;
+                  {formatCounts(status.counts.invited, totalResponses)}
+                </TotalItem>
+              </TotalBox>
+            </TotalColumn>
           </TotalContainer>
           <br />
           <EventsContainer>

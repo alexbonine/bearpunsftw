@@ -24,27 +24,30 @@ export const Title = styled.h1``;
 
 export const TotalContainer = styled.div`
   display: flex;
+  justify-content: space-between;
 `;
 
-export const Total = styled.div`
-  cursor: pointer;
+export const TotalColumn = styled.div`
+  width: 160px;
+  display: flex;
+  justify-content: flex-end;
+
+  &:first-of-type {
+    display: block;
+  }
 `;
+
+export const TotalBox = styled.div``;
 
 export const TotalItem = styled("div", {
   shouldForwardProp: (prop) => !["color"].includes(prop),
 })`
-  width: 200px;
-  margin-right: 10px;
-
-  &:last-of-type {
-    margin-right: 0;
-  }
-
+  cursor: pointer;
   color: ${({ color }) => color || colors.black};
 `;
 
 export const EventsContainer = styled.div`
-  min-width: 400px;
+  min-width: 320px;
 `;
 
 export const AttendeesTitle = styled.h3`
