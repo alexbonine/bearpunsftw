@@ -118,9 +118,10 @@ const BRUNCH = {
   date: "Sun Sept 19th",
   dateShort: "9/19",
   key: RESPONSE_KEYS.BRUNCH,
-  location: "815 Broadway New York, NY 10003",
+  location:
+    "Stuyvesant Square Park (West of 2nd Ave), 9 Rutherford Pl, New York, NY 10003",
   time: "11am - 1pm",
-  title: "Farewell Bites",
+  title: "Farewell Bites (NEW LOCATION)",
   toFollow: "",
 };
 

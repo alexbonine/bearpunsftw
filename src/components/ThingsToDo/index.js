@@ -140,7 +140,7 @@ const ThingsToDo = () => {
             <h2>Drink</h2>
             <ul>
               <li>
-                <span role="img" aria-label="saxaphone emoji">
+                <span role="img" aria-label="saxophone emoji">
                   🎷
                 </span>{" "}
                 Rue B Jazz Bar
@@ -150,6 +150,12 @@ const ThingsToDo = () => {
                   🍶
                 </span>{" "}
                 Decibel Sake Bar
+              </li>
+              <li>
+                <span role="img" aria-label="shot emoji">
+                  🥃
+                </span>{" "}
+                Big Bar
               </li>
               <li>
                 <span role="img" aria-label="taco emoji">
