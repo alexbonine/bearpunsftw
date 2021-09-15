@@ -72,6 +72,14 @@ export const EventDate = styled.h4`
   })}
 `;
 
+export const EventAttire = styled.p`
+  color: ${colors.white};
+  margin-bottom: 4px;
+  ${mq({
+    textAlign: ["center", "left"],
+  })}
+`;
+
 export const EventTitle = styled.h5`
   color: ${colors.white};
   margin-bottom: 0px;
